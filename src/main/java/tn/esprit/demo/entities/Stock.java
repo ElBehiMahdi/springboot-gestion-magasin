@@ -3,6 +3,7 @@ package tn.esprit.demo.entities;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class Stock implements Serializable{
 	private Integer qte;
 	private Integer qteMin;
 	private String libelle ;
-	@OneToMany(mappedBy="stock")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
 	private Set<Produit> P;
 	
 	public Stock() {

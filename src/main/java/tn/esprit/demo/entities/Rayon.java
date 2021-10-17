@@ -3,6 +3,7 @@ package tn.esprit.demo.entities;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class Rayon implements Serializable{
 	private Long idRayon ;
 	private String code;
 	private String libelle ;
-	@OneToMany(mappedBy="rayon")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
 	private Set<Produit> P;
 	
 	public Rayon() {
