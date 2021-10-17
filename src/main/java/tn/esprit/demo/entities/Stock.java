@@ -3,7 +3,6 @@ package tn.esprit.demo.entities;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,10 +12,6 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Stock implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	@Column(name="idStock")
@@ -24,9 +19,9 @@ public class Stock implements Serializable{
 	private Integer qte;
 	private Integer qteMin;
 	private String libelle ;
+	@OneToMany(mappedBy="")
+	private Set<Produit> P;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
-	private Set<Produit> Produit;
 	public Stock() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -1,12 +1,14 @@
 package tn.esprit.demo.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Rayon implements Serializable{
@@ -20,6 +22,9 @@ public class Rayon implements Serializable{
 	private Long idRayon ;
 	private String code;
 	private String libelle ;
+	@OneToMany(mappedBy="")
+	private Set<Produit> P;
+	
 	public Rayon() {
 		super();
 		// TODO Auto-generated constructor stub
