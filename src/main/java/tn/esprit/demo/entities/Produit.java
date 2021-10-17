@@ -29,7 +29,13 @@ private float prixUnitaire;
 private DetailProduit detailProduit;
 
 @ManyToOne
+Rayon rayon;
+
+@ManyToOne
 Stock stock;
+
+@ManyToOne
+detailFacture detailFacture;
 
 //Constructor et accesseurs (getters) et mutateurs (setters) }
 
