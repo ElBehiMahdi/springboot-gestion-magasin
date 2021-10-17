@@ -19,7 +19,7 @@ public class Stock implements Serializable{
 	private Integer qte;
 	private Integer qteMin;
 	private String libelle ;
-	@OneToMany(mappedBy="")
+	@OneToMany(mappedBy="stock")
 	private Set<Produit> P;
 	
 	public Stock() {

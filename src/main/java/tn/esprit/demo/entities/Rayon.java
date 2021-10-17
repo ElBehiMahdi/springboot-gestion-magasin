@@ -18,7 +18,7 @@ public class Rayon implements Serializable{
 	private Long idRayon ;
 	private String code;
 	private String libelle ;
-	@OneToMany(mappedBy="")
+	@OneToMany(mappedBy="rayon")
 	private Set<Produit> P;
 	
 	public Rayon() {
