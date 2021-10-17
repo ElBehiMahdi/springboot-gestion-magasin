@@ -16,6 +16,9 @@ public class Fournisseur implements Serializable{
 	private Long idFournisseur ;
 	private String code;
 	private String libelle ;
+	
+	
+	
 	public Fournisseur() {
 		super();
 		// TODO Auto-generated constructor stub

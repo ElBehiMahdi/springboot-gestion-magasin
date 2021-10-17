@@ -1,12 +1,14 @@
 package tn.esprit.demo.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Stock implements Serializable{
@@ -17,6 +19,9 @@ public class Stock implements Serializable{
 	private Integer qte;
 	private Integer qteMin;
 	private String libelle ;
+	@OneToMany(mappedBy="")
+	private Set<Produit> P;
+	
 	public Stock() {
 		super();
 		// TODO Auto-generated constructor stub
