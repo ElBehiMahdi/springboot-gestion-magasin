@@ -42,6 +42,7 @@ public class Client implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Profession profession;
 	
+	// One to many association Client 1-* Facture
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
 	private Set<Facture> f;
 	
