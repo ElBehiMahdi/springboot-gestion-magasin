@@ -1,14 +1,19 @@
 package tn.esprit.demo.entities;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Facture {
+public class Facture implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long idFacture;
@@ -17,6 +22,9 @@ public class Facture {
 	private Date dateFacture;
 	private Boolean active;
 	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="facture")
+	private Set<detailFacture> df;
 	
 	
 	public Facture() {
