@@ -20,6 +20,8 @@ public class Stock implements Serializable{
 	private Integer qte;
 	private Integer qteMin;
 	private String libelle ;
+	
+	//One to many association Stock 1-* Produit
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
 	private Set<Produit> P;
 	

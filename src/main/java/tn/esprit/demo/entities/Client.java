@@ -2,7 +2,9 @@ package tn.esprit.demo.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -38,6 +41,10 @@ public class Client implements Serializable{
 	@Column
 	@Enumerated(EnumType.STRING)
 	private Profession profession;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
+	private Set<Facture> f;
+	
 	public int getIdClient() {
 		return idClient;
 	}
