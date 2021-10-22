@@ -45,6 +45,10 @@ public class DetailProduit implements Serializable {
 		this.categorieProduit = categorieProduit;
 	}
 
+	public DetailProduit() {
+
+	}
+
 	public Long getIdDetailProduit() {
 		return idDetailProduit;
 	}

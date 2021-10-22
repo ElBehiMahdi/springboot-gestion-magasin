@@ -23,3 +23,5 @@
 hs_err_pid*
 target/classes/META-INF/maven/tn.esprit/springboot-gestion-magasin/pom.properties
 target/classes/META-INF/maven/tn.esprit/springboot-gestion-magasin/pom.properties
+.idea/*
+target/classes/META-INF/maven/tn.esprit/springboot-gestion-magasin/pom.properties
