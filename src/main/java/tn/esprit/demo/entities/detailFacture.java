@@ -3,14 +3,7 @@ package tn.esprit.demo.entities;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class detailFacture implements Serializable {
@@ -23,9 +16,9 @@ public class detailFacture implements Serializable {
 	private Integer pourcentageRemise;
 	private Float montantRemise;
 
-	// One to many association detailFacture 1-* Produit
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "detailFacture")
-	private Set<Produit> P;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "idProduit", nullable = false)
+	private Produit produit;
 
 	// Many to one association detailFacture *-1 Facture
 	@ManyToOne

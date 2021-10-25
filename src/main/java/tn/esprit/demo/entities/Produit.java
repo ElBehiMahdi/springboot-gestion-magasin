@@ -3,16 +3,7 @@ package tn.esprit.demo.entities;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Produit")
@@ -41,9 +32,10 @@ public class Produit implements Serializable {
 	@ManyToOne
 	Stock stock;
 
-	// Many to One association Produit *-* detailFacture
-	@ManyToOne
-	detailFacture detailFacture;
+	// One to many association Produit 1-* detailfacture
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
+	private Set<detailFacture> detailFactures;
+
 
 	// Many to many association Produit *-* Fournisseur
 	@ManyToMany(mappedBy = "produits", cascade = CascadeType.ALL)
@@ -57,6 +49,11 @@ public class Produit implements Serializable {
 		this.code = code;
 		this.libelle = libelle;
 		this.prixUnitaire = prixUnitaire;
+	}
+
+	public Produit() {
+
+
 	}
 
 	public Long getIdProduit() {
