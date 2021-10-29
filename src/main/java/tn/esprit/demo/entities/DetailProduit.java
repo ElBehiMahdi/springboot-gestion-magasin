@@ -3,17 +3,7 @@ package tn.esprit.demo.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "DetailProduit")
@@ -28,15 +18,16 @@ public class DetailProduit implements Serializable {
 	private Long idDetailProduit; // Clé primaire
 	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
-	private String dateDerniereModification;
+	private Date dateDerniereModification;
 	@Enumerated(EnumType.STRING)
 	private CategorieProduit categorieProduit;
 
 	// One to One association detailProduit 1-1 Produit
-	@OneToOne(mappedBy = "detailProduit")
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "produit_id", nullable = false)
 	private Produit produit;
 
-	public DetailProduit(Long idDetailProduit, Date dateCreation, String dateDerniereModification,
+	public DetailProduit(Long idDetailProduit, Date dateCreation, Date dateDerniereModification,
 			CategorieProduit categorieProduit) {
 		super();
 		this.idDetailProduit = idDetailProduit;
@@ -47,6 +38,11 @@ public class DetailProduit implements Serializable {
 
 	public DetailProduit() {
 
+	}
+
+	public DetailProduit(Date dateCreation, Date dateDerniereModification) {
+		this.dateCreation = dateCreation;
+		this.dateDerniereModification = dateDerniereModification;
 	}
 
 	public Long getIdDetailProduit() {
@@ -65,11 +61,11 @@ public class DetailProduit implements Serializable {
 		this.dateCreation = dateCreation;
 	}
 
-	public String getDateDerniereModification() {
+	public Date getDateDerniereModification() {
 		return dateDerniereModification;
 	}
 
-	public void setDateDerniereModification(String dateDerniereModification) {
+	public void setDateDerniereModification(Date dateDerniereModification) {
 		this.dateDerniereModification = dateDerniereModification;
 	}
 
@@ -81,5 +77,11 @@ public class DetailProduit implements Serializable {
 		this.categorieProduit = categorieProduit;
 	}
 
-//Constructor et accesseurs (getters) et mutateurs (setters) }
+	public Produit getProduit() {
+		return produit;
+	}
+
+	public void setProduit(Produit produit) {
+		this.produit = produit;
+	}
 }

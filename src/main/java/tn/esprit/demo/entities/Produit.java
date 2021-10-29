@@ -21,7 +21,9 @@ public class Produit implements Serializable {
 	private float prixUnitaire;
 
 	// One to one association Produit 1-1 detailProduit
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY,
+			cascade =  CascadeType.ALL,
+			mappedBy = "produit")
 	private DetailProduit detailProduit;
 
 	// Many to One association Produit *-1 Rayon
@@ -56,6 +58,12 @@ public class Produit implements Serializable {
 
 	}
 
+	public Produit(String code, String libelle, float prixUnitaire) {
+		this.code = code;
+		this.libelle = libelle;
+		this.prixUnitaire = prixUnitaire;
+	}
+
 	public Long getIdProduit() {
 		return idProduit;
 	}
@@ -88,4 +96,43 @@ public class Produit implements Serializable {
 		this.prixUnitaire = prixUnitaire;
 	}
 
+	public DetailProduit getDetailProduit() {
+		return detailProduit;
+	}
+
+	public void setDetailProduit(DetailProduit detailProduit) {
+		this.detailProduit = detailProduit;
+	}
+
+	public Rayon getRayon() {
+		return rayon;
+	}
+
+	public void setRayon(Rayon rayon) {
+		this.rayon = rayon;
+	}
+
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
+
+	public Set<detailFacture> getDetailFactures() {
+		return detailFactures;
+	}
+
+	public void setDetailFactures(Set<detailFacture> detailFactures) {
+		this.detailFactures = detailFactures;
+	}
+
+	public Set<Fournisseur> getFournisseur() {
+		return fournisseur;
+	}
+
+	public void setFournisseur(Set<Fournisseur> fournisseur) {
+		this.fournisseur = fournisseur;
+	}
 }
