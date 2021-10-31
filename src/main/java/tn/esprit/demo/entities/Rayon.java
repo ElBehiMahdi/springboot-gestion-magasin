@@ -1,5 +1,7 @@
 package tn.esprit.demo.entities;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
+@Data
 public class Rayon implements Serializable {
 	/**
 	 * 
@@ -27,41 +30,4 @@ public class Rayon implements Serializable {
 	// One to many association Rayon 1-* Produit
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rayon")
 	private Set<Produit> P;
-
-	public Rayon() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Rayon(Long idRayon, String code, String libelle) {
-		super();
-		this.idRayon = idRayon;
-		this.code = code;
-		this.libelle = libelle;
-	}
-
-	public Long getIdRayon() {
-		return idRayon;
-	}
-
-	public void setIdRayon(Long idRayon) {
-		this.idRayon = idRayon;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getLibelle() {
-		return libelle;
-	}
-
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
-
 }

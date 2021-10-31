@@ -1,5 +1,7 @@
 package tn.esprit.demo.entities;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
+@Data
 public class Stock implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
@@ -24,41 +27,4 @@ public class Stock implements Serializable{
 	//One to many association Stock 1-* Produit
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
 	private Set<Produit> P;
-	
-	public Stock() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Stock(Long idStock, Integer qte, Integer qteMin, String libelle) {
-		super();
-		this.idStock = idStock;
-		this.qte = qte;
-		this.qteMin = qteMin;
-		this.libelle = libelle;
-	}
-	public Long getIdStock() {
-		return idStock;
-	}
-	public void setIdStock(Long idStock) {
-		this.idStock = idStock;
-	}
-	public Integer getQte() {
-		return qte;
-	}
-	public void setQte(Integer qte) {
-		this.qte = qte;
-	}
-	public Integer getQteMin() {
-		return qteMin;
-	}
-	public void setQteMin(Integer qteMin) {
-		this.qteMin = qteMin;
-	}
-	public String getLibelle() {
-		return libelle;
-	}
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
-	
 }
