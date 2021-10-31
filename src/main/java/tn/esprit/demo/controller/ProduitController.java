@@ -7,8 +7,6 @@ import tn.esprit.demo.entities.Produit;
 import tn.esprit.demo.service.ClientService;
 import tn.esprit.demo.service.ProduitService;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import java.util.List;
 @RestController
 @RequestMapping("/api")
@@ -26,16 +24,16 @@ public class ProduitController {
     }
 
     @GetMapping(value="/getProduit/{id}")
-    public Produit getProduitById(@PathVariable("id") @Min(1) Long id) {
+    public Produit getProduitById(@PathVariable("id") Long id) {
         Produit produit = produitService.get(id);
         return produit;
     }
     @PostMapping(value="/addProduit")
-    public void addProduit(@Valid @RequestBody Produit produit) {
+    public void addProduit(@RequestBody Produit produit) {
         produitService.saveProduit(produit);
     }
     @PutMapping(value="/updateProduit/{id}")
-    public void updateProduit(@PathVariable("id") @Min(1) Long id, @Valid @RequestBody Produit produit) {
+    public void updateProduit(@PathVariable("id") Long id, @RequestBody Produit produit) {
         Produit p = produitService.get(id);
         p.setDetailProduit(p.getDetailProduit());
         produitService.saveProduit(produit);
