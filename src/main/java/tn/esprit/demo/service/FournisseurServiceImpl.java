@@ -1,30 +1,26 @@
 package tn.esprit.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Fournisseur;
-import tn.esprit.demo.repository.ClientRepository;
 import tn.esprit.demo.repository.FournisseurRepository;
 
 import java.util.List;
 
+@Service
 public class FournisseurServiceImpl implements FournisseurService{
-
     @Autowired
     private FournisseurRepository fournisseurRepository;
 
+
     @Override
-    public Fournisseur getFournisseurById(Long id) {
-        return fournisseurRepository.getById(id);
+    public List<Fournisseur> retrieveAllFournisseur() {
+        return fournisseurRepository.findAll();
     }
 
     @Override
-    public void saveFournisseur(Fournisseur f) {
-        fournisseurRepository.save(f);
-    }
-
-    @Override
-    public void updateFournisseur(Fournisseur f) {
-        fournisseurRepository.save(f);
+    public Fournisseur addFournisseur(Fournisseur f) {
+        return fournisseurRepository.save(f);
     }
 
     @Override
@@ -33,7 +29,12 @@ public class FournisseurServiceImpl implements FournisseurService{
     }
 
     @Override
-    public List<Fournisseur> getAllFournisseur() {
-        return fournisseurRepository.findAll();
+    public Fournisseur updateFournisseur(Fournisseur f) {
+        return fournisseurRepository.save(f);
+    }
+
+    @Override
+    public Fournisseur retrieveFournisseur(Long id) {
+        return fournisseurRepository.getById(id);
     }
 }
