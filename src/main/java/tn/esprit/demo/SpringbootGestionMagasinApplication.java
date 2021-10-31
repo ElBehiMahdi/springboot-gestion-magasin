@@ -27,8 +27,8 @@ public class SpringbootGestionMagasinApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		//create a product
-		Produit produit = new Produit("test_code","test_label",467);
-		DetailProduit detailProduit = new DetailProduit(null, null);
+		Produit produit = new Produit();
+		DetailProduit detailProduit = new DetailProduit();
 
 		produit.setDetailProduit(detailProduit);
 		detailProduit.setProduit(produit);

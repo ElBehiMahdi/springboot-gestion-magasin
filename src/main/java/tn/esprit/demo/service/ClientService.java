@@ -3,7 +3,6 @@ package tn.esprit.demo.service;
 import tn.esprit.demo.entities.Client;
 
 import java.util.List;
-
 public interface ClientService {
     public abstract Client getClientById(Long id);
     public abstract void saveClient(Client c);

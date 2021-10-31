@@ -1,13 +1,14 @@
 package tn.esprit.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.DetailProduit;
 import tn.esprit.demo.entities.Produit;
 import tn.esprit.demo.repository.DetailProduitRepository;
 import tn.esprit.demo.repository.ProduitRepository;
 
 import java.util.List;
-
+@Service
 public class ProduitServiceImpl implements ProduitService{
 
     @Autowired
@@ -20,7 +21,7 @@ public class ProduitServiceImpl implements ProduitService{
     }
 
     @Override
-    public void saveProduit(Produit p, Long idRayon, Long idStock) {
+    public void saveProduit(Produit p) {
         produitRepository.save(p);
     }
 
