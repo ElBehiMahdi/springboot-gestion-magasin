@@ -15,21 +15,16 @@ public class RayonServiceImpl implements RayonService {
 
     @Override
     public List<Rayon> getAllRayon() {
-        return null;
+        return rayonRepository.findAll();
     }
 
     @Override
-    public void saveStock(Rayon r) {
-
-    }
-
-    @Override
-    public Rayon get(Long id) {
-        return null;
+    public Rayon getRayon(Long id) {
+        return rayonRepository.getById(id);
     }
 
     @Override
     public void saveRayon(Rayon r) {
-
+        rayonRepository.save(r);
     }
 }

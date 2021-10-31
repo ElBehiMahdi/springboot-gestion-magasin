@@ -13,5 +13,5 @@ public interface FournisseurService {
 
     Fournisseur updateFournisseur(Fournisseur f);
 
-    Fournisseur retrieveFournisseur();
+    Fournisseur retrieveFournisseur(Long id);
 }

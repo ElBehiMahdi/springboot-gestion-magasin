@@ -10,39 +10,31 @@ import java.util.List;
 @Service
 public class FournisseurServiceImpl implements FournisseurService{
     @Autowired
-    private FournisseurRepository repositoty;
+    private FournisseurRepository fournisseurRepository;
 
 
     @Override
     public List<Fournisseur> retrieveAllFournisseur() {
-        return null;
+        return fournisseurRepository.findAll();
     }
 
     @Override
     public Fournisseur addFournisseur(Fournisseur f) {
-        return null;
+        return fournisseurRepository.save(f);
     }
 
     @Override
     public void deleteFournisseur(Long id) {
-
+        fournisseurRepository.deleteById(id);
     }
 
     @Override
     public Fournisseur updateFournisseur(Fournisseur f) {
-        return null;
+        return fournisseurRepository.save(f);
     }
 
     @Override
-    public Fournisseur retrieveFournisseur() {
-        return null;
-    }
-
-    public FournisseurRepository getRepositoty() {
-        return repositoty;
-    }
-
-    public void setRepositoty(FournisseurRepository repositoty) {
-        this.repositoty = repositoty;
+    public Fournisseur retrieveFournisseur(Long id) {
+        return fournisseurRepository.getById(id);
     }
 }
