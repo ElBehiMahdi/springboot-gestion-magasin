@@ -16,15 +16,16 @@ public class FactureRestController {
     @Autowired
     FactureService factureService;
 
-    /*
+
     // http://localhost:8089/SpringMVC/client/retrieve-all-clients
     @GetMapping("/retrieve-all-factures")
     @ResponseBody
-    public List<Facture> getClients() {
-        List<Facture> listClients = clientService.getAllClients();
-        return listClients;
+    public List<Facture> getFacture() {
+        List<Facture> listFacture = factureService.getAllFactures();
+        return listFacture;
     }
 
+    /*
     // http://localhost:8089/SpringMVC/client/retrieve-client/8
     @GetMapping("/retrieve-client/{client-id}")
     @ResponseBody
