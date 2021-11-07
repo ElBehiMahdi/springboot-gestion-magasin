@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.entities.DetailProduit;
 import tn.esprit.demo.entities.Produit;
@@ -11,8 +12,9 @@ import tn.esprit.demo.repository.DetailProduitRepository;
 import tn.esprit.demo.repository.ProduitRepository;
 import tn.esprit.demo.service.ClientServiceImpl;
 
+@EnableSwagger2
 @SpringBootApplication
-public class SpringbootGestionMagasinApplication implements CommandLineRunner {
+public class SpringbootGestionMagasinApplication{
 
 	@Autowired
 	private ProduitRepository produitRepository;
@@ -21,17 +23,5 @@ public class SpringbootGestionMagasinApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootGestionMagasinApplication.class, args);
 
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-
-		//create a product
-		Produit produit = new Produit();
-		DetailProduit detailProduit = new DetailProduit();
-
-		produit.setDetailProduit(detailProduit);
-		detailProduit.setProduit(produit);
-		produitRepository.save(produit);
 	}
 }
