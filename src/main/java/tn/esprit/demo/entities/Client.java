@@ -1,5 +1,7 @@
 package tn.esprit.demo.entities;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -16,6 +18,7 @@ import javax.persistence.OneToMany;
 
 
 @Entity
+@Data
 public class Client implements Serializable{
 	/**
 	 * 
@@ -24,7 +27,7 @@ public class Client implements Serializable{
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column
-	private int idClient;
+	private Long idClient;
 	@Column
 	private String nom;
 	@Column
@@ -45,58 +48,4 @@ public class Client implements Serializable{
 	// One to many association Client 1-* Facture
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
 	private Set<Facture> f;
-	
-	public int getIdClient() {
-		return idClient;
-	}
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
-	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	public String getPrenom() {
-		return prenom;
-	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-	public Date getDateNaissance() {
-		return dateNaissance;
-	}
-	public void setDateNaissance(Date dateNaissance) {
-		this.dateNaissance = dateNaissance;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public CategorieClient getCategorieclient() {
-		return categorieclient;
-	}
-	public void setCategorieclient(CategorieClient categorieclient) {
-		this.categorieclient = categorieclient;
-	}
-	public Profession getProfession() {
-		return profession;
-	}
-	public void setProfession(Profession profession) {
-		this.profession = profession;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-
 }

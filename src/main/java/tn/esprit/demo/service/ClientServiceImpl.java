@@ -1,12 +1,12 @@
 package tn.esprit.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.repository.ClientRepository;
 
-import javax.transaction.Transactional;
 import java.util.List;
-
+@Service
 public class ClientServiceImpl implements ClientService{
 
     @Autowired
@@ -18,13 +18,15 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public void saveClient(Client c) {
+    public Client saveClient(Client c) {
         clientRepository.save(c);
+        return c;
     }
 
     @Override
-    public void updateClient(Client c) {
+    public Client updateClient(Client c) {
         clientRepository.save(c);
+        return c;
     }
 
     @Override

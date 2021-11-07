@@ -1,12 +1,13 @@
 package tn.esprit.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Stock;
 import tn.esprit.demo.repository.ClientRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
-
+@Service
 public class StockServiceImpl implements StockService{
 
     @Autowired

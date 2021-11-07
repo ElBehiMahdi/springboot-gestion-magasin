@@ -1,11 +1,14 @@
 package tn.esprit.demo.entities;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "DetailProduit")
 public class DetailProduit implements Serializable {
 	/**
@@ -26,62 +29,4 @@ public class DetailProduit implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "produit_id", nullable = false)
 	private Produit produit;
-
-	public DetailProduit(Long idDetailProduit, Date dateCreation, Date dateDerniereModification,
-			CategorieProduit categorieProduit) {
-		super();
-		this.idDetailProduit = idDetailProduit;
-		this.dateCreation = dateCreation;
-		this.dateDerniereModification = dateDerniereModification;
-		this.categorieProduit = categorieProduit;
-	}
-
-	public DetailProduit() {
-
-	}
-
-	public DetailProduit(Date dateCreation, Date dateDerniereModification) {
-		this.dateCreation = dateCreation;
-		this.dateDerniereModification = dateDerniereModification;
-	}
-
-	public Long getIdDetailProduit() {
-		return idDetailProduit;
-	}
-
-	public void setIdDetailProduit(Long idDetailProduit) {
-		this.idDetailProduit = idDetailProduit;
-	}
-
-	public Date getDateCreation() {
-		return dateCreation;
-	}
-
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-
-	public Date getDateDerniereModification() {
-		return dateDerniereModification;
-	}
-
-	public void setDateDerniereModification(Date dateDerniereModification) {
-		this.dateDerniereModification = dateDerniereModification;
-	}
-
-	public CategorieProduit getCategorieProduit() {
-		return categorieProduit;
-	}
-
-	public void setCategorieProduit(CategorieProduit categorieProduit) {
-		this.categorieProduit = categorieProduit;
-	}
-
-	public Produit getProduit() {
-		return produit;
-	}
-
-	public void setProduit(Produit produit) {
-		this.produit = produit;
-	}
 }
