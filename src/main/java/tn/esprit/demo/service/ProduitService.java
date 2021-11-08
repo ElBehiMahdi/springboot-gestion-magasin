@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ProduitService {
     public abstract Produit get(Long id);
-    public abstract Produit saveProduit(Produit p);
+    public abstract Produit saveProduit(Produit p,Long idRayon, Long idStock);
     public abstract List<Produit> getAllProduits();
 }

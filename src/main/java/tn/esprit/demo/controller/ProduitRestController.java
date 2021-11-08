@@ -34,13 +34,14 @@ public class ProduitRestController {
     public Produit retrieveProduit(@PathVariable("produit-id") Long produitId) {
         return produitService.get(produitId);
     }
+
     // http://localhost:8089/SpringMVC/produit/add-produit
     @PostMapping("/add-produit")
     @ApiOperation(value = "Ajouter un produit")
     @ResponseBody
-    public Produit addProduit(@RequestBody Produit p)
+    public Produit addProduit(@RequestBody Produit p,Long idRayon, Long idStock)
     {
-        Produit produit = produitService.saveProduit(p);
+        Produit produit = produitService.saveProduit(p,idRayon,idStock);
         return produit;
     }
 

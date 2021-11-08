@@ -20,7 +20,7 @@ public class ProduitServiceImpl implements ProduitService{
     }
 
     @Override
-    public Produit saveProduit(Produit p) {
+    public Produit saveProduit(Produit p,Long idRayon, Long idStock) {
         produitRepository.save(p);
         return p;
     }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface StockService {
     public abstract Stock get(Long id);
-    public abstract void saveStock(Stock s);
-    public abstract void updateStock(Stock s);
+    public abstract Stock saveStock(Stock s);
+    public abstract Stock updateStock(Stock s);
     public abstract List<Stock> getAllStocks();
 }
