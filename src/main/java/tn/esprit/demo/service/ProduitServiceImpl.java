@@ -21,6 +21,10 @@ public class ProduitServiceImpl implements ProduitService{
 
     @Override
     public Produit saveProduit(Produit p,Long idRayon, Long idStock) {
+
+        //Produit p = new Produit();
+        //p.setStock();
+
         produitRepository.save(p);
         return p;
     }

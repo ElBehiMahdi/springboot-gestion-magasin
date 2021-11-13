@@ -45,4 +45,7 @@ public class Produit implements Serializable {
 	// Many to many association Produit *-* Fournisseur
 	@ManyToMany(mappedBy = "produits", cascade = CascadeType.ALL)
 	private Set<Fournisseur> fournisseur;
+
+	public void setRayon() {
+	}
 }
