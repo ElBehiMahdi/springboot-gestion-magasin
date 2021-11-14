@@ -9,4 +9,7 @@ public interface FactureService {
     public abstract Facture getFactureById(Long id);
     public abstract void cancelFacture(Long id);
     public abstract List<Facture> getAllFactures();
+    public abstract Facture addFacture(Facture f);
+	public abstract Facture getFactureByClientFacture(long clientId) ;
+		 
 }

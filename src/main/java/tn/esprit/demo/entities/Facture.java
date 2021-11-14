@@ -33,4 +33,22 @@ public class Facture implements Serializable {
 	// One to many association Facture 1-* detailFacture
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facture")
 	private Set<detailFacture> df;
+
+	public boolean getActive() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void setActive(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	 
+	
+
+	public void setPrenom(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 }
