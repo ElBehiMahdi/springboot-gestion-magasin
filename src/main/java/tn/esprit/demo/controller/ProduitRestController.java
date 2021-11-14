@@ -29,52 +29,35 @@ public class ProduitRestController {
 
     // http://localhost:8089/SpringMVC/produit/retrieve-all-produits
     @GetMapping("/retrieve-all-produits")
-    @ApiOperation(value = "Récupérer la liste des produits")
     @ResponseBody
+    @ApiOperation(value ="Récupérer la liste des produits")
     public List<Produit> getProduits() {
-        List<Produit> listProduits = produitService.getAllProduits();
+        List<Produit> listProduits = produitService.retrieveAllProduits();
         return listProduits;
     }
 
-    // http://localhost:8089/SpringMVC/produit/retrieve-produit/8
+    //http://localhost:8089/SpringMVC/produit/retrieve-produit/3
     @GetMapping("/retrieve-produit/{produit-id}")
-    @ApiOperation(value = "Récupérer un produit par id")
     @ResponseBody
+    @ApiOperation(value ="Permet de récuperer un produit avec son id")
     public Produit retrieveProduit(@PathVariable("produit-id") Long produitId) {
-        //TODO fix this error
-        return produitService.get(produitId);
+        return produitService.retrieveProduit(produitId);
     }
 
-    // http://localhost:8089/SpringMVC/produit/add-produit
+    //http://localhost:8089/SpringMVC/produit/add-produit
     @PostMapping("/add-produit")
-    @ApiOperation(value = "Ajouter un produit")
     @ResponseBody
-    public Produit addProduit(@RequestBody Produit p,Long idRayon, Long idStock)
-    {
-        Produit produit = produitService.saveProduit(p,idRayon,idStock);
-        //Stock stock = stockService.get(idStock);
-        //Rayon rayon = rayonService.getRayon(idRayon);
-        //produit.setStock(stock);
-        //produit.setRayon(rayon);
-        return produit;
-        //TODO entité detail produit associé avec produit ajouté
-        // TODO assign rayon and stock
-        //  https://stackoverflow.com/questions/60590410/spring-crudrepository-how-do-i-insert-a-record-by-foreign-key-id
+    @ApiOperation(value ="permet d'ajouter un produit")
+    public Produit addProduit(@RequestBody Produit c,Long idRayon,Long idStock) {
+
+        Produit product = produitService.addProduit(c,idRayon,idRayon);
+        return product;
     }
 
 
-    //TODO
-    // Le chef rayon désire changer le stock d’un produit
-    //  Créer un service permettant l’assignation d’un produit à un stock et exposer le en
-    //      respectant la signature suivante :
-    void assignProduitToStock(Long idProduit, Long idStock){}
 
-    //TODO
-    // Nous souhaitons calculer le revenu brut généré par un produit entre deux dates.
-    //  Créer un service permettant de faire le calcul en respectant la signature suivante :
-    //  PS : le revenu brut généré correspond aux montants générées par la vente de ce
-    //      produit ( prix * quantité pour les différentes factures)
-    void getRevenuBrutProduit(Long idProduit, Date startDate, Date endDate){}
+
+
 
     /*
     // http://localhost:8089/SpringMVC/produit/remove-produit/{produit-id}

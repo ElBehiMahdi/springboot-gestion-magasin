@@ -6,7 +6,13 @@ import tn.esprit.demo.entities.Produit;
 import java.util.List;
 
 public interface ProduitService {
-    public abstract Produit get(Long id);
-    public abstract Produit saveProduit(Produit p,Long idRayon, Long idStock);
-    public abstract List<Produit> getAllProduits();
+    List<Produit> retrieveAllProduits();
+
+    Produit addProduit(Produit p, Long idRayon, Long idStock);
+
+    Produit retrieveProduit(Long id);
+
+    void assignProduitToStock(Long idProduit, Long idStock);
+
+    public void assignFournisseurToProduit(Long fournisseurId, Long produitId) ;
 }
