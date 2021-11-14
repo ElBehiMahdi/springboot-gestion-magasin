@@ -1,21 +1,19 @@
 package tn.esprit.demo.entities;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class Facture implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -32,5 +30,19 @@ public class Facture implements Serializable {
 
 	// One to many association Facture 1-* detailFacture
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facture")
+	@ToString.Exclude
 	private Set<detailFacture> df;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+		Facture facture = (Facture) o;
+		return idFacture != null && Objects.equals(idFacture, facture.idFacture);
+	}
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
 }

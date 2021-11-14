@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.entities.Produit;
+import tn.esprit.demo.entities.Rayon;
+import tn.esprit.demo.entities.Stock;
 import tn.esprit.demo.service.ClientService;
 import tn.esprit.demo.service.ProduitService;
+import tn.esprit.demo.service.RayonService;
+import tn.esprit.demo.service.StockService;
 
 import java.util.List;
 @RestController
@@ -17,6 +21,10 @@ public class ProduitRestController {
 
     @Autowired
     ProduitService produitService;
+    @Autowired
+    RayonService rayonService;
+    @Autowired
+    StockService stockService;
 
     // http://localhost:8089/SpringMVC/produit/retrieve-all-produits
     @GetMapping("/retrieve-all-produits")
@@ -42,7 +50,15 @@ public class ProduitRestController {
     public Produit addProduit(@RequestBody Produit p,Long idRayon, Long idStock)
     {
         Produit produit = produitService.saveProduit(p,idRayon,idStock);
+        //Stock stock = stockService.get(idStock);
+        //Rayon rayon = rayonService.getRayon(idRayon);
+        //produit.setStock(stock);
+        //produit.setRayon(rayon);
         return produit;
+        //TODO entité detail produit associé avec produit ajouté
+        // TODO assign rayon and stock
+        //  https://stackoverflow.com/questions/60590410/spring-crudrepository-how-do-i-insert-a-record-by-foreign-key-id
+
     }
 
     /*

@@ -1,20 +1,18 @@
 package tn.esprit.demo.entities;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class Rayon implements Serializable {
 	/**
 	 * 
@@ -29,5 +27,19 @@ public class Rayon implements Serializable {
 	
 	// One to many association Rayon 1-* Produit
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rayon")
+	@ToString.Exclude
 	private Set<Produit> P;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+		Rayon rayon = (Rayon) o;
+		return idRayon != null && Objects.equals(idRayon, rayon.idRayon);
+	}
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
 }

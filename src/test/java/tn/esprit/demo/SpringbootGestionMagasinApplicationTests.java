@@ -13,6 +13,7 @@ import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 @SpringBootTest
 class SpringbootGestionMagasinApplicationTests {
 
+	/*
 	@Autowired
 	ClientService clientService ;
 
@@ -29,4 +30,5 @@ class SpringbootGestionMagasinApplicationTests {
 
 	private void assertEquals(int i, int size) {
 	}
+	 */
 }

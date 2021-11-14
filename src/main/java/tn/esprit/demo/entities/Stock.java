@@ -1,20 +1,18 @@
 package tn.esprit.demo.entities;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class Stock implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
@@ -26,5 +24,19 @@ public class Stock implements Serializable{
 	
 	//One to many association Stock 1-* Produit
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
+	@ToString.Exclude
 	private Set<Produit> P;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+		Stock stock = (Stock) o;
+		return idStock != null && Objects.equals(idStock, stock.idStock);
+	}
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
 }
