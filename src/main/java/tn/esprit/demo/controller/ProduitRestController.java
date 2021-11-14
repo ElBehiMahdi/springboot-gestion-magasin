@@ -53,28 +53,4 @@ public class ProduitRestController {
         Produit product = produitService.addProduit(c,idRayon,idRayon);
         return product;
     }
-
-
-
-
-
-
-    /*
-    // http://localhost:8089/SpringMVC/produit/remove-produit/{produit-id}
-    @DeleteMapping("/remove-produit/{produit-id}")
-    @ResponseBody
-    public void removeProduit(@PathVariable("produit-id") Long produitId) {
-        produitService.deleteProduit(produitId);
-    }
-    */
-
-    /*
-    // http://localhost:8089/SpringMVC/produit/modify-produit
-    @PutMapping("/modify-produit")
-    @ResponseBody
-    public Produit modifyProduit(@RequestBody Produit produit) {
-        return produitService.updateProduit(produit);
-    }
-     */
-
 }
