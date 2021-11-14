@@ -13,6 +13,7 @@ import tn.esprit.demo.service.ProduitService;
 import tn.esprit.demo.service.RayonService;
 import tn.esprit.demo.service.StockService;
 
+import java.util.Date;
 import java.util.List;
 @RestController
 @Api(tags = "Produit management")
@@ -40,6 +41,7 @@ public class ProduitRestController {
     @ApiOperation(value = "Récupérer un produit par id")
     @ResponseBody
     public Produit retrieveProduit(@PathVariable("produit-id") Long produitId) {
+        //TODO fix this error
         return produitService.get(produitId);
     }
 
@@ -58,8 +60,21 @@ public class ProduitRestController {
         //TODO entité detail produit associé avec produit ajouté
         // TODO assign rayon and stock
         //  https://stackoverflow.com/questions/60590410/spring-crudrepository-how-do-i-insert-a-record-by-foreign-key-id
-
     }
+
+
+    //TODO
+    // Le chef rayon désire changer le stock d’un produit
+    //  Créer un service permettant l’assignation d’un produit à un stock et exposer le en
+    //      respectant la signature suivante :
+    void assignProduitToStock(Long idProduit, Long idStock){}
+
+    //TODO
+    // Nous souhaitons calculer le revenu brut généré par un produit entre deux dates.
+    //  Créer un service permettant de faire le calcul en respectant la signature suivante :
+    //  PS : le revenu brut généré correspond aux montants générées par la vente de ce
+    //      produit ( prix * quantité pour les différentes factures)
+    void getRevenuBrutProduit(Long idProduit, Date startDate, Date endDate){}
 
     /*
     // http://localhost:8089/SpringMVC/produit/remove-produit/{produit-id}
