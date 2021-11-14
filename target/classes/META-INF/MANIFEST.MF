@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: Mahdi-PC
+Build-Jdk: 16.0.2
+Implementation-Title: springboot-gestion-magasin
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: tn.esprit
+Implementation-URL: https://spring.io/projects/spring-boot/springboot-ge
+ stion-magasin
+Created-By: Maven Integration for Eclipse
+
