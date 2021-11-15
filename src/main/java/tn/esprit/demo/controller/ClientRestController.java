@@ -8,6 +8,8 @@ import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.service.ClientService;
 
 import java.util.List;
+import java.util.Optional;
+
 @RestController
 @Api(tags = "Client management")
 @RequestMapping("/client")
@@ -28,7 +30,7 @@ public class ClientRestController {
     @GetMapping("/retrieve-client/{client-id}")
     @ApiOperation(value = "Récupérer un client par id")
     @ResponseBody
-    public Client retrieveClient(@PathVariable("client-id") Long clientId) {
+    public Optional<Client> retrieveClient(@PathVariable("client-id") Long clientId) {
         return clientService.getClientById(clientId);
     }
     // http://localhost:8089/SpringMVC/client/add-client

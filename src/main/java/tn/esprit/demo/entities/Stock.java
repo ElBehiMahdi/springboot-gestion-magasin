@@ -39,4 +39,44 @@ public class Stock implements Serializable{
 	public int hashCode() {
 		return getClass().hashCode();
 	}
+
+	public Long getIdStock() {
+		return idStock;
+	}
+
+	public void setIdStock(Long idStock) {
+		this.idStock = idStock;
+	}
+
+	public Integer getQte() {
+		return qte;
+	}
+
+	public void setQte(Integer qte) {
+		this.qte = qte;
+	}
+
+	public Integer getQteMin() {
+		return qteMin;
+	}
+
+	public void setQteMin(Integer qteMin) {
+		this.qteMin = qteMin;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public Set<Produit> getP() {
+		return P;
+	}
+
+	public void setP(Set<Produit> p) {
+		P = p;
+	}
 }

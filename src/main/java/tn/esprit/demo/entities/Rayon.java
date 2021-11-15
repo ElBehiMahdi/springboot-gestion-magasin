@@ -42,4 +42,36 @@ public class Rayon implements Serializable {
 	public int hashCode() {
 		return getClass().hashCode();
 	}
+
+	public Long getIdRayon() {
+		return idRayon;
+	}
+
+	public void setIdRayon(Long idRayon) {
+		this.idRayon = idRayon;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public Set<Produit> getP() {
+		return P;
+	}
+
+	public void setP(Set<Produit> p) {
+		P = p;
+	}
 }

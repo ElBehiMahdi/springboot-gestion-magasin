@@ -47,4 +47,44 @@ public class DetailProduit implements Serializable {
 	public int hashCode() {
 		return getClass().hashCode();
 	}
+
+	public Long getIdDetailProduit() {
+		return idDetailProduit;
+	}
+
+	public void setIdDetailProduit(Long idDetailProduit) {
+		this.idDetailProduit = idDetailProduit;
+	}
+
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public Date getDateDerniereModification() {
+		return dateDerniereModification;
+	}
+
+	public void setDateDerniereModification(Date dateDerniereModification) {
+		this.dateDerniereModification = dateDerniereModification;
+	}
+
+	public CategorieProduit getCategorieProduit() {
+		return categorieProduit;
+	}
+
+	public void setCategorieProduit(CategorieProduit categorieProduit) {
+		this.categorieProduit = categorieProduit;
+	}
+
+	public Produit getProduit() {
+		return produit;
+	}
+
+	public void setProduit(Produit produit) {
+		this.produit = produit;
+	}
 }

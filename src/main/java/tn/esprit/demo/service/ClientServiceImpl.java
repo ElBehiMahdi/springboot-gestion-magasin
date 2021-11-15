@@ -6,6 +6,8 @@ import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.repository.ClientRepository;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ClientServiceImpl implements ClientService{
 
@@ -13,8 +15,8 @@ public class ClientServiceImpl implements ClientService{
     private ClientRepository clientRepository;
 
     @Override
-    public Client getClientById(Long id) {
-        return clientRepository.getById(id);
+    public Optional<Client> getClientById(Long id) {
+        return clientRepository.findById(id);
     }
 
     @Override

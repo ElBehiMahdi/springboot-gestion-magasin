@@ -12,7 +12,6 @@ import java.util.Set;
 
 @Entity
 @Getter
-@Setter
 @ToString
 @RequiredArgsConstructor
 public class Client implements Serializable{
@@ -57,5 +56,77 @@ public class Client implements Serializable{
 	@Override
 	public int hashCode() {
 		return getClass().hashCode();
+	}
+
+	public void setIdClient(Long idClient) {
+		this.idClient = idClient;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public void setDateNaissance(Date dateNaissance) {
+		this.dateNaissance = dateNaissance;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setCategorieclient(CategorieClient categorieclient) {
+		this.categorieclient = categorieclient;
+	}
+
+	public void setProfession(Profession profession) {
+		this.profession = profession;
+	}
+
+	public void setF(Set<Facture> f) {
+		this.f = f;
+	}
+
+	public Long getIdClient() {
+		return idClient;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public Date getDateNaissance() {
+		return dateNaissance;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public CategorieClient getCategorieclient() {
+		return categorieclient;
+	}
+
+	public Profession getProfession() {
+		return profession;
+	}
+
+	public Set<Facture> getF() {
+		return f;
 	}
 }

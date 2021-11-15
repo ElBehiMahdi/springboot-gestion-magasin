@@ -26,6 +26,8 @@ public class Produit implements Serializable {
 	private String code;
 	private String libelle;
 	private float prixUnitaire;
+	@Enumerated(EnumType.STRING)
+	private CategorieProduit categorieProduit;
 
 	// One to one association Produit 1-1 detailProduit
 	@OneToOne
@@ -61,5 +63,85 @@ public class Produit implements Serializable {
 	@Override
 	public int hashCode() {
 		return getClass().hashCode();
+	}
+
+	public Long getIdProduit() {
+		return idProduit;
+	}
+
+	public void setIdProduit(Long idProduit) {
+		this.idProduit = idProduit;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public float getPrixUnitaire() {
+		return prixUnitaire;
+	}
+
+	public void setPrixUnitaire(float prixUnitaire) {
+		this.prixUnitaire = prixUnitaire;
+	}
+
+	public DetailProduit getDetailProduit() {
+		return detailProduit;
+	}
+
+	public void setDetailProduit(DetailProduit detailProduit) {
+		this.detailProduit = detailProduit;
+	}
+
+	public Rayon getRayon() {
+		return rayon;
+	}
+
+	public void setRayon(Rayon rayon) {
+		this.rayon = rayon;
+	}
+
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
+
+	public Set<detailFacture> getDetailFactures() {
+		return detailFactures;
+	}
+
+	public void setDetailFactures(Set<detailFacture> detailFactures) {
+		this.detailFactures = detailFactures;
+	}
+
+	public Set<Fournisseur> getFournisseur() {
+		return fournisseur;
+	}
+
+	public void setFournisseur(Set<Fournisseur> fournisseur) {
+		this.fournisseur = fournisseur;
+	}
+
+	public CategorieProduit getCategorieProduit() {
+		return categorieProduit;
+	}
+
+	public void setCategorieProduit(CategorieProduit categorieProduit) {
+		this.categorieProduit = categorieProduit;
 	}
 }

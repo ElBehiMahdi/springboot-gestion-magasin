@@ -10,6 +10,7 @@ import tn.esprit.demo.service.ClientService;
 import tn.esprit.demo.service.StockService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Api(tags = "Stock management")
@@ -31,7 +32,7 @@ public class StockRestController {
     @GetMapping("/retrieve-stock/{stock-id}")
     @ApiOperation(value = "Récupérer un stock par id")
     @ResponseBody
-    public Stock retrieveStock(@PathVariable("stock-id") Long stockId) {
+    public Optional<Stock> retrieveStock(@PathVariable("stock-id") Long stockId) {
         return stockService.get(stockId);
     }
     // http://localhost:8089/SpringMVC/stock/add-stock

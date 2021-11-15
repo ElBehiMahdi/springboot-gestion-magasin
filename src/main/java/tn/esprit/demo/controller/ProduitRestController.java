@@ -15,6 +15,8 @@ import tn.esprit.demo.service.StockService;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 @RestController
 @Api(tags = "Produit management")
 @RequestMapping("/produit")
@@ -40,17 +42,18 @@ public class ProduitRestController {
     @GetMapping("/retrieve-produit/{produit-id}")
     @ResponseBody
     @ApiOperation(value ="Permet de récuperer un produit avec son id")
-    public Produit retrieveProduit(@PathVariable("produit-id") Long produitId) {
+    public Optional<Produit> retrieveProduit(@PathVariable("produit-id") Long produitId) {
         return produitService.retrieveProduit(produitId);
     }
 
     //http://localhost:8089/SpringMVC/produit/add-produit
-    @PostMapping("/add-produit")
+    @PostMapping("/add-produit/{stock-id}/{rayon-id}")
     @ResponseBody
     @ApiOperation(value ="permet d'ajouter un produit")
-    public Produit addProduit(@RequestBody Produit c,Long idRayon,Long idStock) {
+    public Produit addProduit(@RequestBody Produit p,@PathVariable("rayon-id") Long idRayon,@PathVariable("stock-id") Long idStock) {
 
-        Produit product = produitService.addProduit(c,idRayon,idRayon);
+        //assign here
+        Produit product = produitService.addProduit(p,idRayon,idStock);
         return product;
     }
 }

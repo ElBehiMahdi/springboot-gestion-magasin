@@ -42,4 +42,36 @@ public class Fournisseur implements Serializable {
 	public int hashCode() {
 		return getClass().hashCode();
 	}
+
+	public Long getIdFournisseur() {
+		return idFournisseur;
+	}
+
+	public void setIdFournisseur(Long idFournisseur) {
+		this.idFournisseur = idFournisseur;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public Set<Produit> getProduits() {
+		return produits;
+	}
+
+	public void setProduits(Set<Produit> produits) {
+		this.produits = produits;
+	}
 }

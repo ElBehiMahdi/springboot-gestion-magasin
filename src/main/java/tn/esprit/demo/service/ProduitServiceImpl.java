@@ -7,6 +7,8 @@ import tn.esprit.demo.repository.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProduitServiceImpl implements ProduitService{
 
@@ -40,11 +42,6 @@ public class ProduitServiceImpl implements ProduitService{
 
     }
 
-
-    //TODO
-    // Le chef rayon désire changer le stock d’un produit
-    //  Créer un service permettant l’assignation d’un produit à un stock et exposer le en
-    //      respectant la signature suivante :
     @Override
     public  void assignProduitToStock(Long idProduit, Long idStock) {
         Produit p = new Produit();
@@ -68,10 +65,15 @@ public class ProduitServiceImpl implements ProduitService{
     //  Créer un service permettant de faire le calcul en respectant la signature suivante :
     //  PS : le revenu brut généré correspond aux montants générées par la vente de ce
     //      produit ( prix * quantité pour les différentes factures)
-    void getRevenuBrutProduit(Long idProduit, Date startDate, Date endDate){}
+    void getRevenuBrutProduit(Long idProduit, Date startDate, Date endDate){
+
+        // between startdate lastdate
+        // vente <-
+
+    }
 
     @Override
-    public Produit retrieveProduit(Long id) {
-        return produitRepo.getById(id);
+    public Optional<Produit> retrieveProduit(Long id) {
+        return produitRepo.findById(id);
     }
 }

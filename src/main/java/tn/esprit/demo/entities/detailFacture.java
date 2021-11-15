@@ -43,4 +43,60 @@ public class detailFacture implements Serializable {
 	public int hashCode() {
 		return getClass().hashCode();
 	}
+
+	public Long getIdDetailFacture() {
+		return idDetailFacture;
+	}
+
+	public void setIdDetailFacture(Long idDetailFacture) {
+		this.idDetailFacture = idDetailFacture;
+	}
+
+	public Integer getQte() {
+		return qte;
+	}
+
+	public void setQte(Integer qte) {
+		this.qte = qte;
+	}
+
+	public Float getPrixTotal() {
+		return prixTotal;
+	}
+
+	public void setPrixTotal(Float prixTotal) {
+		this.prixTotal = prixTotal;
+	}
+
+	public Integer getPourcentageRemise() {
+		return pourcentageRemise;
+	}
+
+	public void setPourcentageRemise(Integer pourcentageRemise) {
+		this.pourcentageRemise = pourcentageRemise;
+	}
+
+	public Float getMontantRemise() {
+		return montantRemise;
+	}
+
+	public void setMontantRemise(Float montantRemise) {
+		this.montantRemise = montantRemise;
+	}
+
+	public Produit getProduit() {
+		return produit;
+	}
+
+	public void setProduit(Produit produit) {
+		this.produit = produit;
+	}
+
+	public Facture getFacture() {
+		return facture;
+	}
+
+	public void setFacture(Facture facture) {
+		this.facture = facture;
+	}
 }
