@@ -43,6 +43,8 @@ public class Rayon implements Serializable {
 		return getClass().hashCode();
 	}
 
+
+
 	public Long getIdRayon() {
 		return idRayon;
 	}

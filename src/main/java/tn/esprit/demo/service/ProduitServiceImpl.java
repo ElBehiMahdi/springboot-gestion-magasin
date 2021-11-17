@@ -1,7 +1,10 @@
 package tn.esprit.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import tn.esprit.demo.entities.*;
 import tn.esprit.demo.repository.*;
 
@@ -65,11 +68,12 @@ public class ProduitServiceImpl implements ProduitService{
     //  Créer un service permettant de faire le calcul en respectant la signature suivante :
     //  PS : le revenu brut généré correspond aux montants générées par la vente de ce
     //      produit ( prix * quantité pour les différentes factures)
-    void getRevenuBrutProduit(Long idProduit, Date startDate, Date endDate){
+    @GetMapping(value = "/getRevenuBrutProduit/{idProduit}/{startDate}/{endDate}")
+    float getRevenuBrutProduit(@PathVariable("idProduit") Long idProduit,
+                              @PathVariable(name = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
+                              @PathVariable(name = "endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate){
 
-        // between startdate lastdate
-        // vente <-
-
+        return produitRepo.getRevenuBrutProduit(idProduit,startDate,endDate);
     }
 
     @Override
