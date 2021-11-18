@@ -11,4 +11,9 @@ public interface StockService {
     public abstract Stock saveStock(Stock s);
     public abstract Stock updateStock(Stock s);
     public abstract List<Stock> getAllStocks();
+    void deleteStock(Long id);
+
+    boolean checkExists(Long id);
+
+    public List<Stock> warnStock();
 }

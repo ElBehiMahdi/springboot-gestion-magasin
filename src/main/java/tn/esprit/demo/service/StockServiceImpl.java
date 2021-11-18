@@ -36,4 +36,19 @@ public class StockServiceImpl implements StockService{
     public List<Stock> getAllStocks() {
         return stockRepository.findAll();
     }
+
+    @Override
+    public void deleteStock(Long id) {
+        stockRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean checkExists(Long id){
+        return stockRepository.existsById(id);
+    }
+
+    @Override
+    public List<Stock> warnStock(){
+        return stockRepository.warnStock();
+    }
 }

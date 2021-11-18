@@ -50,6 +50,7 @@ public class SpringbootGestionMagasinApplicationTests {
 
     @Autowired
     ClientService clientService;
+
     /*
     @Test
     public void testClient() {
@@ -66,6 +67,7 @@ public class SpringbootGestionMagasinApplicationTests {
                 log.info((c.getDateNaissance()).toString());
             }
     }
+     */
 
     @Transactional
     @Test
@@ -81,10 +83,6 @@ public class SpringbootGestionMagasinApplicationTests {
         assertTrue(b);
     }
 
-	/*
-	@Autowired
-	ClientService clientService ;
-
 	@Test
 	public void testDeleteClient()
 	{
@@ -97,6 +95,5 @@ public class SpringbootGestionMagasinApplicationTests {
 	}
 
 	private void assertEquals(int i, int size) {
-	}
-	 */
+    }
 }

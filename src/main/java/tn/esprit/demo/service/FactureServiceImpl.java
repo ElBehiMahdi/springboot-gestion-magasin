@@ -7,6 +7,7 @@ import tn.esprit.demo.repository.ClientRepository;
 import tn.esprit.demo.repository.FactureRepository;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 @Service
 public class FactureServiceImpl implements FactureService{
@@ -30,4 +31,10 @@ public class FactureServiceImpl implements FactureService{
     public List<Facture> getAllFactures() {
         return factureRepository.findAll();
     }
+
+    @Override
+    public float calculChiffreAffaires(Date d1, Date d2){
+
+        return factureRepository.calculChiffreAffaires(d1,d2);
+    };
 }
