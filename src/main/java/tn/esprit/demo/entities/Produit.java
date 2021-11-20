@@ -15,9 +15,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Table(name = "Produit")
 public class Produit implements Serializable {
-	/**
-		 * 
-		 */
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

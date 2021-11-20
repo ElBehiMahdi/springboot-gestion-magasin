@@ -63,11 +63,6 @@ public class ProduitServiceImpl implements ProduitService{
         produitRepo.saveAndFlush(p);
     }
 
-    //TODO
-    // Nous souhaitons calculer le revenu brut généré par un produit entre deux dates.
-    //  Créer un service permettant de faire le calcul en respectant la signature suivante :
-    //  PS : le revenu brut généré correspond aux montants générées par la vente de ce
-    //      produit ( prix * quantité pour les différentes factures)
     @GetMapping(value = "/getRevenuBrutProduit/{idProduit}/{startDate}/{endDate}")
     float getRevenuBrutProduit(@PathVariable("idProduit") Long idProduit,
                               @PathVariable(name = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,

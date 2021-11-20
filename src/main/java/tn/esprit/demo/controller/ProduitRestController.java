@@ -52,7 +52,6 @@ public class ProduitRestController {
     @ApiOperation(value ="permet d'ajouter un produit")
     public Produit addProduit(@RequestBody Produit p,@PathVariable("rayon-id") Long idRayon,@PathVariable("stock-id") Long idStock) {
 
-        //assign here
         Produit product = produitService.addProduit(p,idRayon,idStock);
         return product;
     }

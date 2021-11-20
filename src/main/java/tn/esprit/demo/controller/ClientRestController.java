@@ -17,6 +17,7 @@ public class ClientRestController {
 
     @Autowired
     ClientService clientService;
+
     // http://localhost:8089/SpringMVC/client/retrieve-all-clients
     @GetMapping("/retrieve-all-clients")
     @ApiOperation(value = "Récupérer la liste des clients")

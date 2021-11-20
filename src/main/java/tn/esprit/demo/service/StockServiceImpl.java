@@ -1,5 +1,6 @@
 package tn.esprit.demo.service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Stock;
@@ -20,9 +21,11 @@ public class StockServiceImpl implements StockService{
         return stockRepository.findById(id);
     }
 
+    @JsonIgnore
     @Override
+    //TODO fix nullpointer solution
     public Stock saveStock(Stock s) {
-        stockService.saveStock(s);
+        stockRepository.save(s);
         return s;
     }
 

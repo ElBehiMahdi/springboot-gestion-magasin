@@ -14,6 +14,7 @@ import java.util.Set;
 @Getter
 @ToString
 @RequiredArgsConstructor
+@Setter
 public class Client implements Serializable{
 	/**
 	 * 

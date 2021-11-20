@@ -19,6 +19,7 @@ public class StockRestController {
 
     @Autowired
     StockService stockService;
+
     // http://localhost:8089/SpringMVC/stock/retrieve-all-stocks
     @GetMapping("/retrieve-all-stocks")
     @ApiOperation(value = "Récupérer la liste des stocks")
@@ -35,6 +36,7 @@ public class StockRestController {
     public Optional<Stock> retrieveStock(@PathVariable("stock-id") Long stockId) {
         return stockService.get(stockId);
     }
+
     // http://localhost:8089/SpringMVC/stock/add-stock
     @PostMapping("/add-stock")
     @ApiOperation(value = "Ajouter un stock")
@@ -52,5 +54,4 @@ public class StockRestController {
     public Stock modifyStock(@RequestBody Stock stock) {
         return stockService.updateStock(stock);
     }
-
 }

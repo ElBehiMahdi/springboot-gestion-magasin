@@ -10,7 +10,6 @@ import java.util.Date;
 
 @Repository
 public interface ProduitRepository extends JpaRepository<Produit,Long> {
-    //void saveProduit(Produit p, Long idRayon, Long idStock);
 
     @Query("SELECT sum(df.prixTotal) FROM detailFacture df WHERE df.produit=:produit AND df.facture.dateFacture " +
             "BETWEEN :startDate and :endDate and df.facture.active=true")
