@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Facture;
 import tn.esprit.demo.repository.ClientRepository;
 import tn.esprit.demo.repository.FactureRepository;
+import tn.esprit.spring.entity.Client;
+import tn.esprit.spring.service.ClientServiceImp;
 
 import javax.transaction.Transactional;
 import java.util.List;
 @Service
 public abstract class FactureServiceImpl implements FactureService{
-
+	@Autowired
+	FactureRepository f;
+	ClientService cs;
     @Autowired
     private FactureRepository factureRepository;
 
@@ -34,12 +38,27 @@ public abstract class FactureServiceImpl implements FactureService{
         return factureRepository.findAll();
     }
     @Override
-	public Facture addFacture(Facture f) {
-		return factureRepository.save(f);
+	public List<Facture> getByIdClient(Long idClient) {
+		return (List<Facture>)this.f.getFacturesByClient(idClient);
+	
 	}
-   
-    public  Facture getFactureByClientFacture(long clientId) {
-    	return factureRepository.getById(clientId);
-    
-    }
+	
+	@Override
+	public Facture addFacture(Facture f, Long idClient) {
+		Client c=this.cs.getClientById(idClient);
+		f.setClient(c);
+		float somme=0;
+		for(int i=0;i<f.getDetailfacture().size();i++) {
+			somme+=f.getDetailfacture().get(i).getPrixTotal();
+		}
+		f.setMontantFacture(somme);
+		somme=0;
+		for( int i=0;i<f.getDetailfacture().size();i++) {
+			somme+=f.getDetailfacture().get(i).getMontantRemise();
+		}
+		f.setMontantRemise(somme);
+		this.f.save(f);
+		return f;
+	}
+	
 }

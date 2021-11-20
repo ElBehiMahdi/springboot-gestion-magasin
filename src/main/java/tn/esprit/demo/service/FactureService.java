@@ -6,10 +6,10 @@ import tn.esprit.demo.entities.Facture;
 
 import java.util.List;
 public interface FactureService {
-    public abstract Facture getFactureById(Long id);
-    public abstract void cancelFacture(Long id);
-    public abstract List<Facture> getAllFactures();
-    public abstract Facture addFacture(Facture f);
-	public abstract Facture getFactureByClientFacture(long clientId) ;
-		 
+     Facture getFactureById(Long id);
+     void cancelFacture(Long id);
+     List<Facture> getAllFactures();
+	List<Facture> getByIdClient(Long id);//Long idClient
+	Facture addFacture(Facture f, Long idClient);
+	List<Facture> getDetailFactures();
 }

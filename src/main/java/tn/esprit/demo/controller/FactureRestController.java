@@ -48,15 +48,15 @@ public class FactureRestController {
     @GetMapping("/getFactureByClient/{Client-id}")
     @RequestMapping(value = "/Facture/{ClientId}", method = RequestMethod.GET)
 	 @ResponseBody
-	 public Facture getFactureByClient(@PathVariable final long ClientId) {
-	    return factureService.getFactureByClientFacture(ClientId);
+	 public List<Facture> getFactureByClient(@PathVariable("clientId") long ClientId) {
+	    return factureService.getByIdClient(ClientId);
 	 }
-  
+   
  // http://localhost:8081/SpringMVC/facture/add-facture
  	 @PostMapping("/add-facture")
  	 @ResponseBody
- 	 public Facture addFacture(@RequestBody Facture f) {
- 	 Facture facture = factureService.addFacture(f);
+ 	 public Facture addFacture(@RequestBody Facture f,long ClientId) {
+ 	 Facture facture = factureService.addFacture(f,ClientId);
  	 return facture;
  	}
 }
