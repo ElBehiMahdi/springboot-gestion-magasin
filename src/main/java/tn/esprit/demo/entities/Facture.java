@@ -14,16 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -56,6 +47,10 @@ public class Facture implements Serializable {
 	// One to many association Facture 1-* detailFacture
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facture")
 	private Set<detailFacture> df;
+
+	@ManyToOne
+	@JoinColumn(name = "clients_id_client")
+	private Client clients;
 
 	public List<Facture> getDetailfacture() {
 		// TODO Auto-generated method stub

@@ -2,19 +2,17 @@ package tn.esprit.demo.service;
 
 import java.util.List;
 
-import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.entities.Facture;
 import tn.esprit.demo.repository.ClientRepository;
 import tn.esprit.demo.repository.FactureRepository;
-import tn.esprit.spring.entity.Client;
-import tn.esprit.spring.service.ClientServiceImp;
 
 import javax.transaction.Transactional;
 import java.util.List;
 @Service
-public abstract class FactureServiceImpl implements FactureService{
+public class FactureServiceImpl implements FactureService{
 	@Autowired
 	FactureRepository f;
 	ClientService cs;
@@ -45,7 +43,7 @@ public abstract class FactureServiceImpl implements FactureService{
 	
 	@Override
 	public Facture addFacture(Facture f, Long idClient) {
-		Client c=this.cs.getClientById(idClient);
+		Client c=this.cs.retrieveClientById(idClient);
 		f.setClient(c);
 		float somme=0;
 		for(int i=0;i<f.getDetailfacture().size();i++) {
@@ -60,5 +58,10 @@ public abstract class FactureServiceImpl implements FactureService{
 		this.f.save(f);
 		return f;
 	}
-	
+
+	@Override
+	public List<Facture> getDetailFactures() {
+		return null;
+	}
+
 }

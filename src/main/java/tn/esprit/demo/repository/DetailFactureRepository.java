@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 import tn.esprit.demo.entities.detailFacture;
 @Repository
 public interface DetailFactureRepository extends JpaRepository<detailFacture,Long>{
-
 }

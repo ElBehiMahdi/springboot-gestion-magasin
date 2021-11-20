@@ -27,7 +27,7 @@ import tn.esprit.demo.service.ClientService;
 	@RestController
 	@Api(tags="Client management")
 	@RequestMapping("/client")
-	public class ClientController {
+	class ClientController {
 	@Autowired
 	ClientService clientService;
 	

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.entities.Facture;
 
+import java.util.Date;
 import java.util.List;
 public interface FactureService {
      Facture getFactureById(Long id);

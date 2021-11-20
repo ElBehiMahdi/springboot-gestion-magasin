@@ -32,21 +32,4 @@ public class ScheduledTasks {
         log.info("STOCK EN DANGER DETECTE "+s.getLibelle(), dateFormat.format(new Date())); }
     }
 
-
-    //@Scheduled(fixedRate = 60000)
-    @Scheduled(cron = "0 0 0 1 1 *")
-    public void chiffreAffaire(){
-        //Ne marche pas ( avec parse , mySQL ne lis pas les dates ,0 resultats )
-        String debutAnne = /*Year.now().getValue()+*/"2021-01-01" ;
-        String finAnne = /*Year.now().getValue()+*/"2021-12-31" ;
-
-        //Marche ( mySQL lis les dates )
-        Date d = new Date("2021/01/0");
-        Date b = new Date("2021/12/31");
-
-            log.info("CHIFFRE D AFFAIRES :"+fs.calculChiffreAffaires(d ,b ) );
-            log.info(debutAnne+" "+finAnne);
-
-    }
-
 }
