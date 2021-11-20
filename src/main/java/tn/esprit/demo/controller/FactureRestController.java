@@ -43,4 +43,20 @@ public class FactureRestController {
     public void cancelFacture(@PathVariable("facture-id") Long factureId) {
         factureService.cancelFacture(factureId);
     }
+ // http://localhost:8089/SpringMVC/facture/getFactureByClient/1  
+    @GetMapping("/getFactureByClient/{Client-id}")
+    @RequestMapping(value = "/Facture/{ClientId}", method = RequestMethod.GET)
+	 @ResponseBody
+	 public List<Facture> getFactureByClient(@PathVariable("clientId") long ClientId) {
+	    return factureService.getByIdClient(ClientId);
+	 }
+   
+ // http://localhost:8081/SpringMVC/facture/add-facture
+ 	 @PostMapping("/add-facture")
+ 	 @ResponseBody
+ 	 public Facture addFacture(@RequestBody Facture f,long ClientId) {
+ 	 Facture facture = factureService.addFacture(f,ClientId);
+ 	 return facture;
+ 	}
 }
+

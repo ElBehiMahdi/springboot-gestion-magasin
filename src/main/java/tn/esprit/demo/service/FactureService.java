@@ -4,12 +4,12 @@ import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.entities.Facture;
 
-import java.util.Date;
 import java.util.List;
 public interface FactureService {
-    public abstract Facture getFactureById(Long id);
-    public abstract void cancelFacture(Long id);
-    public abstract List<Facture> getAllFactures();
-    float calculChiffreAffaires(Date d1, Date d2);
-
+     Facture getFactureById(Long id);
+     void cancelFacture(Long id);
+     List<Facture> getAllFactures();
+	List<Facture> getByIdClient(Long id);//Long idClient
+	Facture addFacture(Facture f, Long idClient);
+	List<Facture> getDetailFactures();
 }
