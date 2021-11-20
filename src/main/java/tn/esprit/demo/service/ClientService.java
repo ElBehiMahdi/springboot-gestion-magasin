@@ -1,16 +1,15 @@
 package tn.esprit.demo.service;
 
-import tn.esprit.demo.entities.Client;
-
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+import java.util.Date;
+import tn.esprit.demo.entities.Client;
+import tn.esprit.demo.entities.CategorieClient;
 
 public interface ClientService {
-    public abstract Optional<Client> getClientById(Long id);
-    public abstract Client saveClient(Client c);
-    public abstract Client updateClient(Client c);
-    public abstract void deleteClient(Long id);
-    public abstract List<Client> getAllClients();
-    List<Client> retrieveClientsDate(Date date1, Date date2) ;
+List<Client> retrieveAllClients();
+	Client addClient(Client c);
+	void deleteClientById(Long clientId);
+	Client updateClient(Client c);
+	Client retrieveClientById(Long clientId);
+	float getChiffreAffaireParCategorieClient(CategorieClient categorieClient, Date startDate, Date endDate);
 }

@@ -1,133 +1,116 @@
 package tn.esprit.demo.entities;
 
-import lombok.*;
-import org.hibernate.Hibernate;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Set;
+import javax.persistence.CascadeType;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 @Entity
 @Getter
-@ToString
-@RequiredArgsConstructor
 @Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+
+
 public class Client implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4039704037349167269L;
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column
-	private Long idClient;
-	@Column
+	private long idClient;
 	private String nom;
-	@Column
 	private String prenom;
-	@Column
+	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
-	@Column
 	private String email;
-	@Column
 	private String password;
-	@Column
 	@Enumerated(EnumType.STRING)
 	private CategorieClient categorieclient;
-	@Column
 	@Enumerated(EnumType.STRING)
 	private Profession profession;
-	
-	// One to many association Client 1-* Facture
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
-	@ToString.Exclude
-	private Set<Facture> f;
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		Client client = (Client) o;
-		return idClient != null && Objects.equals(idClient, client.idClient);
-	}
-
-	@Override
-	public int hashCode() {
-		return getClass().hashCode();
-	}
-
-	public void setIdClient(Long idClient) {
+	public Client(long idClient, String nom, String prenom, Date dateNaissance, String email, String password,
+			CategorieClient categorieclient, Profession profession) {
+		super();
 		this.idClient = idClient;
-	}
-
-	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-
-	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
-	}
-
-	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public void setCategorieclient(CategorieClient categorieclient) {
 		this.categorieclient = categorieclient;
-	}
-
-	public void setProfession(Profession profession) {
 		this.profession = profession;
 	}
-
-	public void setF(Set<Facture> f) {
-		this.f = f;
-	}
-
 	public Long getIdClient() {
 		return idClient;
 	}
-
+	public void setIdClient(Long idClient) {
+		this.idClient = idClient;
+	}
 	public String getNom() {
 		return nom;
 	}
-
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 	public String getPrenom() {
 		return prenom;
 	}
-
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
 	public Date getDateNaissance() {
 		return dateNaissance;
 	}
-
+	public void setDateNaissance(Date dateNaissance) {
+		this.dateNaissance = dateNaissance;
+	}
 	public String getEmail() {
 		return email;
 	}
-
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getPassword() {
 		return password;
 	}
-
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public CategorieClient getCategorieclient() {
 		return categorieclient;
 	}
-
+	public void setCategorieclient(CategorieClient categorieclient) {
+		this.categorieclient = categorieclient;
+	}
 	public Profession getProfession() {
 		return profession;
 	}
-
-	public Set<Facture> getF() {
-		return f;
+	public void setProfession(Profession profession) {
+		this.profession = profession;
+	}
+	@OneToMany(cascade= CascadeType.ALL, fetch= FetchType.LAZY, mappedBy="clients")
+	private Set<Facture> factures;
+	public Set<Facture> getFactures(){
+		return factures;
+	}
+	public void setFactures(Set<Facture> factures)  {
+		this.factures=factures;
 	}
 }
+

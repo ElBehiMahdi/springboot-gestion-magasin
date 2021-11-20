@@ -1,51 +1,77 @@
 package tn.esprit.demo.service;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Client;
+import tn.esprit.demo.entities.CategorieClient;
+import tn.esprit.demo.entities.Facture;
 import tn.esprit.demo.repository.ClientRepository;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
-public class ClientServiceImpl implements ClientService{
+@Slf4j
+public class ClientServiceImpl implements ClientService {
+	
+	@Autowired
+	ClientRepository clientRepository;
+	
+	public List<Client> retrieveAllClients() {
+		// TODO Auto-generated method stub
+		List<Client> clients= (List<Client>) clientRepository.findAll();
+		for(Client client: clients){
+			log.info(" client : "+ client);
+		}
+		return clients;
+	}
 
-    @Autowired
-    private ClientRepository clientRepository;
+	
+	@Override
+	public Client addClient(Client c) {
+		// TODO Auto-generated method stub
+		log.info("In method addClient");
+		return clientRepository.save(c);
+	}
 
-    @Override
-    public Optional<Client> getClientById(Long id) {
-        return clientRepository.findById(id);
-    }
+	
+	@Override
+	public void deleteClientById(Long clientId) {
+		// TODO Auto-generated method stub
+		log.info("in delete client by id");
+		log.warn("Attention, you sure you wanna delete?!");
+		clientRepository.deleteById(clientId);
+		log.error("Exception");
+	}
 
-    @JsonIgnore
-    @Override
-    public Client saveClient(Client c) {
-        clientRepository.save(c);
-        return c;
-    }
+	
+	@Override
+	public Client updateClient(Client c) {
+		// TODO Auto-generated method stub
+		return clientRepository.save(c) ;
+	}
+	
 
-    @Override
-    public Client updateClient(Client c) {
-        clientRepository.save(c);
-        return c;
-    }
+	@Override
+	public Client retrieveClientById(Long clientId) {
+		// TODO Auto-generated method stub
+		log.info("in method retrieve client by id");
+		Client client= clientRepository.findById(clientId).get() ;
+		return client;
+		//return clientRepository.findById(clientId).get() ;
+	}
 
-    @Override
-    public void deleteClient(Long id) {
-        clientRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Client> getAllClients() {
-        return clientRepository.findAll();
-    }
-
-    @Override
-    public List<Client> retrieveClientsDate(Date date1, Date date2) {
-        return clientRepository.retrieveClientsDate(date1,date2);
-    }
+	
+	@Override
+	public float getChiffreAffaireParCategorieClient(CategorieClient categorieclient, Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		float chiffre_affaire=0;
+		List<Facture> factures= clientRepository.getClientsByCategorie(categorieclient);
+		for(Facture facture: factures){
+		if(facture.getDateFacture().compareTo(startDate)>0 && facture.getDateFacture().compareTo(endDate)<0){
+			chiffre_affaire+=facture.getMontantFacture();
+		}
+		}
+		return chiffre_affaire;
+	}
 }
