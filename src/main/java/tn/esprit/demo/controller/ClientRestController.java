@@ -27,18 +27,19 @@ import tn.esprit.demo.service.ClientService;
 	@RestController
 	@Api(tags="Client management")
 	@RequestMapping("/client")
-	class ClientController {
+	class ClientRestController {
+
 	@Autowired
 	ClientService clientService;
-	
-	
+
 	@GetMapping("retrieve-all-clients")
 	@ApiOperation(value="Récupérer la liste des clients")
 	@ResponseBody
 	public List<Client> getClients() throws ParseException{
 	List<Client> listClients= clientService.retrieveAllClients();
+
 	Client c1 = new Client();
-	c1.setIdClient(8L);
+	c1.setIdClient(1L);
 	c1.setNom("Laura");
 	c1.setPrenom("Smith");
 	c1.setEmail("Laura.smith@gmail.com");
@@ -46,6 +47,7 @@ import tn.esprit.demo.service.ClientService;
 	listClients.add(c1);
 	
 	Client c2 = new Client();
+	c2.setIdClient(2L);
 	c2.setNom("Taehyung");
 	c2.setPrenom("Kim");
 	c2.setEmail("Taehyung.Kim@gmail.com");
@@ -54,7 +56,7 @@ import tn.esprit.demo.service.ClientService;
 
 	SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
 	Date dateNaissance = dateFormat.parse("02/10/2021");
-	Client c3= new Client(2,"julien","harris", dateNaissance, "2blabla@gmail.com", "2Password*", CategorieClient.premium, Profession.ingenieur);
+	Client c3= new Client(3,"julien","harris", dateNaissance, "2blabla@gmail.com", "2Password*", CategorieClient.premium, Profession.ingenieur);
 	listClients.add(c3);
 	
 	return listClients;

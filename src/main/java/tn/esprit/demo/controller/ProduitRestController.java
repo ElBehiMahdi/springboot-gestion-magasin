@@ -3,15 +3,10 @@ package tn.esprit.demo.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.demo.entities.Client;
-import tn.esprit.demo.entities.Produit;
-import tn.esprit.demo.entities.Rayon;
-import tn.esprit.demo.entities.Stock;
-import tn.esprit.demo.service.ClientService;
-import tn.esprit.demo.service.ProduitService;
-import tn.esprit.demo.service.RayonService;
-import tn.esprit.demo.service.StockService;
+import tn.esprit.demo.entities.*;
+import tn.esprit.demo.service.*;
 
 import java.util.Date;
 import java.util.List;
@@ -28,8 +23,10 @@ public class ProduitRestController {
     RayonService rayonService;
     @Autowired
     StockService stockService;
+    @Autowired
+    FournisseurService fr;
 
-    // http://localhost:8089/SpringMVC/produit/retrieve-all-produits
+    //http://localhost:8089/SpringMVC/produit/retrieve-all-produits
     @GetMapping("/retrieve-all-produits")
     @ResponseBody
     @ApiOperation(value ="Récupérer la liste des produits")
@@ -55,4 +52,7 @@ public class ProduitRestController {
         Produit product = produitService.addProduit(p,idRayon,idStock);
         return product;
     }
+
+
+
 }

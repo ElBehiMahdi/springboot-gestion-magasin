@@ -19,7 +19,7 @@ public class FactureRestController {
     @Autowired
     FactureService factureService;
 
-    // http://localhost:8089/SpringMVC/facture/retrieve-all-factures
+    //http://localhost:8089/SpringMVC/facture/retrieve-all-factures
     @GetMapping("/retrieve-all-factures")
     @ApiOperation(value = "Récupérer la liste des factures")
     @ResponseBody
@@ -28,7 +28,7 @@ public class FactureRestController {
         return listFacture;
     }
 
-    // http://localhost:8089/SpringMVC/facture/retrieve-facture/1
+    //http://localhost:8089/SpringMVC/facture/retrieve-facture/1
     @GetMapping("/retrieve-facture/{facture-id}")
     @ApiOperation(value = "Récupérer une facture par id")
     @ResponseBody
@@ -36,14 +36,15 @@ public class FactureRestController {
         return factureService.getFactureById(factureId);
     }
 
-    // http://localhost:8089/SpringMVC/facture/cancel-facture/1
+    //http://localhost:8089/SpringMVC/facture/cancel-facture/1
     @DeleteMapping("/cancel-facture/{facture-id}")
     @ApiOperation(value = "Annuler une facture")
     @ResponseBody
     public void cancelFacture(@PathVariable("facture-id") Long factureId) {
         factureService.cancelFacture(factureId);
     }
- // http://localhost:8089/SpringMVC/facture/getFactureByClient/1  
+
+    //http://localhost:8089/SpringMVC/facture/getFactureByClient/1
     @GetMapping("/getFactureByClient/{Client-id}")
     @RequestMapping(value = "/Facture/{ClientId}", method = RequestMethod.GET)
 	 @ResponseBody
@@ -51,7 +52,7 @@ public class FactureRestController {
 	    return factureService.getByIdClient(ClientId);
 	 }
    
- // http://localhost:8081/SpringMVC/facture/add-facture
+    //http://localhost:8081/SpringMVC/facture/add-facture
  	 @PostMapping("/add-facture")
  	 @ResponseBody
  	 public Facture addFacture(@RequestBody Facture f,long ClientId) {

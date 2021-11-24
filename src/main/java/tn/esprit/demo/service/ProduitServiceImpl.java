@@ -38,11 +38,9 @@ public class ProduitServiceImpl implements ProduitService{
         Stock s = stockRepo.getById(idStock);
         p.setRayon(r);
         p.setStock(s);
-        // produit.setFournisseur AJOUT STATIQUE EN TEST
         DetailProduit dp = p.getDetailProduit();
         detailProduitRepo.save(dp);
         return produitRepo.save(p);
-
     }
 
     @Override

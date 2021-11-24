@@ -30,15 +30,15 @@ public class detailFacture implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	 Long idDetailFacture;
+	Long idDetailFacture;
 	@NotNull
 	Integer qte;
 	@NotNull
-	 Float prixTotal;
+	Float prixTotal;
 	@NotNull
 	Integer pourcentageRemise;
 	@NotNull
-	 Float montantRemise;
+	Float montantRemise;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "idProduit", nullable = false)
