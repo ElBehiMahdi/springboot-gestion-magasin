@@ -6,16 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.entities.Facture;
-import tn.esprit.demo.repository.ClientRepository;
 import tn.esprit.demo.repository.FactureRepository;
 
-import javax.transaction.Transactional;
-import java.util.List;
 @Service
 public class FactureServiceImpl implements FactureService{
+
 	@Autowired
 	FactureRepository f;
+
+	@Autowired
 	ClientService cs;
+
     @Autowired
     private FactureRepository factureRepository;
 
@@ -35,10 +36,10 @@ public class FactureServiceImpl implements FactureService{
     public List<Facture> getAllFactures() {
         return factureRepository.findAll();
     }
+
     @Override
 	public List<Facture> getByIdClient(Long idClient) {
 		return (List<Facture>)this.f.getFacturesByClient(idClient);
-	
 	}
 	
 	@Override

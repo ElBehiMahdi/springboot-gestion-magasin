@@ -21,7 +21,6 @@ public class StockServiceImpl implements StockService{
         return stockRepository.findById(id);
     }
 
-    @JsonIgnore
     @Override
     //TODO fix nullpointer solution
     public Stock saveStock(Stock s) {

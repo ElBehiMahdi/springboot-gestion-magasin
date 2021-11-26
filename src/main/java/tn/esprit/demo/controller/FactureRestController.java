@@ -24,6 +24,7 @@ public class FactureRestController {
     @ApiOperation(value = "Récupérer la liste des factures")
     @ResponseBody
     public List<Facture> getFacture() {
+
         List<Facture> listFacture = factureService.getAllFactures();
         return listFacture;
     }
@@ -33,6 +34,7 @@ public class FactureRestController {
     @ApiOperation(value = "Récupérer une facture par id")
     @ResponseBody
     public Facture retrieveFacture(@PathVariable("facture-id") Long factureId) {
+
         return factureService.getFactureById(factureId);
     }
 
@@ -41,6 +43,7 @@ public class FactureRestController {
     @ApiOperation(value = "Annuler une facture")
     @ResponseBody
     public void cancelFacture(@PathVariable("facture-id") Long factureId) {
+
         factureService.cancelFacture(factureId);
     }
 
@@ -49,7 +52,8 @@ public class FactureRestController {
     @RequestMapping(value = "/Facture/{ClientId}", method = RequestMethod.GET)
 	 @ResponseBody
 	 public List<Facture> getFactureByClient(@PathVariable("clientId") long ClientId) {
-	    return factureService.getByIdClient(ClientId);
+
+        return factureService.getByIdClient(ClientId);
 	 }
    
     //http://localhost:8081/SpringMVC/facture/add-facture

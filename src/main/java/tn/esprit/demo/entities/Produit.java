@@ -1,5 +1,6 @@
 package tn.esprit.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -29,23 +30,27 @@ public class Produit implements Serializable {
 
 	// One to one association Produit 1-1 detailProduit
 	@OneToOne
-	private DetailProduit detailProduit;
+	private detailProduit detailProduit;
 
 	// Many to One association Produit *-1 Rayon
+	@JsonIgnore
 	@ManyToOne
 	Rayon rayon;
 
 	// Many to One association Produit *-1 Stock
+	@JsonIgnore
 	@ManyToOne
 	Stock stock;
 
 	// One to many association Produit 1-* detailfacture
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
 	@ToString.Exclude
 	private Set<detailFacture> detailFactures;
 
 
 	// Many to many association Produit *-* Fournisseur
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	@ToString.Exclude
 	private Set<Fournisseur> fournisseur;
@@ -95,11 +100,11 @@ public class Produit implements Serializable {
 		this.prixUnitaire = prixUnitaire;
 	}
 
-	public DetailProduit getDetailProduit() {
+	public detailProduit getDetailProduit() {
 		return detailProduit;
 	}
 
-	public void setDetailProduit(DetailProduit detailProduit) {
+	public void setDetailProduit(detailProduit detailProduit) {
 		this.detailProduit = detailProduit;
 	}
 

@@ -38,8 +38,7 @@ public class ProduitServiceImpl implements ProduitService{
         Stock s = stockRepo.getById(idStock);
         p.setRayon(r);
         p.setStock(s);
-        DetailProduit dp = p.getDetailProduit();
-        detailProduitRepo.save(dp);
+        //TODO figure out detail produit bug
         return produitRepo.save(p);
     }
 

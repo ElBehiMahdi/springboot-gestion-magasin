@@ -10,7 +10,7 @@ public interface FactureService {
      Facture getFactureById(Long id);
      void cancelFacture(Long id);
      List<Facture> getAllFactures();
-	List<Facture> getByIdClient(Long id);//Long idClient
-	Facture addFacture(Facture f, Long idClient);
-	List<Facture> getDetailFactures();
+     List<Facture> getByIdClient(Long id);//Long idClient
+     Facture addFacture(Facture f, Long idClient);
+     List<Facture> getDetailFactures();
 }

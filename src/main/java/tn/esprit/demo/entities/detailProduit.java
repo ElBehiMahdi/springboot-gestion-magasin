@@ -14,7 +14,7 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Table(name = "DetailProduit")
-public class DetailProduit implements Serializable {
+public class detailProduit implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;
@@ -38,7 +38,7 @@ public class DetailProduit implements Serializable {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		DetailProduit that = (DetailProduit) o;
+		detailProduit that = (detailProduit) o;
 		return idDetailProduit != null && Objects.equals(idDetailProduit, that.idDetailProduit);
 	}
 

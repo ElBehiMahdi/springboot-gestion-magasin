@@ -36,36 +36,44 @@ import tn.esprit.demo.service.ClientService;
 	@ApiOperation(value="Récupérer la liste des clients")
 	@ResponseBody
 	public List<Client> getClients() throws ParseException{
-	List<Client> listClients= clientService.retrieveAllClients();
+		List<Client> listClients= clientService.retrieveAllClients();
 
-	Client c1 = new Client();
-	c1.setIdClient(1L);
-	c1.setNom("Laura");
-	c1.setPrenom("Smith");
-	c1.setEmail("Laura.smith@gmail.com");
-	c1.setPassword("1Pass**");
-	listClients.add(c1);
-	
-	Client c2 = new Client();
-	c2.setIdClient(2L);
-	c2.setNom("Taehyung");
-	c2.setPrenom("Kim");
-	c2.setEmail("Taehyung.Kim@gmail.com");
-	c2.setPassword("1Password**");
-	listClients.add(c2);
+			Client c1 = new Client();
+			c1.setIdClient(1L);
+			c1.setNom("Laura");
+			c1.setPrenom("Smith");
+			c1.setEmail("Laura.smith@gmail.com");
+			c1.setPassword("1Pass**");
+			listClients.add(c1);
 
-	SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
-	Date dateNaissance = dateFormat.parse("02/10/2021");
-	Client c3= new Client(3,"julien","harris", dateNaissance, "2blabla@gmail.com", "2Password*", CategorieClient.premium, Profession.ingenieur);
-	listClients.add(c3);
-	
-	return listClients;
+			Client c2 = new Client();
+			c2.setIdClient(2L);
+			c2.setNom("Taehyung");
+			c2.setPrenom("Kim");
+			c2.setEmail("Taehyung.Kim@gmail.com");
+			c2.setPassword("1Password**");
+			listClients.add(c2);
+
+			SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
+			Date dateNaissance = dateFormat.parse("02/10/2021");
+			Client c3= new Client(
+					3,
+					"julien",
+					"harris",
+					dateNaissance,
+					"2blabla@gmail.com",
+					"2Password*",
+					CategorieClient.premium,
+					Profession.ingenieur);
+			listClients.add(c3);
+		return listClients;
 	}
 	
 	@DeleteMapping("remove-client/{client-id}")
 	@ApiOperation(value="Remove client by id")
 	@ResponseBody
 	public void removeClientById(@PathVariable("client-id") Long clientId) {
+
 		clientService.deleteClientById(clientId);
 	}
 	
@@ -73,6 +81,7 @@ import tn.esprit.demo.service.ClientService;
 	@ApiOperation(value="Modify client")
 	@ResponseBody
 	public Client modifyClient(@RequestBody Client client){
+
 		return clientService.updateClient(client);
 	}
 	
@@ -81,6 +90,7 @@ import tn.esprit.demo.service.ClientService;
 	@ResponseBody
 	public Client addClient(@RequestBody Client c)
 	{
+		//TODO adds client but its all null
 		Client client = clientService.addClient(c);
 		return client;
 	}
@@ -90,13 +100,18 @@ import tn.esprit.demo.service.ClientService;
 	@ResponseBody
 	public Client retrieveClientById(@PathVariable("client-id") Long clientId)
 	{
+
 		return clientService.retrieveClientById(clientId);
 	}
 	
 	@PostMapping("/getChiffreAffaire/{client-categorie}/{startDate}/{endDate}")//cuz we are not viewing sth that can't be changed like in Get
 	@ApiOperation(value="getChiffreAffaireParCategorieClient")
 	@ResponseBody
-	public float getChiffreAffaireParCategorieClient(@RequestBody CategorieClient categorieclient, @PathVariable(name="startDate") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date startDate, @PathVariable(name="endDate") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date endDate)
+	public float getChiffreAffaireParCategorieClient(@RequestBody CategorieClient categorieclient,
+													 @PathVariable(name="startDate")
+													 @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date startDate,
+													 @PathVariable(name="endDate")
+														 @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date endDate)
 	{
 		return clientService.getChiffreAffaireParCategorieClient(categorieclient, startDate, endDate);
 	}

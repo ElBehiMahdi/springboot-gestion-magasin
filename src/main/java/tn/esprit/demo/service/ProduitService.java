@@ -1,6 +1,5 @@
 package tn.esprit.demo.service;
 
-import tn.esprit.demo.entities.DetailProduit;
 import tn.esprit.demo.entities.Produit;
 
 import java.util.List;
