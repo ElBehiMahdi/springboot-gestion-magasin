@@ -54,6 +54,7 @@ public class Produit implements Serializable {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@ToString.Exclude
 	private Set<Fournisseur> fournisseur;
+	public float getPrixUnitaire;
 
 	@Override
 	public boolean equals(Object o) {
