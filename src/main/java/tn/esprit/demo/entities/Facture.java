@@ -82,6 +82,11 @@ public class Facture implements Serializable {
 		
 	}
 
+	public void setActive(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	 
 	 
 	 
