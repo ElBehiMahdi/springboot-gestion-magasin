@@ -24,14 +24,12 @@ public class StockServiceImpl implements StockService{
     @Override
     //TODO fix nullpointer solution
     public Stock saveStock(Stock s) {
-        stockRepository.save(s);
-        return s;
+        return stockRepository.save(s);
     }
 
     @Override
     public Stock updateStock(Stock s) {
-        stockService.saveStock(s);
-        return s;
+        return stockService.saveStock(s);
     }
 
     @Override
