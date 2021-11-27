@@ -1,14 +1,6 @@
 package tn.esprit.demo.entities;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.FieldDefaults;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -19,14 +11,6 @@ import javax.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
-
-@Getter
-@Setter
-@AllArgsConstructor
-@ToString
-@RequiredArgsConstructor
-@FieldDefaults(level=AccessLevel.PRIVATE)	
-
 @Table(name="facture")
 public class Facture implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -41,13 +25,16 @@ public class Facture implements Serializable {
 	 Boolean active;
 
 	// Many to one association Facture *-1 Client
+	@JsonIgnore
 	@ManyToOne
 	Client client;
 
 	// One to many association Facture 1-* detailFacture
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facture")
 	private Set<detailFacture> df;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "clients_id_client")
 	private Client clients;

@@ -1,6 +1,5 @@
 package tn.esprit.demo.entities;
 
-import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -9,10 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 public class Rayon implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -25,7 +20,6 @@ public class Rayon implements Serializable {
 	
 	// One to many association Rayon 1-* Produit
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rayon")
-	@ToString.Exclude
 	private Set<Produit> P;
 
 	@Override

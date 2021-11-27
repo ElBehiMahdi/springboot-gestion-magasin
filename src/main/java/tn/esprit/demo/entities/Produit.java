@@ -1,7 +1,6 @@
 package tn.esprit.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -10,10 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 @Table(name = "Produit")
 public class Produit implements Serializable {
 
@@ -46,14 +41,12 @@ public class Produit implements Serializable {
 	// One to many association Produit 1-* detailfacture
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
-	@ToString.Exclude
 	private Set<detailFacture> detailFactures;
 
 
 	// Many to many association Produit *-* Fournisseur
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
-	@ToString.Exclude
 	private Set<Fournisseur> fournisseur;
 	public float getPrixUnitaire;
 

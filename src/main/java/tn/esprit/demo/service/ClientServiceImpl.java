@@ -8,10 +8,8 @@ import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.entities.CategorieClient;
 import tn.esprit.demo.entities.Facture;
 import tn.esprit.demo.repository.ClientRepository;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 public class ClientServiceImpl implements ClientService {
 	
 	@Autowired

@@ -1,7 +1,6 @@
 package tn.esprit.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -10,10 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 public class Stock implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
@@ -26,7 +21,6 @@ public class Stock implements Serializable{
 	//One to many association Stock 1-* Produit
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
-	@ToString.Exclude
 	private Set<Produit> P;
 
 	@Override

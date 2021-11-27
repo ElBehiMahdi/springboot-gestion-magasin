@@ -1,14 +1,4 @@
 package tn.esprit.demo.entities;
-
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.FieldDefaults;
-
 import java.io.Serializable;
 import java.util.Set;
 
@@ -19,12 +9,6 @@ import com.sun.istack.NotNull;
 @Entity
 @Table(name="detailfacture")
 
-@Getter
-@Setter
-@AllArgsConstructor
-@ToString
-@RequiredArgsConstructor
-@FieldDefaults(level=AccessLevel.PRIVATE)
 public class detailFacture implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
