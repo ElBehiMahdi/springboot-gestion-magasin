@@ -1,6 +1,6 @@
 package tn.esprit.demo.entities;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -9,10 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 public class Fournisseur implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -24,8 +20,8 @@ public class Fournisseur implements Serializable {
 	private String libelle;
 
 	// Many to many association Fournisseur *-* Produit
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
-	@ToString.Exclude
 	private Set<Produit> produits;
 
 	@Override

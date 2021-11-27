@@ -1,6 +1,6 @@
 package tn.esprit.demo.entities;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -9,10 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 @Table(name = "Produit")
 public class Produit implements Serializable {
 
@@ -28,27 +24,31 @@ public class Produit implements Serializable {
 	private CategorieProduit categorieProduit;
 
 	// One to one association Produit 1-1 detailProduit
+	@JsonIgnore
 	@OneToOne
-	private DetailProduit detailProduit;
+	private detailProduit detailProduit;
 
 	// Many to One association Produit *-1 Rayon
+	@JsonIgnore
 	@ManyToOne
 	Rayon rayon;
 
 	// Many to One association Produit *-1 Stock
+	@JsonIgnore
 	@ManyToOne
 	Stock stock;
 
 	// One to many association Produit 1-* detailfacture
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
-	@ToString.Exclude
 	private Set<detailFacture> detailFactures;
 
 
 	// Many to many association Produit *-* Fournisseur
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
-	@ToString.Exclude
 	private Set<Fournisseur> fournisseur;
+	public float getPrixUnitaire;
 
 	@Override
 	public boolean equals(Object o) {
@@ -95,11 +95,11 @@ public class Produit implements Serializable {
 		this.prixUnitaire = prixUnitaire;
 	}
 
-	public DetailProduit getDetailProduit() {
+	public detailProduit getDetailProduit() {
 		return detailProduit;
 	}
 
-	public void setDetailProduit(DetailProduit detailProduit) {
+	public void setDetailProduit(detailProduit detailProduit) {
 		this.detailProduit = detailProduit;
 	}
 

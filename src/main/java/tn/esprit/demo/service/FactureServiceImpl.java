@@ -1,5 +1,6 @@
 package tn.esprit.demo.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -14,15 +15,18 @@ import tn.esprit.demo.repository.DetailFactureRepository;
 import tn.esprit.demo.repository.FactureRepository;
 import tn.esprit.demo.repository.ProduitRepository;
 
-import javax.transaction.Transactional;
-import java.util.List;
 @Service
 public abstract class FactureServiceImpl implements FactureService{
 	@Autowired
 	FactureRepository f;
-	ClientService cs;
+	@Autowired
+	ClientRepository cr;
+	@Autowired
+	ProduitRepository pr;
     @Autowired
     private FactureRepository factureRepository;
+	@Autowired
+	private DetailFactureRepository dfr;
 
     @Override
     public Facture getFactureById(Long id) {
@@ -48,6 +52,7 @@ public abstract class FactureServiceImpl implements FactureService{
 	
 	@Override
 	public Facture addFacture(Facture f, Long idClient) {
+<<<<<<< HEAD
 		Client client = ClientRepository.findById(idClient).orElse(null);
 		f.setClient(client);
 		f.setDateFacture(new Date());
@@ -61,6 +66,21 @@ public abstract class FactureServiceImpl implements FactureService{
 		float montantRemise =0;
 		for(detailFacture detail: detailsFacture ){
 			Produit produit = ProduitRepository.findById(detail.getProduit().getIdProduit()).orElse(null);
+=======
+		Client client = cr.getById(idClient);
+		f.setClient(client);
+		f.setDateFacture(new Date());
+		f.setActive(true);
+		List<detailFacture> detailsFacture = dfr.findAll();
+		Facture fact =addDetailsFacture(f,detailsFacture);
+		return factureRepository.save(fact);
+	}
+	private Facture addDetailsFacture(Facture f, List<detailFacture> detailsFacture){
+		float montantFacture=0;
+		float montantRemise =0;
+		for(detailFacture detail: detailsFacture ){
+			Produit produit = pr.getById(detail.getProduit().getIdProduit());
+>>>>>>> 8c592d4f92a3ef91cc95b68585c0cf3f31a8b7cc
 			float prixTotalDetail=detail.getQte()*produit.getPrixUnitaire;
 			float montantRemiseDetail=(prixTotalDetail * detail.getPourcentageRemise())/100;
 			float prixTotalDetailRemise= prixTotalDetail - montantRemiseDetail ;
@@ -70,7 +90,11 @@ public abstract class FactureServiceImpl implements FactureService{
 			montantRemise= montantRemise + montantRemiseDetail;
 			detail.setProduit(produit);
 			detail.setFacture(f);
+<<<<<<< HEAD
 			DetailFactureRepository.save(detail);		
+=======
+			dfr.save(detail);
+>>>>>>> 8c592d4f92a3ef91cc95b68585c0cf3f31a8b7cc
 		}
 		f.setMontantFacture(montantFacture);
 		f.setMontantRemise(montantRemise);

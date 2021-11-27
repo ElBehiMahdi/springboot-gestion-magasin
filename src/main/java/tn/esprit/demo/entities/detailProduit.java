@@ -1,6 +1,6 @@
 package tn.esprit.demo.entities;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -9,12 +9,8 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 @Table(name = "DetailProduit")
-public class DetailProduit implements Serializable {
+public class detailProduit implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;
@@ -29,16 +25,16 @@ public class DetailProduit implements Serializable {
 	private CategorieProduit categorieProduit;
 
 	// One to One association detailProduit 1-1 Produit
+	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "produit_id", nullable = false)
-	@ToString.Exclude
 	private Produit produit;
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		DetailProduit that = (DetailProduit) o;
+		detailProduit that = (detailProduit) o;
 		return idDetailProduit != null && Objects.equals(idDetailProduit, that.idDetailProduit);
 	}
 

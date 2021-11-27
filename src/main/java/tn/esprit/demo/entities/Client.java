@@ -16,17 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 @Entity
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-
 
 public class Client implements Serializable{
 
@@ -55,6 +45,11 @@ public class Client implements Serializable{
 		this.categorieclient = categorieclient;
 		this.profession = profession;
 	}
+
+	public Client() {
+
+	}
+
 	public Long getIdClient() {
 		return idClient;
 	}

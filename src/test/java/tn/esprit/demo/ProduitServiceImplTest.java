@@ -1,6 +1,5 @@
 package tn.esprit.demo;
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProduitServiceImplTest {
@@ -47,7 +45,6 @@ public class ProduitServiceImplTest {
         pr.assignFournisseurToProduit(2L,1L);
         Optional<Produit> p = pr.retrieveProduit(1L);
         Fournisseur f = fr.retrieveFournisseur(2L);
-        log.warn(f.getLibelle());
         if (p.get().getFournisseur().contains(f)  ){
             b= true;
         }

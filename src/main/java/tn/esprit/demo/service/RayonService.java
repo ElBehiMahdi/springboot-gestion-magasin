@@ -6,9 +6,12 @@ import tn.esprit.demo.entities.Stock;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RayonService {
-    public abstract List<Rayon> getAllRayon();
-    public abstract Rayon getRayon(Long id);
-    public abstract void saveRayon(Rayon r);
+    Optional<Rayon> get(Long id);
+    Rayon saveRayon(Rayon s);
+    Rayon updateRayon(Rayon s);
+    List<Rayon> getAllRayon();
+    void deleteRayon(Long id);
 }

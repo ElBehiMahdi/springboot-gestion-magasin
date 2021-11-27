@@ -13,7 +13,6 @@ import java.util.Optional;
 public class StockServiceImpl implements StockService{
 
     @Autowired
-    private StockService stockService;
     private StockRepository stockRepository;
 
     @Override
@@ -21,18 +20,15 @@ public class StockServiceImpl implements StockService{
         return stockRepository.findById(id);
     }
 
-    @JsonIgnore
     @Override
     //TODO fix nullpointer solution
     public Stock saveStock(Stock s) {
-        stockRepository.save(s);
-        return s;
+        return stockRepository.save(s);
     }
 
     @Override
     public Stock updateStock(Stock s) {
-        stockService.saveStock(s);
-        return s;
+        return stockRepository.save(s);
     }
 
     @Override
