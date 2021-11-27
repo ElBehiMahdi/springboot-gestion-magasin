@@ -13,7 +13,6 @@ import java.util.Optional;
 public class StockServiceImpl implements StockService{
 
     @Autowired
-    private StockService stockService;
     private StockRepository stockRepository;
 
     @Override
@@ -29,7 +28,7 @@ public class StockServiceImpl implements StockService{
 
     @Override
     public Stock updateStock(Stock s) {
-        return stockService.saveStock(s);
+        return stockRepository.save(s);
     }
 
     @Override

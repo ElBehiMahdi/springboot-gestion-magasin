@@ -4,9 +4,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.demo.entities.Stock;
+import tn.esprit.demo.entities.Rayon;
 import tn.esprit.demo.service.RayonService;
-import tn.esprit.demo.service.StockService;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,38 +18,38 @@ public class RayonRestController {
     @Autowired
     RayonService rayonService;
 
-    //http://localhost:8089/SpringMVC/stock/retrieve-all-rayons
+    //http://localhost:8089/SpringMVC/rayon/retrieve-all-rayons
     @GetMapping("/retrieve-all-rayons")
     @ApiOperation(value = "Récupérer la liste des rayons")
     @ResponseBody
-    public List<Stock> getStocks() {
-        List<Stock> listStocks = stockService.getAllStocks();
-        return listStocks;
+    public List<Rayon> getRayons() {
+        List<Rayon> listRayons = rayonService.getAllRayon();
+        return listRayons;
     }
 
-    // http://localhost:8089/SpringMVC/stock/retrieve-stock/1
-    @GetMapping("/retrieve-stock/{stock-id}")
-    @ApiOperation(value = "Récupérer un stock par id")
+    // http://localhost:8089/SpringMVC/rayon/retrieve-rayon/1
+    @GetMapping("/retrieve-rayon/{Rayon-id}")
+    @ApiOperation(value = "Récupérer un Rayon par id")
     @ResponseBody
-    public Optional<Stock> retrieveStock(@PathVariable("stock-id") Long stockId) {
-        return stockService.get(stockId);
+    public Optional<Rayon> retrieveRayon(@PathVariable("Rayon-id") Long RayonId) {
+        return rayonService.get(RayonId);
     }
 
-    //http://localhost:8089/SpringMVC/stock/add-stock
-    @PostMapping("/add-stock")
-    @ApiOperation(value = "Ajouter un stock")
+    //http://localhost:8089/SpringMVC/rayon/add-rayon
+    @PostMapping("/add-rayon")
+    @ApiOperation(value = "Ajouter un Rayon")
     @ResponseBody
-    public Stock addStock(@RequestBody Stock s)
+    public Rayon addRayon(@RequestBody Rayon s)
     {
-        Stock stock = stockService.saveStock(s);
-        return stock;
+        Rayon Rayon = rayonService.saveRayon(s);
+        return Rayon;
     }
 
-    //http://localhost:8089/SpringMVC/stock/modify-stock
-    @PutMapping("/modify-stock")
-    @ApiOperation(value = "Modifier un stock")
+    //http://localhost:8089/SpringMVC/rayon/modify-rayon
+    @PutMapping("/modify-rayon")
+    @ApiOperation(value = "Modifier un Rayon")
     @ResponseBody
-    public Stock modifyStock(@RequestBody Stock stock) {
-        return stockService.updateStock(stock);
+    public Rayon modifyRayon(@RequestBody Rayon Rayon) {
+        return rayonService.updateRayon(Rayon);
     }
 }

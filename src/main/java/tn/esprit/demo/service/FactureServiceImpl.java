@@ -20,9 +20,9 @@ public class FactureServiceImpl implements FactureService{
 	@Autowired
 	FactureRepository f;
 	@Autowired
-	ClientService cs;
+	ClientRepository cr;
 	@Autowired
-	ProduitService ps;
+	ProduitRepository pr;
     @Autowired
     private FactureRepository factureRepository;
 	@Autowired
@@ -52,7 +52,7 @@ public class FactureServiceImpl implements FactureService{
 	
 	@Override
 	public Facture addFacture(Facture f, Long idClient) {
-		Client client = cs.retrieveClientById(idClient);
+		Client client = cr.getById(idClient);
 		f.setClient(client);
 		f.setDateFacture(new Date());
 		f.setActive(true);
@@ -64,7 +64,7 @@ public class FactureServiceImpl implements FactureService{
 		float montantFacture=0;
 		float montantRemise =0;
 		for(detailFacture detail: detailsFacture ){
-			Produit produit = ps.retrieveProduit(detail.getProduit().getIdProduit()).orElse(null);
+			Produit produit = pr.getById(detail.getProduit().getIdProduit());
 			float prixTotalDetail=detail.getQte()*produit.getPrixUnitaire;
 			float montantRemiseDetail=(prixTotalDetail * detail.getPourcentageRemise())/100;
 			float prixTotalDetailRemise= prixTotalDetail - montantRemiseDetail ;

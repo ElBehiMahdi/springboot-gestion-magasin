@@ -17,7 +17,6 @@ public class ProduitServiceImpl implements ProduitService{
 
     @Autowired
     ProduitRepository produitRepo;
-
     @Autowired
     RayonRepository rayonRepo;
     @Autowired

@@ -18,25 +18,17 @@ public class ClientServiceImpl implements ClientService {
 	ClientRepository clientRepository;
 	
 	public List<Client> retrieveAllClients() {
-		List<Client> clients= (List<Client>) clientRepository.findAll();
-		for(Client client: clients){
-			log.info(" client : "+ client);
-		}
-		return clients;
+		return clientRepository.findAll();
 	}
 
 	@Override
 	public Client addClient(Client c) {
-		log.info("In method addClient");
 		return clientRepository.save(c);
 	}
 
 	@Override
 	public void deleteClientById(Long clientId) {
-		log.info("in delete client by id");
-		log.warn("Attention, you sure you wanna delete?!");
 		clientRepository.deleteById(clientId);
-		log.error("Exception");
 	}
 
 	@Override
@@ -46,10 +38,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public Client retrieveClientById(Long clientId) {
-		log.info("in method retrieve client by id");
-		Client client= clientRepository.findById(clientId).get() ;
-		return client;
-		//return clientRepository.findById(clientId).get() ;
+		return clientRepository.findById(clientId).get() ;
 	}
 
 	@Override
