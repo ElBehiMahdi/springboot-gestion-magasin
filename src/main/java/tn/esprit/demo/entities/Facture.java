@@ -52,41 +52,67 @@ public class Facture implements Serializable {
 	@JoinColumn(name = "clients_id_client")
 	private Client clients;
 
-	public List<Facture> getDetailfacture() {
-		// TODO Auto-generated method stub
-		return null;
+	public Long getIdDetailProduit() {
+		return idDetailProduit;
 	}
 
-	public void setMontantFacture(float somme) {
-		// TODO Auto-generated method stub
-		
+	public void setIdDetailProduit(Long idDetailProduit) {
+		this.idDetailProduit = idDetailProduit;
 	}
 
 	public float getMontantRemise() {
-		// TODO Auto-generated method stub
-		return 0;
+		return montantRemise;
 	}
 
-	public float getPrixTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setMontantRemise(float montantRemise) {
+		this.montantRemise = montantRemise;
 	}
 
-	public void setMontantRemise(float somme) {
-		// TODO Auto-generated method stub
-		
+	public float getMontantFacture() {
+		return montantFacture;
 	}
 
-	public void setActive(boolean b) {
-		// TODO Auto-generated method stub
-		
+	public void setMontantFacture(float montantFacture) {
+		this.montantFacture = montantFacture;
 	}
 
-	 
-	 
-	 
-	
+	public Date getDateFacture() {
+		return dateFacture;
+	}
 
-	 
-	 
+	public void setDateFacture(Date dateFacture) {
+		this.dateFacture = dateFacture;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Set<detailFacture> getDf() {
+		return df;
+	}
+
+	public void setDf(Set<detailFacture> df) {
+		this.df = df;
+	}
+
+	public Client getClients() {
+		return clients;
+	}
+
+	public void setClients(Client clients) {
+		this.clients = clients;
+	}
 }

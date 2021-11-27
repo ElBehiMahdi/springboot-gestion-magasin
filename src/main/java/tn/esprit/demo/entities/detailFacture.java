@@ -48,38 +48,59 @@ public class detailFacture implements Serializable {
 	@ManyToOne
 	Facture facture;
 
-	public float getQte() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Long getIdDetailFacture() {
+		return idDetailFacture;
 	}
 
-	public Object getProduit() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setIdDetailFacture(Long idDetailFacture) {
+		this.idDetailFacture = idDetailFacture;
 	}
 
-	public float getPourcentageRemise() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Integer getQte() {
+		return qte;
 	}
 
-	public void setMontantRemise(float montantRemiseDetail) {
-		// TODO Auto-generated method stub
-		
+	public void setQte(Integer qte) {
+		this.qte = qte;
 	}
 
-	public void setPrixTotal(float prixTotalDetailRemise) {
-		// TODO Auto-generated method stub
-		
+	public Float getPrixTotal() {
+		return prixTotal;
 	}
 
-	public void setProduit(Produit produit2) {
-		// TODO Auto-generated method stub
-		
+	public void setPrixTotal(Float prixTotal) {
+		this.prixTotal = prixTotal;
 	}
 
-	public void setFacture(Facture f) {
-		// TODO Auto-generated method stub
-		
+	public Integer getPourcentageRemise() {
+		return pourcentageRemise;
+	}
+
+	public void setPourcentageRemise(Integer pourcentageRemise) {
+		this.pourcentageRemise = pourcentageRemise;
+	}
+
+	public Float getMontantRemise() {
+		return montantRemise;
+	}
+
+	public void setMontantRemise(Float montantRemise) {
+		this.montantRemise = montantRemise;
+	}
+
+	public Produit getProduit() {
+		return produit;
+	}
+
+	public void setProduit(Produit produit) {
+		this.produit = produit;
+	}
+
+	public Facture getFacture() {
+		return facture;
+	}
+
+	public void setFacture(Facture facture) {
+		this.facture = facture;
 	}
 }
