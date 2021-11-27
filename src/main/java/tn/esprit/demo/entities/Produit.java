@@ -29,6 +29,7 @@ public class Produit implements Serializable {
 	private CategorieProduit categorieProduit;
 
 	// One to one association Produit 1-1 detailProduit
+	@JsonIgnore
 	@OneToOne
 	private detailProduit detailProduit;
 

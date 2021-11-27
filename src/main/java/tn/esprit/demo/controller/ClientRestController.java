@@ -32,11 +32,14 @@ import tn.esprit.demo.service.ClientService;
 	@Autowired
 	ClientService clientService;
 
+	//http://localhost:8089/SpringMVC/client/retrieve-all-clients
 	@GetMapping("retrieve-all-clients")
 	@ApiOperation(value="Récupérer la liste des clients")
 	@ResponseBody
 	public List<Client> getClients() throws ParseException{
 		List<Client> listClients= clientService.retrieveAllClients();
+
+		/*
 
 			Client c1 = new Client();
 			c1.setIdClient(1L);
@@ -66,9 +69,11 @@ import tn.esprit.demo.service.ClientService;
 					CategorieClient.premium,
 					Profession.ingenieur);
 			listClients.add(c3);
+		 */
 		return listClients;
 	}
-	
+
+	//http://localhost:8089/SpringMVC/client/remove-client/1
 	@DeleteMapping("remove-client/{client-id}")
 	@ApiOperation(value="Remove client by id")
 	@ResponseBody
@@ -76,7 +81,8 @@ import tn.esprit.demo.service.ClientService;
 
 		clientService.deleteClientById(clientId);
 	}
-	
+
+	//http://localhost:8089/SpringMVC/client/modify-client
 	@PutMapping("/modify-client")
 	@ApiOperation(value="Modify client")
 	@ResponseBody
@@ -84,13 +90,14 @@ import tn.esprit.demo.service.ClientService;
 
 		return clientService.updateClient(client);
 	}
-	
+
+	//http://localhost:8089/SpringMVC/client/add-client
 	@PostMapping("/add-client")
 	@ApiOperation(value="Add client")
 	@ResponseBody
 	public Client addClient(@RequestBody Client c)
 	{
-		//TODO adds client but its all null
+		//TODO fix client all null
 		Client client = clientService.addClient(c);
 		return client;
 	}

@@ -1,5 +1,6 @@
 package tn.esprit.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -23,6 +24,7 @@ public class Stock implements Serializable{
 	private String libelle ;
 	
 	//One to many association Stock 1-* Produit
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
 	@ToString.Exclude
 	private Set<Produit> P;
