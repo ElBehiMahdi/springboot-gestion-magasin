@@ -1,5 +1,6 @@
 package tn.esprit.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,21 +9,21 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name="facture")
-public class Facture implements Serializable {
-	private static final long serialVersionUID = 1L;
-	@Autowired
+public class Facture implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long idDetailProduit;
-	float montantRemise;
-	float montantFacture;
+	@Column(name = "idFacture")
+	private long idDetailProduit;
+	private float montantRemise;
+	private float montantFacture;
 	@Temporal(TemporalType.DATE)
-	Date dateFacture;
-	Boolean active;
+	private Date dateFacture;
+	private Boolean active;
 
 	// Many to one association Facture *-1 Client
 	@JsonIgnore

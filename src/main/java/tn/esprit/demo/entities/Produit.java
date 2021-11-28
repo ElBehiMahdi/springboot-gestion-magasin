@@ -1,6 +1,8 @@
 package tn.esprit.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -16,7 +18,7 @@ public class Produit implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idProduit")
-	private Long idProduit; // Clé primaire
+	private long idProduit; // Clé primaire
 	private String code;
 	private String libelle;
 	private float prixUnitaire;
@@ -31,43 +33,35 @@ public class Produit implements Serializable {
 	// Many to One association Produit *-1 Rayon
 	@JsonIgnore
 	@ManyToOne
-	Rayon rayon;
+	private Rayon rayon;
 
 	// Many to One association Produit *-1 Stock
 	@JsonIgnore
 	@ManyToOne
-	Stock stock;
+	private Stock stock;
 
 	// One to many association Produit 1-* detailfacture
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
-	private Set<detailFacture> detailFactures;
+	@OneToMany(cascade =  CascadeType.PERSIST , mappedBy = "produit")
+	private Set<detailFacture> detailFacture;
 
 
 	// Many to many association Produit *-* Fournisseur
 	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade =  CascadeType.ALL)
 	private Set<Fournisseur> fournisseur;
-	public float getPrixUnitaire;
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		Produit produit = (Produit) o;
-		return idProduit != null && Objects.equals(idProduit, produit.idProduit);
-	}
 
 	@Override
 	public int hashCode() {
 		return getClass().hashCode();
 	}
 
-	public Long getIdProduit() {
+	public long getIdProduit() {
 		return idProduit;
 	}
 
-	public void setIdProduit(Long idProduit) {
+	public void setIdProduit(long idProduit) {
 		this.idProduit = idProduit;
 	}
 
@@ -95,11 +89,19 @@ public class Produit implements Serializable {
 		this.prixUnitaire = prixUnitaire;
 	}
 
-	public detailProduit getDetailProduit() {
+	public CategorieProduit getCategorieProduit() {
+		return categorieProduit;
+	}
+
+	public void setCategorieProduit(CategorieProduit categorieProduit) {
+		this.categorieProduit = categorieProduit;
+	}
+
+	public tn.esprit.demo.entities.detailProduit getDetailProduit() {
 		return detailProduit;
 	}
 
-	public void setDetailProduit(detailProduit detailProduit) {
+	public void setDetailProduit(tn.esprit.demo.entities.detailProduit detailProduit) {
 		this.detailProduit = detailProduit;
 	}
 
@@ -119,12 +121,12 @@ public class Produit implements Serializable {
 		this.stock = stock;
 	}
 
-	public Set<detailFacture> getDetailFactures() {
-		return detailFactures;
+	public Set<tn.esprit.demo.entities.detailFacture> getDetailFacture() {
+		return detailFacture;
 	}
 
-	public void setDetailFactures(Set<detailFacture> detailFactures) {
-		this.detailFactures = detailFactures;
+	public void setDetailFacture(Set<tn.esprit.demo.entities.detailFacture> detailFacture) {
+		this.detailFacture = detailFacture;
 	}
 
 	public Set<Fournisseur> getFournisseur() {
@@ -133,13 +135,5 @@ public class Produit implements Serializable {
 
 	public void setFournisseur(Set<Fournisseur> fournisseur) {
 		this.fournisseur = fournisseur;
-	}
-
-	public CategorieProduit getCategorieProduit() {
-		return categorieProduit;
-	}
-
-	public void setCategorieProduit(CategorieProduit categorieProduit) {
-		this.categorieProduit = categorieProduit;
 	}
 }

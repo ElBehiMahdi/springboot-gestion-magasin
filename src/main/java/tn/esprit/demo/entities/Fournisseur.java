@@ -1,6 +1,7 @@
 package tn.esprit.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -11,11 +12,10 @@ import java.util.Set;
 @Entity
 public class Fournisseur implements Serializable {
 
-	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idFournisseur")
-	private Long idFournisseur;
+	private long idFournisseur;
 	private String code;
 	private String libelle;
 
@@ -24,13 +24,6 @@ public class Fournisseur implements Serializable {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Produit> produits;
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		Fournisseur that = (Fournisseur) o;
-		return idFournisseur != null && Objects.equals(idFournisseur, that.idFournisseur);
-	}
 
 	@Override
 	public int hashCode() {

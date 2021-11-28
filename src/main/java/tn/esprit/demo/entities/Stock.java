@@ -1,6 +1,7 @@
 package tn.esprit.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -10,26 +11,19 @@ import java.util.Set;
 
 @Entity
 public class Stock implements Serializable{
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
-	@Column(name="idStock")
-	private Long idStock ;
-	private Integer qte;
-	private Integer qteMin;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idStock")
+	private long idStock ;
+	private int qte;
+	private int qteMin;
 	private String libelle ;
 	
 	//One to many association Stock 1-* Produit
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
+	@OneToMany( cascade =  CascadeType.ALL , mappedBy = "stock")
 	private Set<Produit> P;
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		Stock stock = (Stock) o;
-		return idStock != null && Objects.equals(idStock, stock.idStock);
-	}
 
 	@Override
 	public int hashCode() {

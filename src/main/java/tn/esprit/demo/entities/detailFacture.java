@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -14,21 +16,20 @@ public class detailFacture implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long idDetailFacture;
-	@NotNull
-	Integer qte;
-	@NotNull
-	Float prixTotal;
-	@NotNull
-	Integer pourcentageRemise;
-	@NotNull
-	Float montantRemise;
+	@Column(name = "idDetailFacture")
+	private long idDetailFacture;
+	private int qte;
+	private float prixTotal;
+	private int pourcentageRemise;
+	private float montantRemise;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "idProduit", nullable = false)
 	private Produit produit;
 
 	// Many to one association detailFacture *-1 Facture
+	@JsonIgnore
 	@ManyToOne
 	Facture facture;
 

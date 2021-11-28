@@ -1,5 +1,7 @@
 package tn.esprit.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -10,16 +12,15 @@ import java.util.Set;
 @Entity
 public class Rayon implements Serializable {
 
-	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idRayon")
 	private Long idRayon;
 	private String code;
 	private String libelle;
-	
-	// One to many association Rayon 1-* Produit
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rayon")
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY ,cascade =  CascadeType.PERSIST , mappedBy = "rayon")
 	private Set<Produit> P;
 
 	@Override

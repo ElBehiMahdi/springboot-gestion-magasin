@@ -1,6 +1,7 @@
 package tn.esprit.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ public class detailProduit implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idDetailProduit")
-	private Long idDetailProduit; // Clé primaire
+	private long idDetailProduit; // Clé primaire
 	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
 	private Date dateDerniereModification;
@@ -26,17 +27,9 @@ public class detailProduit implements Serializable {
 
 	// One to One association detailProduit 1-1 Produit
 	@JsonIgnore
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "produit_id", nullable = false)
+	@OneToOne(mappedBy = "detailProduit")
 	private Produit produit;
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		detailProduit that = (detailProduit) o;
-		return idDetailProduit != null && Objects.equals(idDetailProduit, that.idDetailProduit);
-	}
 
 	@Override
 	public int hashCode() {
