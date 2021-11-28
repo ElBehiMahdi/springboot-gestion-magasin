@@ -59,7 +59,7 @@ public class FactureRestController {
     @PostMapping("/add-facture/{clientId}")
     @ResponseBody
     public Facture addFacture(@RequestBody Facture f,@PathVariable("clientId") long ClientId) {
-        Facture facture = factureService.addFacture(f,ClientId);
+        Facture facture = factureService.addFactureClient(f,ClientId);
  	    return facture;
  	}
 }

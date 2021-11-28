@@ -9,6 +9,6 @@ public interface FactureService {
      void cancelFacture(Long id);
      List<Facture> getAllFactures();
      List<Facture> getByIdClient(Long id);//Long idClient
-     Facture addFacture(Facture f, Long idClient);
-     //List<Facture> getDetailFactures();
+     Facture addFactureClient(Facture f, Long idClient);
+     Facture addFacture(Facture f);
 }

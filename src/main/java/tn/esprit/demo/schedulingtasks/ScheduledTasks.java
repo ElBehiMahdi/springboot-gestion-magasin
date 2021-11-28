@@ -20,8 +20,6 @@ public class ScheduledTasks {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     @Autowired
     private StockService sr;
-    @Autowired
-    private FactureService fs ;
 
     SimpleDateFormat formater = new SimpleDateFormat("YYYY-MM-dd");
 

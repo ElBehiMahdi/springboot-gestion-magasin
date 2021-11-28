@@ -18,11 +18,11 @@ public class Facture implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long idDetailProduit;
-	 float montantRemise;
-	 float montantFacture;
-	 @Temporal(TemporalType.DATE)
-	 Date dateFacture;
-	 Boolean active;
+	float montantRemise;
+	float montantFacture;
+	@Temporal(TemporalType.DATE)
+	Date dateFacture;
+	Boolean active;
 
 	// Many to one association Facture *-1 Client
 	@JsonIgnore
@@ -102,4 +102,5 @@ public class Facture implements Serializable {
 	public void setClients(Client clients) {
 		this.clients = clients;
 	}
+
 }
