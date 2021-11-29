@@ -18,8 +18,10 @@ import tn.esprit.demo.repository.ProduitRepository;
 
 @Service
 public class FactureServiceImpl implements FactureService{
+
 	@Autowired
 	FactureRepository FactureRepository;
+
 	@Autowired
 	ClientRepository clientRepository;
 
@@ -27,12 +29,14 @@ public class FactureServiceImpl implements FactureService{
 
 	@Override
 	public List<Facture> getAllFactures() {
+
 		return  (List<Facture>) FactureRepository.findAll();
 	}
 
 	@Override
 
 	public void cancelFacture(Long id) {
+
 		Facture f = FactureRepository.findById(id).get();
 		f.setActive(false);
 		FactureRepository.save(f);
@@ -41,11 +45,13 @@ public class FactureServiceImpl implements FactureService{
 
 	@Override
 	public Facture getFactureById(Long id) {
+
 		return FactureRepository.findById(id).get();
 	}
 
 	@Override
 	public Facture addFacture(Facture f) {
+
 		return FactureRepository.save(f);
 	}
 
@@ -66,7 +72,6 @@ public class FactureServiceImpl implements FactureService{
 		if (clientRepository.findById(idClient).isPresent())
 		{
 			Client c = clientRepository.findById(idClient).get();
-
 		}
 		return null;
 	}

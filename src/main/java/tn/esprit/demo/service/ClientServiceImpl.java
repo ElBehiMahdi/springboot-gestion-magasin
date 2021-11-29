@@ -14,8 +14,10 @@ public class ClientServiceImpl implements ClientService {
 	
 	@Autowired
 	ClientRepository clientRepository;
-	
+
+	@Override
 	public List<Client> retrieveAllClients() {
+
 		return clientRepository.findAll();
 	}
 
@@ -26,16 +28,19 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public void deleteClientById(Long clientId) {
+
 		clientRepository.deleteById(clientId);
 	}
 
 	@Override
 	public Client updateClient(Client c) {
+
 		return clientRepository.save(c) ;
 	}
 
 	@Override
 	public Client retrieveClientById(Long clientId) {
+
 		return clientRepository.findById(clientId).get() ;
 	}
 

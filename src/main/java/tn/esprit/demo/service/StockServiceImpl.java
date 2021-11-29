@@ -17,17 +17,19 @@ public class StockServiceImpl implements StockService{
 
     @Override
     public Optional<Stock> get(Long id) {
+
         return stockRepository.findById(id);
     }
 
     @Override
-    //TODO fix nullpointer solution
     public Stock saveStock(Stock s) {
+
         return stockRepository.save(s);
     }
 
     @Override
     public Stock updateStock(Stock s) {
+
         return stockRepository.save(s);
     }
 
@@ -43,11 +45,13 @@ public class StockServiceImpl implements StockService{
 
     @Override
     public boolean checkExists(Long id){
+
         return stockRepository.existsById(id);
     }
 
     @Override
     public List<Stock> warnStock(){
+
         return stockRepository.warnStock();
     }
 }

@@ -61,14 +61,15 @@ public class ProduitServiceImpl implements ProduitService{
 
     @GetMapping(value = "/getRevenuBrutProduit/{idProduit}/{startDate}/{endDate}")
     float getRevenuBrutProduit(@PathVariable("idProduit") Long idProduit,
-                              @PathVariable(name = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
-                              @PathVariable(name = "endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate){
+                               @PathVariable(name = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
+                               @PathVariable(name = "endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate){
 
         return produitRepo.getRevenuBrutProduit(idProduit,startDate,endDate);
     }
 
     @Override
     public Optional<Produit> retrieveProduit(Long id) {
+
         return produitRepo.findById(id);
     }
 }

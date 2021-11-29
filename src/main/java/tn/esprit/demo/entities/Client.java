@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Entity
 public class Client implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "idClient")
@@ -26,6 +27,7 @@ public class Client implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Profession profession;
 
+	@JsonIgnore
 	@OneToMany(cascade= CascadeType.ALL,  mappedBy="clients")
 	private Set<Facture> factures;
 

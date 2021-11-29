@@ -19,26 +19,31 @@ public class RayonServiceImpl implements RayonService {
 
     @Override
     public Optional<Rayon> get(Long id) {
+
         return rayonRepository.findById(id);
     }
 
     @Override
     public Rayon saveRayon(Rayon r) {
+
         return rayonRepository.save(r);
     }
 
     @Override
     public Rayon updateRayon(Rayon r) {
+
         return rayonRepository.save(r);
     }
 
     @Override
     public List<Rayon> getAllRayon() {
+
         return rayonRepository.findAll();
     }
 
     @Override
     public void deleteRayon(Long id) {
+
         rayonRepository.deleteById(id);
     }
 }

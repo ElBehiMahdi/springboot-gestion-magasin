@@ -10,6 +10,7 @@ import tn.esprit.demo.repository.DetailFactureRepository;
 
 @Service
 public class DetailFactureServiceImp implements DetailFactureService {
+
 	@Autowired
 	DetailFactureRepository dfr;
 	
