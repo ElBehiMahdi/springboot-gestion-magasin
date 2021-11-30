@@ -19,6 +19,8 @@ public class FournisseurRestController {
     @Autowired
     FournisseurService fournisseurService;
 
+
+
     @GetMapping("/retrieve-all-fournisseur")
     @ApiOperation(value = "Récupérer la liste des fournisseurs")
     @ResponseBody
@@ -26,12 +28,5 @@ public class FournisseurRestController {
         List<Fournisseur> listFournisseur = fournisseurService.retrieveAllFournisseur();
         return listFournisseur;
     }
-
-    // http://localhost:8089/SpringMVC/stock/retrieve-stock/1
-    @GetMapping("/retrieve-stock/{stock-id}")
-    @ApiOperation(value = "Récupérer un stock par id")
-    @ResponseBody
-    public Optional<Stock> retrieveStock(@PathVariable("stock-id") Long stockId) {
-        return stockService.get(stockId);
-    }
+    
 }
