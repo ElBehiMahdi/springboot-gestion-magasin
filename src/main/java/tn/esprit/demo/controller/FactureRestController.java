@@ -62,5 +62,13 @@ public class FactureRestController {
         Facture facture = factureService.addFactureClient(f,ClientId);
  	    return facture;
  	}
+
+    //http://localhost:8081/SpringMVC/facture/add-facture
+    @PostMapping("/add-facture")
+    @ResponseBody
+    public Facture addFacture(@RequestBody Facture f) {
+        Facture facture = factureService.addFacture(f);
+        return facture;
+    }
 }
 

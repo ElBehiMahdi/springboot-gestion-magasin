@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "DetailProduit")
+@Table(name = "detailProduit")
 public class detailProduit implements Serializable {
 
 

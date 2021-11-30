@@ -26,16 +26,13 @@ public class Facture implements Serializable{
 	private Boolean active;
 
 	// Many to one association Facture *-1 Client
-	@JsonIgnore
 	@ManyToOne
 	Client client;
 
 	// One to many association Facture 1-* detailFacture
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facture")
 	private Set<detailFacture> df;
 
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "clients_id_client")
 	private Client clients;

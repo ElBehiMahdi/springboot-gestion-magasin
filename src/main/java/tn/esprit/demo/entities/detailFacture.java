@@ -12,8 +12,8 @@ import com.sun.istack.NotNull;
 @Table(name="detailfacture")
 
 public class detailFacture implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idDetailFacture")
@@ -23,13 +23,11 @@ public class detailFacture implements Serializable {
 	private int pourcentageRemise;
 	private float montantRemise;
 
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "idProduit", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "idProduit")
 	private Produit produit;
 
 	// Many to one association detailFacture *-1 Facture
-	@JsonIgnore
 	@ManyToOne
 	Facture facture;
 
