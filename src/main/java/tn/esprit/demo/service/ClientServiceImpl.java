@@ -27,9 +27,9 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public void deleteClientById(Long clientId) {
+	public void deleteClientById(Long idClient) {
 
-		clientRepository.deleteById(clientId);
+		clientRepository.deleteById(idClient);
 	}
 
 	@Override
@@ -39,9 +39,9 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public Client retrieveClientById(Long clientId) {
+	public Client retrieveClientById(Long idClient) {
 
-		return clientRepository.findById(clientId).get() ;
+		return clientRepository.findById(idClient).get() ;
 	}
 
 	@Override
@@ -54,5 +54,17 @@ public class ClientServiceImpl implements ClientService {
 		}
 		}
 		return chiffre_affaire;
+	}
+
+	@Override
+	public float getFactureRecenteParIdClient(Long idClient, Date dateRecente){
+		float facture_recente=0;
+		List<Facture> factures= clientRepository.getClientById(idClient);
+		for(Facture facture: factures){
+			if(facture.getDateFacture().compareTo(dateRecente)>0){
+				facture_recente+= facture.getMontantFacture();
+			}
+		}
+		return facture_recente;
 	}
 }
