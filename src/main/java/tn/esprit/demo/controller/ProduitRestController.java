@@ -3,7 +3,6 @@ package tn.esprit.demo.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.demo.entities.*;
 import tn.esprit.demo.service.*;
@@ -12,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @Api(tags = "Produit management")
 @RequestMapping("/produit")

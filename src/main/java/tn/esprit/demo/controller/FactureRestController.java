@@ -11,6 +11,7 @@ import tn.esprit.demo.service.FactureService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @Api(tags = "Facture management")
 @RequestMapping("/facture")

@@ -12,6 +12,7 @@ import tn.esprit.demo.service.StockService;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @Api(tags = "Stock management")
 @RequestMapping("/stock")

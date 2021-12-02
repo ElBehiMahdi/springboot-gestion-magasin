@@ -12,6 +12,7 @@ import tn.esprit.demo.service.FournisseurService;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @Api(tags = "Fournisseurs management")
 @RequestMapping("/fournisseur")
@@ -28,5 +29,5 @@ public class FournisseurRestController {
         List<Fournisseur> listFournisseur = fournisseurService.retrieveAllFournisseur();
         return listFournisseur;
     }
-    
+
 }
