@@ -37,11 +37,11 @@ import tn.esprit.demo.service.ClientService;
 	}
 
 	//http://localhost:8089/SpringMVC/client/remove-client/1
-	@DeleteMapping("remove-client/{client-id}")
+	@DeleteMapping("remove-client/{idClient}")
 	@ApiOperation(value="Remove client by id")
 	@ResponseBody
-	public void removeClientById(@PathVariable("client-id") Long clientId) {
-		clientService.deleteClientById(clientId);
+	public void removeClientById(@PathVariable("idClient") Long idClient) {
+		clientService.deleteClientById(idClient);
 	}
 
 	//http://localhost:8089/SpringMVC/client/modify-client
@@ -53,22 +53,22 @@ import tn.esprit.demo.service.ClientService;
 	}
 
 	//http://localhost:8089/SpringMVC/client/add-client
-	@PostMapping("/add-client")
+	@PostMapping("/add-client/{idClient}")
 	@ApiOperation(value="Add client")
 	@ResponseBody
-	public Client addClient(@RequestBody Client c)
+	public Client addClient(@RequestBody Client c, @PathVariable("idClient") long idClient)
 	{
 		//TODO fix client all null
-		Client client = clientService.addClient(c);
+		Client client = clientService.addClient(c, idClient);
 		return client;
 	}
 	
-	@GetMapping("retrieve-client/{client-id}")
+	@GetMapping("retrieve-client/{idClient}")
 	@ApiOperation(value="Retrieve client by id")
 	@ResponseBody
-	public Client retrieveClientById(@PathVariable("client-id") Long clientId)
+	public Client retrieveClientById(@PathVariable("idClient") Long idClient)
 	{
-		return clientService.retrieveClientById(clientId);
+		return clientService.retrieveClientById(idClient);
 	}
 	
 	@PostMapping("/getChiffreAffaire/{client-categorie}/{startDate}/{endDate}")//cuz we are not viewing sth that can't be changed like in Get

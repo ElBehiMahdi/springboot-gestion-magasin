@@ -8,8 +8,9 @@ import tn.esprit.demo.entities.CategorieClient;
 public interface ClientService {
 	List<Client> retrieveAllClients();
 	Client addClient(Client c);
-	void deleteClientById(Long clientId);
+	void deleteClientById(Long idClient);
 	Client updateClient(Client c);
-	Client retrieveClientById(Long clientId);
+	Client retrieveClientById(Long idClient);
 	float getChiffreAffaireParCategorieClient(CategorieClient categorieClient, Date startDate, Date endDate);
+	float getFactureRecenteParIdClient(Long clientId, Date dateRecente);
 }

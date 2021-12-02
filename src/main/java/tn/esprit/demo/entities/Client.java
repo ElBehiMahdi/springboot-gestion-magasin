@@ -16,6 +16,8 @@ public class Client implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "idClient")
 	private long idClient;
+	@Column(nullable=true, length=64)
+	private String photo;
 	private String nom;
 	private String prenom;
 	@Temporal(TemporalType.DATE)
@@ -27,9 +29,8 @@ public class Client implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Profession profession;
 
-	@JsonIgnore
-	@OneToMany(cascade= CascadeType.ALL,  mappedBy="clients")
-	private Set<Facture> factures;
+	@OneToMany(mappedBy="clients")
+	private List<Facture> factures;
 
 
 
