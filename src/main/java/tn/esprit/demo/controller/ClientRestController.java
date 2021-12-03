@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import tn.esprit.demo.entities.CategorieClient;
 import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.entities.Profession;

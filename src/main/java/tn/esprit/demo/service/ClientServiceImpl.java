@@ -22,7 +22,7 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public Client addClient(Client c) {
+	public Client addClient(Client c,long idClient) {
 		return clientRepository.save(c);
 	}
 

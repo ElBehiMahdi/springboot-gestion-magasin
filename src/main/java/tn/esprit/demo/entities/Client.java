@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -104,11 +105,11 @@ public class Client implements Serializable{
 	}
 
 	public Set<Facture> getFactures() {
-		return factures;
+		return (Set<Facture>) factures;
 	}
 
 	public void setFactures(Set<Facture> factures) {
-		this.factures = factures;
+		this.factures = (List<Facture>) factures;
 	}
 }
 
