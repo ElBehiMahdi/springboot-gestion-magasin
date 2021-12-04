@@ -19,13 +19,11 @@ import tn.esprit.demo.exception.ClientNotFoundException;
 import tn.esprit.demo.repository.ClientRepository;
 
 @Transactional
+@Service
 public class ClientServiceImpl implements ClientService {
 	
 	@Autowired
 	ClientRepository clientRepository;
-	
-	/*@Autowired
-	FactureRepository FactureRepository;*/
 
 	@Override
 	public List<Client> retrieveAllClients() 

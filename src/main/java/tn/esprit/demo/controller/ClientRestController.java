@@ -30,6 +30,7 @@ import tn.esprit.demo.service.ClientService;
 	@Api(tags="Client management")
 	@RequestMapping("/client")
 	class ClientRestController{
+
 		@Autowired
 		ClientService clientService;
 		

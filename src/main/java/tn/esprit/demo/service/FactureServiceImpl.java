@@ -61,7 +61,7 @@ public class FactureServiceImpl implements FactureService{
 		{
 			Client c = clientRepository.findById(idClient).get();
 			List<Facture> factures = new ArrayList<>();
-			factures.addAll(c.getFactures());
+			//factures.addAll(c.getFactures());
 			return factures;
 		}
 		return null;

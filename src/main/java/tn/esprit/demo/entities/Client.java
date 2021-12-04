@@ -58,7 +58,11 @@ public class Client implements Serializable{
 		this.imageUrl= imageUrl;
 		this.clientCode= clientCode;
 	}
-	
+
+	public Client() {
+
+	}
+
 	public Long getIdClient() {
 		return idClient;
 	}
