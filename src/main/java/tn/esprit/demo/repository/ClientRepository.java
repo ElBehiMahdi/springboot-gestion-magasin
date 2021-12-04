@@ -15,11 +15,13 @@ import org.springframework.stereotype.Repository;
 @Repository	
 public interface ClientRepository extends JpaRepository<Client,Long> {
 
-}
 	@Query("select c.factures from Client c where c.categorieclient=: categorieclient")
-	//cuz we need les factures du client not the client himself
+		//cuz we need les factures du client not the client himself
 	List<Facture> getClientsByCategorie(@Param("categorieclient") CategorieClient categorieclient);
-	
+
+	@Query("select c.factures from Client c where c.id=: id")
+	List<Facture> getClientById(@Param("idClient") Long idClient);
+}
 	
 	
 	

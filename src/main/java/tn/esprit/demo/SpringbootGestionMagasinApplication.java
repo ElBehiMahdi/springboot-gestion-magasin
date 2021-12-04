@@ -5,9 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import tn.esprit.demo.entities.Client;
-import tn.esprit.demo.entities.DetailProduit;
-import tn.esprit.demo.entities.Produit;
+
 import tn.esprit.demo.repository.DetailProduitRepository;
 import tn.esprit.demo.repository.ProduitRepository;
 import tn.esprit.demo.service.ClientServiceImpl;
@@ -22,6 +20,5 @@ public class SpringbootGestionMagasinApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootGestionMagasinApplication.class, args);
-
 	}
 }

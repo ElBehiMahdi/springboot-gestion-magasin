@@ -1,36 +1,75 @@
 package tn.esprit.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
-import tn.esprit.demo.entities.Produit;
-import tn.esprit.demo.repository.DetailProduitRepository;
-import tn.esprit.demo.repository.ProduitRepository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import tn.esprit.demo.entities.*;
+import tn.esprit.demo.repository.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProduitServiceImpl implements ProduitService{
 
     @Autowired
-    private ProduitRepository produitRepository;
-    private DetailProduitRepository detailProduitRepository;
+    ProduitRepository produitRepo;
+    @Autowired
+    RayonRepository rayonRepo;
+    @Autowired
+    StockRepository stockRepo;
+    @Autowired
+    DetailProduitRepository detailProduitRepo;
+    @Autowired
+    FournisseurRepository fournisseurRepo;
 
     @Override
-    public Produit get(Long id) {
-        return produitRepository.getById(id);
+    public List<Produit> retrieveAllProduits() {
+        return produitRepo.findAll();
     }
 
     @Override
-    public Produit saveProduit(Produit p,Long idRayon, Long idStock) {
-
-        //Produit p = new Produit();
-        //p.setStock();
-
-        produitRepository.save(p);
-        return p;
+    public Produit addProduit(Produit p, Long idRayon, Long idStock) {
+        Rayon r = rayonRepo.getById(idRayon);
+        Stock s = stockRepo.getById(idStock);
+        p.setRayon(r);
+        p.setStock(s);
+        //TODO figure out detail produit bug
+        return produitRepo.save(p);
     }
 
     @Override
-    public List<Produit> getAllProduits() {
-        return produitRepository.findAll();
+    public  void assignProduitToStock(Long idProduit, Long idStock) {
+        Produit p = new Produit();
+        p = produitRepo.getById(idProduit);
+        Stock s = new Stock();
+        s = stockRepo.getById(idStock);
+        p.setStock(s);
+        produitRepo.saveAndFlush(p);
+    }
+
+    @Override
+    public void assignFournisseurToProduit(Long fournisseurId, Long produitId) {
+        Fournisseur f = fournisseurRepo.getById(fournisseurId);
+        Produit p = produitRepo.getById(produitId);
+        p.getFournisseur().add(f);
+        produitRepo.saveAndFlush(p);
+    }
+
+    @GetMapping(value = "/getRevenuBrutProduit/{idProduit}/{startDate}/{endDate}")
+    float getRevenuBrutProduit(@PathVariable("idProduit") Long idProduit,
+                               @PathVariable(name = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
+                               @PathVariable(name = "endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate){
+
+        return produitRepo.getRevenuBrutProduit(idProduit,startDate,endDate);
+    }
+
+    @Override
+    public Optional<Produit> retrieveProduit(Long id) {
+
+        return produitRepo.findById(id);
     }
 }

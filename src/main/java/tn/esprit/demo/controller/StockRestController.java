@@ -10,7 +10,9 @@ import tn.esprit.demo.service.ClientService;
 import tn.esprit.demo.service.StockService;
 
 import java.util.List;
+import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @Api(tags = "Stock management")
 @RequestMapping("/stock")
@@ -18,7 +20,8 @@ public class StockRestController {
 
     @Autowired
     StockService stockService;
-    // http://localhost:8089/SpringMVC/stock/retrieve-all-stocks
+
+    //http://localhost:8089/SpringMVC/stock/retrieve-all-stocks
     @GetMapping("/retrieve-all-stocks")
     @ApiOperation(value = "Récupérer la liste des stocks")
     @ResponseBody
@@ -27,14 +30,15 @@ public class StockRestController {
         return listStocks;
     }
 
-    // http://localhost:8089/SpringMVC/stock/retrieve-stock/8
+    // http://localhost:8089/SpringMVC/stock/retrieve-stock/1
     @GetMapping("/retrieve-stock/{stock-id}")
     @ApiOperation(value = "Récupérer un stock par id")
     @ResponseBody
-    public Stock retrieveStock(@PathVariable("stock-id") Long stockId) {
+    public Optional<Stock> retrieveStock(@PathVariable("stock-id") Long stockId) {
         return stockService.get(stockId);
     }
-    // http://localhost:8089/SpringMVC/stock/add-stock
+
+    //http://localhost:8089/SpringMVC/stock/add-stock
     @PostMapping("/add-stock")
     @ApiOperation(value = "Ajouter un stock")
     @ResponseBody
@@ -44,12 +48,11 @@ public class StockRestController {
         return stock;
     }
 
-    // http://localhost:8089/SpringMVC/stock/modify-stock
+    //http://localhost:8089/SpringMVC/stock/modify-stock
     @PutMapping("/modify-stock")
     @ApiOperation(value = "Modifier un stock")
     @ResponseBody
     public Stock modifyStock(@RequestBody Stock stock) {
         return stockService.updateStock(stock);
     }
-
 }

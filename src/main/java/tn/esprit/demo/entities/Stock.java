@@ -1,30 +1,72 @@
 package tn.esprit.demo.entities;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.Hibernate;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 @Entity
-@Data
 public class Stock implements Serializable{
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
-	@Column(name="idStock")
-	private Long idStock ;
-	private Integer qte;
-	private Integer qteMin;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idStock")
+	private long idStock ;
+	private int qte;
+	private int qteMin;
 	private String libelle ;
 	
 	//One to many association Stock 1-* Produit
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
+	@JsonIgnore
+	@OneToMany( cascade =  CascadeType.ALL , mappedBy = "stock")
 	private Set<Produit> P;
+
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
+
+	public Long getIdStock() {
+		return idStock;
+	}
+
+	public void setIdStock(Long idStock) {
+		this.idStock = idStock;
+	}
+
+	public Integer getQte() {
+		return qte;
+	}
+
+	public void setQte(Integer qte) {
+		this.qte = qte;
+	}
+
+	public Integer getQteMin() {
+		return qteMin;
+	}
+
+	public void setQteMin(Integer qteMin) {
+		this.qteMin = qteMin;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public Set<Produit> getP() {
+		return P;
+	}
+
+	public void setP(Set<Produit> p) {
+		P = p;
+	}
 }

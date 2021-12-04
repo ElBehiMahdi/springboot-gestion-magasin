@@ -1,12 +1,18 @@
 package tn.esprit.demo.service;
 
-import tn.esprit.demo.entities.DetailProduit;
 import tn.esprit.demo.entities.Produit;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProduitService {
-    public abstract Produit get(Long id);
-    public abstract Produit saveProduit(Produit p,Long idRayon, Long idStock);
-    public abstract List<Produit> getAllProduits();
+    List<Produit> retrieveAllProduits();
+
+    Produit addProduit(Produit p, Long idRayon, Long idStock);
+
+    Optional<Produit> retrieveProduit(Long id);
+
+    void assignProduitToStock(Long idProduit, Long idStock);
+
+    public void assignFournisseurToProduit(Long fournisseurId, Long produitId) ;
 }

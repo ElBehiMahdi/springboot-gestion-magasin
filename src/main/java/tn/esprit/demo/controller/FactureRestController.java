@@ -11,6 +11,7 @@ import tn.esprit.demo.service.FactureService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @Api(tags = "Facture management")
 @RequestMapping("/facture")
@@ -19,29 +20,56 @@ public class FactureRestController {
     @Autowired
     FactureService factureService;
 
-
-    // http://localhost:8089/SpringMVC/facture/retrieve-all-factures
+    //http://localhost:8089/SpringMVC/facture/retrieve-all-factures
     @GetMapping("/retrieve-all-factures")
     @ApiOperation(value = "Récupérer la liste des factures")
     @ResponseBody
     public List<Facture> getFacture() {
+
         List<Facture> listFacture = factureService.getAllFactures();
         return listFacture;
     }
 
-    // http://localhost:8089/SpringMVC/facture/retrieve-facture/1
+    //http://localhost:8089/SpringMVC/facture/retrieve-facture/1
     @GetMapping("/retrieve-facture/{facture-id}")
     @ApiOperation(value = "Récupérer une facture par id")
     @ResponseBody
     public Facture retrieveFacture(@PathVariable("facture-id") Long factureId) {
+
         return factureService.getFactureById(factureId);
     }
 
-    // http://localhost:8089/SpringMVC/facture/cancel-facture/1
-    @DeleteMapping("/cancel-facture/{facture-id}")
+    //http://localhost:8089/SpringMVC/facture/cancel-facture/1
+    @PutMapping("/cancel-facture/{facture-id}")
     @ApiOperation(value = "Annuler une facture")
     @ResponseBody
     public void cancelFacture(@PathVariable("facture-id") Long factureId) {
+
         factureService.cancelFacture(factureId);
     }
+
+    //http://localhost:8089/SpringMVC/facture/getFactureByClient/1
+    @GetMapping("/getFactureByClient/{clientId}")
+    @ResponseBody
+    public List<Facture> getFactureByClient(@PathVariable("clientId") long ClientId) {
+
+        return factureService.getByIdClient(ClientId);
+    }
+   
+    //http://localhost:8081/SpringMVC/facture/add-facture/1
+    @PostMapping("/add-facture/{clientId}")
+    @ResponseBody
+    public Facture addFacture(@RequestBody Facture f,@PathVariable("clientId") long ClientId) {
+        Facture facture = factureService.addFactureClient(f,ClientId);
+ 	    return facture;
+ 	}
+
+    //http://localhost:8081/SpringMVC/facture/add-facture
+    @PostMapping("/add-facture")
+    @ResponseBody
+    public Facture addFacture(@RequestBody Facture f) {
+        Facture facture = factureService.addFacture(f);
+        return facture;
+    }
 }
+
