@@ -53,6 +53,20 @@ public class ProduitRestController {
         return product;
     }
 
+    //http://localhost:8089/SpringMVC/produit/modify-produit
+    @PutMapping("/modify-produit")
+    @ApiOperation(value = "Modifier un Produit")
+    @ResponseBody
+    public Produit modifyProduit(@RequestBody Produit p) {
+        return produitService.updateProduit(p);
+    }
 
+    //http://localhost:8089/SpringMVC/produit/remove-produit/1
+    @DeleteMapping("remove-produit/{idProduit}")
+    @ApiOperation(value="Remove produit by id")
+    @ResponseBody
+    public void removeProduitById(@PathVariable("idProduit") Long idProduit) {
+        produitService.removeProduitById(idProduit);
+    }
 
 }
