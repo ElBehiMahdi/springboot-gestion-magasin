@@ -1,13 +1,22 @@
 package tn.esprit.demo.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,64 +29,63 @@ import tn.esprit.demo.service.ClientService;
 	@RestController
 	@Api(tags="Client management")
 	@RequestMapping("/client")
-	class ClientRestController {
+	class ClientRestController{
+		@Autowired
+		ClientService clientService;
+		
+		@GetMapping("/all")
+		public ResponseEntity<List<Client>> FetchAllClients()
+		{
+			List <Client> clients = clientService.retrieveAllClients();
+			return new ResponseEntity<>(clients, HttpStatus.OK);
+		}
 
-	@Autowired
-	ClientService clientService;
+		@GetMapping("/fetch/{idClient}")
+		public ResponseEntity<Client> FetchClientById(@PathVariable("idClient") Long idClient)
+		{
+			Client client = clientService.retrieveClientById(idClient);
+			return new ResponseEntity<>(client, HttpStatus.OK);
+		}
 
-	//http://localhost:8089/SpringMVC/client/retrieve-all-clients
-	@GetMapping("retrieve-all-clients")
-	@ApiOperation(value="Récupérer la liste des clients")
-	@ResponseBody
-	public List<Client> getClients() throws ParseException{
+		@PostMapping("/add")
+		public Client addClient(@RequestBody Client newClient)
+		{
+			return clientService.addClient(newClient);
+		}
 
-		List<Client> listClients= clientService.retrieveAllClients();
-		return listClients;
-	}
+		@PutMapping("/update")
+		public ResponseEntity<Client> updateClient(@RequestBody Client client)
+		{
+			Client updateClient = clientService.updateClient(client);
+			return new ResponseEntity<>(updateClient, HttpStatus.OK);
+		}
 
-	//http://localhost:8089/SpringMVC/client/remove-client/1
-	@DeleteMapping("remove-client/{idClient}")
-	@ApiOperation(value="Remove client by id")
-	@ResponseBody
-	public void removeClientById(@PathVariable("idClient") Long idClient) {
-		clientService.deleteClientById(idClient);
-	}
-
-	//http://localhost:8089/SpringMVC/client/modify-client
-	@PutMapping("/modify-client")
-	@ApiOperation(value="Modify client")
-	@ResponseBody
-	public Client modifyClient(@RequestBody Client client){
-		return clientService.updateClient(client);
-	}
-
-	//http://localhost:8089/SpringMVC/client/add-client
-	@PostMapping("/add-client")
-	@ApiOperation(value="Add client")
-	@ResponseBody
-	public Client addClient(@RequestBody Client c)
-	{
-		Client client = clientService.addClient(c);
-		return client;
-	}
-	
-	@GetMapping("retrieve-client/{idClient}")
-	@ApiOperation(value="Retrieve client by id")
-	@ResponseBody
-	public Client retrieveClientById(@PathVariable("idClient") Long idClient)
-	{
-		return clientService.retrieveClientById(idClient);
-	}
-	
-	@PostMapping("/getChiffreAffaire/{client-categorie}/{startDate}/{endDate}")//cuz we are not viewing sth that can't be changed like in Get
-	@ApiOperation(value="getChiffreAffaireParCategorieClient")
-	@ResponseBody
-	public float getChiffreAffaireParCategorieClient(@RequestBody CategorieClient categorieclient,
-													 @PathVariable(name="startDate")
-													 @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date startDate,
-													 @PathVariable(name="endDate")
+		@DeleteMapping("/delete/{idClient}")
+		public ResponseEntity<?> deleteClient(@PathVariable("idClient") Long idClient)
+		{
+			clientService.deleteClient(idClient);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		@PostMapping("/getChiffreAffaire/{client-categorie}/{startDate}/{endDate}")
+		@ApiOperation(value="getChiffreAffaireParCategorieClient")
+		@ResponseBody
+		public float getChiffreAffaireParCategorieClient(@RequestBody CategorieClient categorieclient,
+														 @PathVariable(name="startDate")
+														 @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date startDate,
+														 @PathVariable(name="endDate")
 														 @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date endDate)
-	{
-		return clientService.getChiffreAffaireParCategorieClient(categorieclient, startDate, endDate);
-	}
+		{
+			return clientService.getChiffreAffaireParCategorieClient(categorieclient, startDate, endDate);
+		}
+	
+		@PostMapping("/getFactureRecenteParIdClient/{idClient}/{dateRecente}")
+		@ApiOperation(value="getFactureRecenteParIdClient")
+		@ResponseBody
+		public float getFactureRecenteParIdClient(@RequestBody Long idClient,
+												  @PathVariable(name="dateRecente")
+												  @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date dateRecente)
+		{
+			return clientService.getFactureRecenteParIdClient(idClient, dateRecente);
+		}
 }
