@@ -30,6 +30,7 @@ public class Client implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Profession profession;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="clients")
 	private List<Facture> factures;
 

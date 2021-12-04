@@ -52,13 +52,12 @@ import tn.esprit.demo.service.ClientService;
 	}
 
 	//http://localhost:8089/SpringMVC/client/add-client
-	@PostMapping("/add-client/{idClient}")
+	@PostMapping("/add-client")
 	@ApiOperation(value="Add client")
 	@ResponseBody
-	public Client addClient(@RequestBody Client c, @PathVariable("idClient") long idClient)
+	public Client addClient(@RequestBody Client c)
 	{
-		//TODO fix client all null
-		Client client = clientService.addClient(c, idClient);
+		Client client = clientService.addClient(c);
 		return client;
 	}
 	

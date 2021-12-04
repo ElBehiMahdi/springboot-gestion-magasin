@@ -7,7 +7,7 @@ import tn.esprit.demo.entities.CategorieClient;
 
 public interface ClientService {
 	List<Client> retrieveAllClients();
-	Client addClient(Client c, long idClient);
+	Client addClient(Client c);
 	void deleteClientById(Long idClient);
 	Client updateClient(Client c);
 	Client retrieveClientById(Long idClient);
