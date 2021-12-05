@@ -72,4 +72,15 @@ public class ProduitServiceImpl implements ProduitService{
 
         return produitRepo.findById(id);
     }
+
+    @Override
+    public void removeProduitById(Long idProduit) {
+
+        produitRepo.deleteById(idProduit);
+    }
+
+    @Override
+    public Produit updateProduit(Produit p) {
+        return produitRepo.save(p);
+    }
 }

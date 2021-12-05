@@ -2,13 +2,23 @@ package tn.esprit.demo.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.transaction.Transactional;
+
+import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.entities.CategorieClient;
 import tn.esprit.demo.entities.Facture;
+import tn.esprit.demo.exception.ClientNotFoundException;
 import tn.esprit.demo.repository.ClientRepository;
 
+@Transactional
 @Service
 public class ClientServiceImpl implements ClientService {
 	
@@ -16,36 +26,42 @@ public class ClientServiceImpl implements ClientService {
 	ClientRepository clientRepository;
 
 	@Override
-	public List<Client> retrieveAllClients() {
-
-		return clientRepository.findAll();
+	public List<Client> retrieveAllClients() 
+	{
+		return (List<Client>) clientRepository.findAll();
 	}
 
 	@Override
-	public Client addClient(Client c) {
-		return clientRepository.save(c);
+	public Client addClient(Client newClient) 
+	{
+		newClient.setClientCode(UUID.randomUUID().toString());
+		return clientRepository.save(newClient);
 	}
-
-	@Override
-	public void deleteClientById(Long idClient) {
-
+	
+	public void deleteClient(Long idClient) 
+	{
 		clientRepository.deleteById(idClient);
 	}
-
+	
+	
 	@Override
-	public Client updateClient(Client c) {
-
+	public Client updateClient(Client c)
+	{
 		return clientRepository.save(c) ;
 	}
-
+	
+	
 	@Override
-	public Client retrieveClientById(Long idClient) {
-
-		return clientRepository.findById(idClient).get() ;
+	public Client retrieveClientById(Long idClient)
+	{
+		return clientRepository.findById(idClient).orElseThrow(() -> 
+		new ClientNotFoundException("Client by id"+ idClient+" was not found")) ;
 	}
 
+	
 	@Override
-	public float getChiffreAffaireParCategorieClient(CategorieClient categorieclient, Date startDate, Date endDate) {
+	public float getChiffreAffaireParCategorieClient(CategorieClient categorieclient, Date startDate, Date endDate) 
+	{
 		float chiffre_affaire=0;
 		List<Facture> factures= clientRepository.getClientsByCategorie(categorieclient);
 		for(Facture facture: factures){
@@ -56,8 +72,10 @@ public class ClientServiceImpl implements ClientService {
 		return chiffre_affaire;
 	}
 
+	
 	@Override
-	public float getFactureRecenteParIdClient(Long idClient, Date dateRecente){
+	public float getFactureRecenteParIdClient(Long idClient, Date dateRecente)
+	{
 		float facture_recente=0;
 		List<Facture> factures= clientRepository.getClientById(idClient);
 		for(Facture facture: factures){
