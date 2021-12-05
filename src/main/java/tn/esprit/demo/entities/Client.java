@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -147,6 +148,9 @@ public class Client implements Serializable{
 	}
 	@OneToMany(mappedBy="clients")
 	private List<Facture> factures;
-	
+
+	public List<Facture> getFactures() {
+		return factures;
+	}
 }
 
