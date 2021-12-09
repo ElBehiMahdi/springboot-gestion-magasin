@@ -38,13 +38,14 @@ public class Client implements Serializable{
 	private CategorieClient categorieclient;
 	@Enumerated(EnumType.STRING)
 	private Profession profession;
-	private String phone;
-	private String imageUrl;
+	private int phone;
+	private int cin;
+	private String username;
 	@Column(nullable= false, updatable= false)
 	private String clientCode;
 	
 	public Client(long idClient, String nom, String prenom, Date dateNaissance, String email, String password,
-			CategorieClient categorieclient, Profession profession, String phone, String imageUrl, String clientCode) 
+			CategorieClient categorieclient, Profession profession, int phone, int cin, String username, String clientCode) 
 	{
 		super();
 		this.idClient = idClient;
@@ -56,7 +57,8 @@ public class Client implements Serializable{
 		this.categorieclient = categorieclient;
 		this.profession = profession;
 		this.phone= phone;
-		this.imageUrl= imageUrl;
+		this.cin= cin;
+		this.username= username;
 		this.clientCode= clientCode;
 	}
 
@@ -112,24 +114,33 @@ public class Client implements Serializable{
 	public void setProfession(Profession profession) {
 		this.profession = profession;
 	}
-	public String getPhone(){
+	public int getPhone(){
 		return phone;
 	}
-	public void setPhone(String phone){
+	public void setPhone(int phone){
 		this.phone= phone;
 	}
-	public String getImageUrl(){
-		return imageUrl;
+	public int getCin(){
+		return cin;
 	}
-	public void setImageUrl(String imageUrl){
-		this.imageUrl= imageUrl;
+	public void setCin(int cin){
+		this.cin= cin;
 	}
+	public String getUsername(){
+		return username;
+	}
+	public void setUsername(String username){
+		this.username= username;
+	}
+	
 	public String getClientCode(){
 		return clientCode;
 	}
 	public void setClientCode(String clientCode){
 		this.clientCode= clientCode;
 	}
+	
+	
 	public String toString()
 	{
 		return "Client{"+ 
@@ -142,8 +153,9 @@ public class Client implements Serializable{
 				", categorieclient= "+ categorieclient +
 				", profession= "+ profession + 
 				", phone= "+ phone +
-				", imageUrl= "+ imageUrl +
-				", clientCode= "+ clientCode + 
+				", cin= "+ cin +
+				", username= "+ username +
+				", clientCode=" + clientCode+
 				"}";
 	}
 	@OneToMany(mappedBy="clients")

@@ -42,8 +42,7 @@ public class StockRestController {
     @PostMapping("/add-stock")
     @ApiOperation(value = "Ajouter un stock")
     @ResponseBody
-    public Stock addStock(@RequestBody Stock s)
-    {
+    public Stock addStock(@RequestBody Stock s) {
         Stock stock = stockService.saveStock(s);
         return stock;
     }
@@ -54,5 +53,14 @@ public class StockRestController {
     @ResponseBody
     public Stock modifyStock(@RequestBody Stock stock) {
         return stockService.updateStock(stock);
+    }
+
+
+    //http://localhost:8089/SpringMVC/client/remove-stock/1
+    @DeleteMapping("remove-stock/{idStock}")
+    @ApiOperation(value = "Remove stock by id")
+    @ResponseBody
+    public void removeStockById(@PathVariable("idStock") Long idStock) {
+        stockService.deleteStock(idStock);
     }
 }

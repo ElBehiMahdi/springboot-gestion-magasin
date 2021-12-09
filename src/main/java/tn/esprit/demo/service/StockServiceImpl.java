@@ -17,7 +17,6 @@ public class StockServiceImpl implements StockService{
 
     @Override
     public Optional<Stock> get(Long id) {
-
         return stockRepository.findById(id);
     }
 
