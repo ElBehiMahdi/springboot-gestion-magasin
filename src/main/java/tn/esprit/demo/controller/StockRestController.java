@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.entities.Stock;
+import tn.esprit.demo.repository.ProduitRepository;
 import tn.esprit.demo.service.ClientService;
+import tn.esprit.demo.service.ProduitService;
 import tn.esprit.demo.service.StockService;
 
 import java.util.List;
@@ -18,6 +20,8 @@ import java.util.Optional;
 @RequestMapping("/stock")
 public class StockRestController {
 
+    @Autowired
+    ProduitService produitService;
     @Autowired
     StockService stockService;
 
@@ -62,5 +66,13 @@ public class StockRestController {
     @ResponseBody
     public void removeStockById(@PathVariable("idStock") Long idStock) {
         stockService.deleteStock(idStock);
+    }
+
+    //http://localhost:8089/SpringMVC/stock/retrieve-all-stocks
+    @GetMapping("/sell/{produit-id}/{qte}")
+    @ApiOperation(value = "vendre")
+    @ResponseBody
+    public void sell(@PathVariable("produit-id") Long produitId,@PathVariable("qte") int qte) {
+        stockService.sold(produitId, qte);
     }
 }

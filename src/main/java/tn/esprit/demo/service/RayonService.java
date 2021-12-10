@@ -14,4 +14,5 @@ public interface RayonService {
     Rayon updateRayon(Rayon s);
     List<Rayon> getAllRayon();
     void deleteRayon(Long id);
+
 }

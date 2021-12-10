@@ -19,6 +19,7 @@ public class Stock implements Serializable{
 	private int qte;
 	private int qteMin;
 	private String libelle ;
+	private int pSold;
 	
 	//One to many association Stock 1-* Produit
 	@JsonIgnore
@@ -68,5 +69,13 @@ public class Stock implements Serializable{
 
 	public void setP(Set<Produit> p) {
 		P = p;
+	}
+
+	public int getpSold() {
+		return pSold;
+	}
+
+	public void setpSold(int pSold) {
+		this.pSold = pSold;
 	}
 }

@@ -14,6 +14,8 @@ public interface StockService {
     List<Stock> getAllStocks();
     void deleteStock(Long id);
 
+    void sold(Long id, int qte);
+
     boolean checkExists(Long id);
 
     public List<Stock> warnStock();

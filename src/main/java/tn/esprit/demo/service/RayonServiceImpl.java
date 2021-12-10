@@ -43,7 +43,8 @@ public class RayonServiceImpl implements RayonService {
 
     @Override
     public void deleteRayon(Long id) {
-
         rayonRepository.deleteById(id);
     }
+
+
 }

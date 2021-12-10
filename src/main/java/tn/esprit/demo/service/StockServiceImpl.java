@@ -3,7 +3,9 @@ package tn.esprit.demo.service;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.demo.entities.Produit;
 import tn.esprit.demo.entities.Stock;
+import tn.esprit.demo.repository.ProduitRepository;
 import tn.esprit.demo.repository.StockRepository;
 
 import java.util.List;
@@ -11,6 +13,9 @@ import java.util.Optional;
 
 @Service
 public class StockServiceImpl implements StockService{
+
+    @Autowired
+    ProduitRepository produitRepo;
 
     @Autowired
     private StockRepository stockRepository;
@@ -44,13 +49,19 @@ public class StockServiceImpl implements StockService{
 
     @Override
     public boolean checkExists(Long id){
-
         return stockRepository.existsById(id);
     }
 
     @Override
     public List<Stock> warnStock(){
-
         return stockRepository.warnStock();
     }
+
+    @Override
+    public void sold(Long produitId, int qte){
+        Produit p = produitRepo.getById(produitId);
+        Stock s = p.getStock();
+        s.setQte(s.getQte()-qte);
+        s.setpSold(s.getpSold()+qte);
+    };
 }
