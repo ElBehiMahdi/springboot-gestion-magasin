@@ -64,6 +64,13 @@ public class FactureRestController {
  	    return facture;
  	}
 
+    @PutMapping("/modify-Facture")
+    @ResponseBody
+    public Facture modifyFacture(@RequestBody Facture facture) {
+        return factureService.updateFacture(facture);
+    }
+
+
     //http://localhost:8081/SpringMVC/facture/add-facture
     @PostMapping("/add-facture")
     @ResponseBody

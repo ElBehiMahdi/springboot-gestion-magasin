@@ -56,6 +56,12 @@ public class FactureServiceImpl implements FactureService{
 	}
 
 	@Override
+	public Facture updateFacture (Facture f) {
+		return FactureRepository.save(f);
+	}
+
+
+	@Override
 	public List<Facture> getByIdClient(Long idClient) {
 		if(clientRepository.findById(idClient).isPresent())
 		{

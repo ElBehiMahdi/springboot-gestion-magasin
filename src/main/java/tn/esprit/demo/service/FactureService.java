@@ -11,4 +11,5 @@ public interface FactureService {
      List<Facture> getByIdClient(Long id);//Long idClient
      Facture addFactureClient(Facture f, Long idClient);
      Facture addFacture(Facture f);
+     Facture updateFacture(Facture f);
 }
