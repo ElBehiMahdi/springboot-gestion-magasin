@@ -58,10 +58,11 @@ public class StockServiceImpl implements StockService{
     }
 
     @Override
-    public void sold(Long produitId, int qte){
+    public int sold(Long produitId, int qte){
         Produit p = produitRepo.getById(produitId);
         Stock s = p.getStock();
         s.setQte(s.getQte()-qte);
         s.setpSold(s.getpSold()+qte);
+        return s.getpSold();
     };
 }

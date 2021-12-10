@@ -72,7 +72,7 @@ public class StockRestController {
     @GetMapping("/sell/{produit-id}/{qte}")
     @ApiOperation(value = "vendre")
     @ResponseBody
-    public void sell(@PathVariable("produit-id") Long produitId,@PathVariable("qte") int qte) {
-        stockService.sold(produitId, qte);
+    public int sell(@PathVariable("produit-id") Long produitId,@PathVariable("qte") int qte) {
+        return stockService.sold(produitId, qte);
     }
 }
