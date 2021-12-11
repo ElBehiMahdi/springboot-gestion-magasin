@@ -19,7 +19,8 @@ public class Stock implements Serializable{
 	private int qte;
 	private int qteMin;
 	private String libelle ;
-	
+	private int qteSold;
+
 	//One to many association Stock 1-* Produit
 	@JsonIgnore
 	@OneToMany( cascade =  CascadeType.ALL , mappedBy = "stock")
@@ -68,5 +69,13 @@ public class Stock implements Serializable{
 
 	public void setP(Set<Produit> p) {
 		P = p;
+	}
+
+	public int getQteSold() {
+		return qteSold;
+	}
+
+	public void setQteSold(int qteSold) {
+		this.qteSold = qteSold;
 	}
 }
