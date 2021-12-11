@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -17,6 +18,7 @@ import tn.esprit.demo.repository.DetailProduitRepository;
 import tn.esprit.demo.repository.ProduitRepository;
 import tn.esprit.demo.service.ClientServiceImpl;
 
+@EnableAspectJAutoProxy
 @EnableSwagger2
 @SpringBootApplication
 public class SpringbootGestionMagasinApplication{
