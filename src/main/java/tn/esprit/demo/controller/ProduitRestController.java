@@ -35,6 +35,15 @@ public class ProduitRestController {
         return listProduits;
     }
 
+    //http://localhost:8089/SpringMVC/produit/retrieve-all-produits
+    @GetMapping("/retrieve-all-produits-byCat/{categorie}")
+    @ResponseBody
+    @ApiOperation(value ="Récupérer la liste des produits par categorie")
+    public List<Produit> getProduitsByCat(@PathVariable("categorie") CategorieProduit categorie) {
+        List<Produit> listProduits = produitService.getProduitByCategorieProduit(categorie);
+        return listProduits;
+    }
+
     //http://localhost:8089/SpringMVC/produit/retrieve-produit/3
     @GetMapping("/retrieve-produit/{produit-id}")
     @ResponseBody
