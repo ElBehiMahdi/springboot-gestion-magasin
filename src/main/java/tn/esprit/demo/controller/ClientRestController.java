@@ -34,11 +34,6 @@ import tn.esprit.demo.service.ClientService;
 	class ClientRestController{
 		@Autowired
 		ClientService clientService;
-		/*
-		@GetMapping("/register")
-		public String register(){
-			return "register";
-		}*/
 		
 		@GetMapping("/getMsg")
 		public String greeting(){
@@ -88,13 +83,13 @@ import tn.esprit.demo.service.ClientService;
 		@PostMapping("/getChiffreAffaire/{client-categorie}/{startDate}/{endDate}")//cuz we are not viewing sth that can't be changed like in Get
 		@ApiOperation(value="getChiffreAffaireParCategorieClient")
 		@ResponseBody
-		public float getChiffreAffaireParCategorieClient(@PathVariable CategorieClient categorieclient,
+		public float getChiffreAffaireParCategorieClient(@PathVariable("client-categorie") String categorieclient,
 														 @PathVariable
 														 @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date startDate,
 														 @PathVariable
 														 @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date endDate)
 		{
-			return clientService.getChiffreAffaireParCategorieClient(categorieclient, startDate, endDate);
+			return clientService.getChiffreAffaireParCategorieClient(CategorieClient.valueOf(categorieclient), startDate, endDate);
 		}
 	
 		@PostMapping("/getFactureRecenteParIdClient/{idClient}/{dateRecente}")

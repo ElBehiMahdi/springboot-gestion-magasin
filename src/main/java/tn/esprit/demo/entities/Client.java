@@ -22,8 +22,8 @@ import javax.persistence.TemporalType;
 public class Client implements Serializable{
 
 	@Id
-	//@GeneratedValue(strategy= GenerationType.IDENTITY)
-	
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	@Column(name = "idClient")
 	private long idClient;
 	private String nom;
 	private String prenom;
@@ -69,6 +69,9 @@ public class Client implements Serializable{
 
 	public Client() {
 
+	}
+
+	public Client(String userName, String password) {
 	}
 
 	public String getUserName(){

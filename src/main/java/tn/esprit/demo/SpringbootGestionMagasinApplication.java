@@ -58,7 +58,7 @@ public class SpringbootGestionMagasinApplication{
 	@PostConstruct
 	public void initUser(){
 		List<Client> clients = Stream.of(
-				new Client(1,"admin","admin")
+				new Client(0,"admin","admin")
 
 
 
