@@ -19,10 +19,6 @@ public class Rayon implements Serializable {
 	private String code;
 	private String libelle;
 
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY ,cascade =  CascadeType.PERSIST , mappedBy = "rayon")
-	private Set<Produit> P;
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -62,11 +58,4 @@ public class Rayon implements Serializable {
 		this.libelle = libelle;
 	}
 
-	public Set<Produit> getP() {
-		return P;
-	}
-
-	public void setP(Set<Produit> p) {
-		P = p;
-	}
 }
