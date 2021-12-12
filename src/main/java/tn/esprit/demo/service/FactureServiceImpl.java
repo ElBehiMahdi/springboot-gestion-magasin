@@ -16,6 +16,8 @@ import tn.esprit.demo.repository.DetailFactureRepository;
 import tn.esprit.demo.repository.FactureRepository;
 import tn.esprit.demo.repository.ProduitRepository;
 
+import javax.transaction.Transactional;
+
 @Service
 public class FactureServiceImpl implements FactureService{
 
@@ -25,7 +27,11 @@ public class FactureServiceImpl implements FactureService{
 	@Autowired
 	ClientRepository clientRepository;
 
+	@Autowired
+	ProduitRepository produitRepository;
 
+	@Autowired
+	DetailFactureRepository detailFactureRepository;
 
 	@Override
 	public List<Facture> getAllFactures() {
@@ -73,12 +79,36 @@ public class FactureServiceImpl implements FactureService{
 		return null;
 	}
 
-	@Override
-	public Facture addFactureClient(Facture f, Long idClient) {
-		if (clientRepository.findById(idClient).isPresent())
-		{
-			Client c = clientRepository.findById(idClient).get();
+	public Facture addDetailsFacture(Facture f,List<detailFacture> detailsFacture){
+		float montantRemise=0;
+		float montantFacture=0;
+		for(detailFacture detail:detailsFacture){
+			Produit produit=produitRepository.getById(detail.getProduit().getIdProduit());
+			float prixTotalDetail=detail.getQte()*produit.getPrixUnitaire();
+			float montantRemiseDetail=(prixTotalDetail*detail.getPourcentageRemise())/100;
+			float prixTotalDetailRemise=prixTotalDetail-montantRemiseDetail;
+			detail.setMontantRemise(montantRemiseDetail);
+			detail.setPrixTotal(prixTotalDetailRemise);
+			montantFacture+=prixTotalDetailRemise;
+			montantRemise+=montantRemiseDetail;
+			detail.setProduit(produit);
+			detail.setFacture(f);
+			detail.setCreatedAt(new Date());
+			detailFactureRepository.save(detail);
 		}
-		return null;
+		f.setMontantFacture(montantFacture);
+		f.setMontantRemise(montantRemise);
+		return f;
+	}
+
+	@Transactional
+	public Facture addFactureClient(Long idFacture, Long idClient) {
+		Facture f=FactureRepository.getById(idFacture);
+		f.setClient(clientRepository.getById(idClient));
+		f.setDateFacture(new Date());
+		f.setActive(true);
+		List<detailFacture> detailsFacture=(List<detailFacture>) f.getDetailFacture();
+		Facture facture=addDetailsFacture(f,detailsFacture);
+		return FactureRepository.save(facture);
 	}
 }
