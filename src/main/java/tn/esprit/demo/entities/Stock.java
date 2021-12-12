@@ -21,10 +21,6 @@ public class Stock implements Serializable{
 	private String libelle ;
 	private int qteSold;
 
-	//One to many association Stock 1-* Produit
-	@JsonIgnore
-	@OneToMany( cascade =  CascadeType.ALL , mappedBy = "stock")
-	private Set<Produit> P;
 
 	@Override
 	public int hashCode() {
@@ -61,14 +57,6 @@ public class Stock implements Serializable{
 
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
-	}
-
-	public Set<Produit> getP() {
-		return P;
-	}
-
-	public void setP(Set<Produit> p) {
-		P = p;
 	}
 
 	public int getQteSold() {
