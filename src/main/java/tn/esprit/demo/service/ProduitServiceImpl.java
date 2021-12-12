@@ -32,6 +32,11 @@ public class ProduitServiceImpl implements ProduitService{
     }
 
     @Override
+    public List<Produit> getProduitByCategorieProduit(CategorieProduit cat) {
+        return  produitRepo.getProduitByCategorieProduit(cat);
+    }
+
+    @Override
     public Produit addProduit(Produit p, Long idRayon, Long idStock) {
         Rayon r = rayonRepo.getById(idRayon);
         Stock s = stockRepo.getById(idStock);

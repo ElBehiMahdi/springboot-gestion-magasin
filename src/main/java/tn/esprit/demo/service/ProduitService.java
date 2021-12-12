@@ -1,5 +1,6 @@
 package tn.esprit.demo.service;
 
+import tn.esprit.demo.entities.CategorieProduit;
 import tn.esprit.demo.entities.Produit;
 import tn.esprit.demo.entities.Rayon;
 
@@ -8,6 +9,8 @@ import java.util.Optional;
 
 public interface ProduitService {
     List<Produit> retrieveAllProduits();
+
+    List<Produit> getProduitByCategorieProduit(CategorieProduit cat);
 
     Produit addProduit(Produit p, Long idRayon, Long idStock);
 
