@@ -53,6 +53,7 @@ public class SpringbootGestionMagasinApplication{
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
 
+	/*
 	@Autowired
 	private ClientRepository clientRepository;
 	@PostConstruct
@@ -64,5 +65,5 @@ public class SpringbootGestionMagasinApplication{
 
 				).collect(Collectors.toList());
 		clientRepository.saveAll(clients);
-	}
+	}*/
 }
