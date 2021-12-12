@@ -2,14 +2,21 @@ package tn.esprit.demo.service;
 
 import java.util.ArrayList;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import org.springframework.stereotype.Service;
 import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.repository.ClientRepository;
 
+import javax.transaction.Transactional;
+
+@Service
+@Transactional
+@Slf4j
 public class ClientDetailsService implements UserDetailsService {
     @Autowired
     private ClientRepository clientRepository;
