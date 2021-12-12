@@ -52,17 +52,4 @@ public class SpringbootGestionMagasinApplication{
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
-
-	@Autowired
-	private ClientRepository clientRepository;
-	@PostConstruct
-	public void initUser(){
-		List<Client> clients = Stream.of(
-				new Client(0,"admin","admin")
-
-
-
-				).collect(Collectors.toList());
-		clientRepository.saveAll(clients);
-	}
 }

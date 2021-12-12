@@ -56,10 +56,9 @@ public class ProduitRestController {
     @PostMapping("/add-produit/{stock-id}/{rayon-id}")
     @ResponseBody
     @ApiOperation(value ="permet d'ajouter un produit")
-    public Produit addProduit(@RequestBody Produit p,@PathVariable("rayon-id") Long idRayon,@PathVariable("stock-id") Long idStock) {
+    public void addProduit(@RequestBody Produit p,@PathVariable("rayon-id") Long idRayon,@PathVariable("stock-id") Long idStock) {
 
         Produit product = produitService.addProduit(p,idRayon,idStock);
-        return product;
     }
 
     //http://localhost:8089/SpringMVC/produit/modify-produit

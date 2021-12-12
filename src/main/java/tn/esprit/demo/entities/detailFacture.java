@@ -1,5 +1,6 @@
 package tn.esprit.demo.entities;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -27,8 +28,8 @@ public class detailFacture implements Serializable {
 	@JoinColumn(name = "idProduit")
 	private Produit produit;
 
-	// Many to one association detailFacture *-1 Facture
-	@ManyToOne
+	// One to One association detailProduit 1-1 Produit
+	@OneToOne(mappedBy = "detailFacture")
 	Facture facture;
 
 	public Long getIdDetailFacture() {
@@ -86,4 +87,7 @@ public class detailFacture implements Serializable {
 	public void setFacture(Facture facture) {
 		this.facture = facture;
 	}
+
+    public void setCreatedAt(Date date) {
+    }
 }

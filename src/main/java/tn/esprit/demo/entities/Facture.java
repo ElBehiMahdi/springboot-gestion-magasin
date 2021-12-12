@@ -29,13 +29,12 @@ public class Facture implements Serializable{
 	@ManyToOne
 	Client client;
 
-	// One to many association Facture 1-* detailFacture
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facture")
-	private Set<detailFacture> df;
-
 	@ManyToOne
 	@JoinColumn(name = "clients_id_client")
 	private Client clients;
+
+	@OneToOne
+	private detailFacture detailFacture;
 
 	public Long getIdDetailProduit() {
 		return idDetailProduit;
@@ -85,14 +84,6 @@ public class Facture implements Serializable{
 		this.client = client;
 	}
 
-	public Set<detailFacture> getDf() {
-		return df;
-	}
-
-	public void setDf(Set<detailFacture> df) {
-		this.df = df;
-	}
-
 	public Client getClients() {
 		return clients;
 	}
@@ -101,4 +92,7 @@ public class Facture implements Serializable{
 		this.clients = clients;
 	}
 
+	public tn.esprit.demo.entities.detailFacture getDetailFacture() {
+		return detailFacture;
+	}
 }
