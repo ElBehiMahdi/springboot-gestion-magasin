@@ -18,19 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 @Entity
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-
-
 public class Client implements Serializable{
 
 	@Id
@@ -53,9 +41,16 @@ public class Client implements Serializable{
 	private String password;
 	//@ManyToMany(cascade = CascadeType.PERSIST, fetch= FetchType.EAGER)
 	//private Set<Role> roles;
-	
+
+
+	public Client(long idClient, String userName, String password) {
+		this.idClient = idClient;
+		this.userName = userName;
+		this.password = password;
+	}
+
 	public Client(long idClient, String nom, String prenom, Date dateNaissance, String email,
-			CategorieClient categorieclient, Profession profession,  int phone, int cin, String userName, String password) 
+				  CategorieClient categorieclient, Profession profession, int phone, int cin, String userName, String password)
 	{
 		super();
 		this.idClient = idClient;
@@ -71,7 +66,11 @@ public class Client implements Serializable{
 		this.password= password;
 		
 	}
-	
+
+	public Client() {
+
+	}
+
 	public String getUserName(){
 		return userName;
 	}
