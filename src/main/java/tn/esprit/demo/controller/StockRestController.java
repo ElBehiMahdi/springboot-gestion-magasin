@@ -30,6 +30,15 @@ public class StockRestController {
         return listStocks;
     }
 
+    //http://localhost:8089/SpringMVC/stock/retrieve-all-stocks
+    @GetMapping("/warn")
+    @ApiOperation(value = "Récupérer la warn des stocks")
+    @ResponseBody
+    public List<Stock> warnStock() {
+        List<Stock> result = stockService.warnStock();
+        return result;
+    }
+
     // http://localhost:8089/SpringMVC/stock/retrieve-stock/1
     @GetMapping("/retrieve-stock/{stock-id}")
     @ApiOperation(value = "Récupérer un stock par id")
