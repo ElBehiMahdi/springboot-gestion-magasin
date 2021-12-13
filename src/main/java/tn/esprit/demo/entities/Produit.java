@@ -31,24 +31,22 @@ public class Produit implements Serializable {
 	private detailProduit detailProduit;
 
 	// Many to One association Produit *-1 Rayon
-	@JsonIgnore
 	@ManyToOne
 	private Rayon rayon;
 
 	// Many to One association Produit *-1 Stock
-	@JsonIgnore
 	@ManyToOne
 	private Stock stock;
 
 	// One to many association Produit 1-* detailfacture
 	@JsonIgnore
-	@OneToMany(cascade =  CascadeType.PERSIST , mappedBy = "produit")
+	@OneToMany(mappedBy = "produit")
 	private Set<detailFacture> detailFacture;
 
 
 	// Many to many association Produit *-* Fournisseur
 	@JsonIgnore
-	@ManyToMany(cascade =  CascadeType.ALL)
+	@ManyToMany()
 	private Set<Fournisseur> fournisseur;
 
 

@@ -1,10 +1,6 @@
 package tn.esprit.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -13,39 +9,48 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 
 @Entity
 public class Client implements Serializable{
 
 	@Id
-	//@GeneratedValue(strategy= GenerationType.IDENTITY)
-	
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	@Column(name = "idClient")
 	private long idClient;
 	private String nom;
 	private String prenom;
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	private String email;
-	private String password;
 	@Enumerated(EnumType.STRING)
 	private CategorieClient categorieclient;
 	@Enumerated(EnumType.STRING)
 	private Profession profession;
 	private int phone;
 	private int cin;
-	private String username;
-	@Column(nullable= false, updatable= false)
-	private String clientCode;
 	
-	public Client(long idClient, String nom, String prenom, Date dateNaissance, String email, String password,
-			CategorieClient categorieclient, Profession profession, int phone, int cin, String username, String clientCode) 
+	private String userName;
+	private String password;
+	//@ManyToMany(cascade = CascadeType.PERSIST, fetch= FetchType.EAGER)
+	//private Set<Role> roles;
+
+
+	public Client(long idClient, String userName, String password) {
+		this.idClient = idClient;
+		this.userName = userName;
+		this.password = password;
+	}
+
+	public Client(long idClient, String nom, String prenom, Date dateNaissance, String email,
+				  CategorieClient categorieclient, Profession profession, int phone, int cin, String userName, String password)
 	{
 		super();
 		this.idClient = idClient;
@@ -53,19 +58,34 @@ public class Client implements Serializable{
 		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
 		this.email = email;
-		this.password = password;
 		this.categorieclient = categorieclient;
 		this.profession = profession;
 		this.phone= phone;
 		this.cin= cin;
-		this.username= username;
-		this.clientCode= clientCode;
+		this.userName= userName;
+		this.password= password;
+		
 	}
 
 	public Client() {
 
 	}
 
+	public Client(String userName, String password) {
+	}
+
+	public String getUserName(){
+		return userName;
+	}
+	public void setUserName(String userName){
+		this.userName=userName;
+	}
+	public String getPassword(){
+		return password;
+	}
+	public void setPassword(String password){
+		this.password= password;
+	}
 	public Long getIdClient() {
 		return idClient;
 	}
@@ -96,12 +116,6 @@ public class Client implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public CategorieClient getCategorieclient() {
 		return categorieclient;
 	}
@@ -113,8 +127,7 @@ public class Client implements Serializable{
 	}
 	public void setProfession(Profession profession) {
 		this.profession = profession;
-	}
-	public int getPhone(){
+	}	public int getPhone(){
 		return phone;
 	}
 	public void setPhone(int phone){
@@ -125,21 +138,7 @@ public class Client implements Serializable{
 	}
 	public void setCin(int cin){
 		this.cin= cin;
-	}
-	public String getUsername(){
-		return username;
-	}
-	public void setUsername(String username){
-		this.username= username;
-	}
-	
-	public String getClientCode(){
-		return clientCode;
-	}
-	public void setClientCode(String clientCode){
-		this.clientCode= clientCode;
-	}
-	
+	}	
 	
 	public String toString()
 	{
@@ -149,17 +148,16 @@ public class Client implements Serializable{
 				", prenom="+ prenom +
 				", date de naissance= " + dateNaissance + 
 				", email= "+ email +
-				", password= "+ password + 
 				", categorieclient= "+ categorieclient +
 				", profession= "+ profession + 
 				", phone= "+ phone +
 				", cin= "+ cin +
-				", username= "+ username +
-				", clientCode=" + clientCode+
 				"}";
 	}
+	
 	@OneToMany(mappedBy="clients")
 	private List<Facture> factures;
+
 
 	public List<Facture> getFactures() {
 		return factures;

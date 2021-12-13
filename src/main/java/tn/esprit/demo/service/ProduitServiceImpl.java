@@ -32,9 +32,15 @@ public class ProduitServiceImpl implements ProduitService{
     }
 
     @Override
+    public List<Produit> getProduitByCategorieProduit(CategorieProduit cat) {
+        return  produitRepo.getProduitByCategorieProduit(cat);
+    }
+
+    @Override
     public Produit addProduit(Produit p, Long idRayon, Long idStock) {
         Rayon r = rayonRepo.getById(idRayon);
         Stock s = stockRepo.getById(idStock);
+        s.setQte(s.getQte()+1);
         p.setRayon(r);
         p.setStock(s);
         //TODO figure out detail produit bug
@@ -47,6 +53,7 @@ public class ProduitServiceImpl implements ProduitService{
         p = produitRepo.getById(idProduit);
         Stock s = new Stock();
         s = stockRepo.getById(idStock);
+        s.setQte(s.getQte()+1);
         p.setStock(s);
         produitRepo.saveAndFlush(p);
     }

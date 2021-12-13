@@ -35,6 +35,15 @@ public class ProduitRestController {
         return listProduits;
     }
 
+    //http://localhost:8089/SpringMVC/produit/retrieve-all-produits
+    @GetMapping("/retrieve-all-produits-byCat/{categorie}")
+    @ResponseBody
+    @ApiOperation(value ="Récupérer la liste des produits par categorie")
+    public List<Produit> getProduitsByCat(@PathVariable("categorie") CategorieProduit categorie) {
+        List<Produit> listProduits = produitService.getProduitByCategorieProduit(categorie);
+        return listProduits;
+    }
+
     //http://localhost:8089/SpringMVC/produit/retrieve-produit/3
     @GetMapping("/retrieve-produit/{produit-id}")
     @ResponseBody
@@ -47,10 +56,9 @@ public class ProduitRestController {
     @PostMapping("/add-produit/{stock-id}/{rayon-id}")
     @ResponseBody
     @ApiOperation(value ="permet d'ajouter un produit")
-    public Produit addProduit(@RequestBody Produit p,@PathVariable("rayon-id") Long idRayon,@PathVariable("stock-id") Long idStock) {
+    public void addProduit(@RequestBody Produit p,@PathVariable("rayon-id") Long idRayon,@PathVariable("stock-id") Long idStock) {
 
         Produit product = produitService.addProduit(p,idRayon,idStock);
-        return product;
     }
 
     //http://localhost:8089/SpringMVC/produit/modify-produit

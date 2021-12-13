@@ -55,14 +55,21 @@ public class FactureRestController {
 
         return factureService.getByIdClient(ClientId);
     }
-   
+
+    //TODO fix
     //http://localhost:8081/SpringMVC/facture/add-facture/1
-    @PostMapping("/add-facture/{clientId}")
+    @PostMapping("/add-facture/{idf}/{clientId}")
+    public Facture addFacture(@PathVariable("idf") Long idf,@PathVariable("clientId") long ClientId) {
+        Facture facture = factureService.addFactureClient(idf,ClientId);
+        return facture;
+    }
+
+    @PutMapping("/modify-Facture")
     @ResponseBody
-    public Facture addFacture(@RequestBody Facture f,@PathVariable("clientId") long ClientId) {
-        Facture facture = factureService.addFactureClient(f,ClientId);
- 	    return facture;
- 	}
+    public Facture modifyFacture(@RequestBody Facture facture) {
+        return factureService.updateFacture(facture);
+    }
+
 
     //http://localhost:8081/SpringMVC/facture/add-facture
     @PostMapping("/add-facture")

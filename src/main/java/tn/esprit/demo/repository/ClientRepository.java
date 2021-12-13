@@ -6,6 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import tn.esprit.demo.entities.Client;
 import tn.esprit.demo.entities.CategorieClient;
 import tn.esprit.demo.entities.Facture;
+import tn.esprit.demo.entities.Profession;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -21,6 +23,10 @@ public interface ClientRepository extends JpaRepository<Client,Long> {
 
 	@Query("select c.factures from Client c where c.id=: id")
 	List<Facture> getClientById(@Param("idClient") Long idClient);
+
+	Client findByUserName(String username);
+
+	List<Client> findByProfession(Profession prof);
 }
 	
 	
