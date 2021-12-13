@@ -101,6 +101,7 @@ public class FactureServiceImpl implements FactureService{
 		return f;
 	}
 
+	//TODO fix facture null
 	@Transactional
 	public Facture addFactureClient(Long idFacture, Long idClient) {
 		Facture f=FactureRepository.getById(idFacture);

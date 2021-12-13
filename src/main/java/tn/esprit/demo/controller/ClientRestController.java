@@ -79,7 +79,8 @@ import tn.esprit.demo.service.ClientService;
 			clientService.deleteClient(idClient);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
-		
+
+		//TODO fix this
 		@PostMapping("/getChiffreAffaire/{client-categorie}/{startDate}/{endDate}")//cuz we are not viewing sth that can't be changed like in Get
 		@ApiOperation(value="getChiffreAffaireParCategorieClient")
 		@ResponseBody
@@ -91,7 +92,8 @@ import tn.esprit.demo.service.ClientService;
 		{
 			return clientService.getChiffreAffaireParCategorieClient(CategorieClient.valueOf(categorieclient), startDate, endDate);
 		}
-	
+
+		//TODO fix this
 		@PostMapping("/getFactureRecenteParIdClient/{idClient}/{dateRecente}")
 		@ApiOperation(value="getFactureRecenteParIdClient")
 		@ResponseBody
