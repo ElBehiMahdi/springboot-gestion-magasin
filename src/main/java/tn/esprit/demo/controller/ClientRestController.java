@@ -82,23 +82,23 @@ import tn.esprit.demo.service.ClientService;
 		
 	
 		@GetMapping("/clientsByCategorie/{categorie}")
-	    public List<Client> ClientBycategorie(@PathVariable CategorieClient categorieclient) 
+	    public List<Client> ClientBycategorie(@PathVariable("categorie") CategorieClient categorieclient)
 		{
 	        return clientService.FindAllClientsByCategorie(categorieclient);
 	    }
 		
 		@GetMapping("/getChiffreAffaireParCategorieClient/{CategorieClient}/{startDate}/{endDate}")
 		@ApiOperation(value="getChiffreAffaireParCategorieClient")
-		 public float ChiffreAffaireParCategorieClient(@PathVariable CategorieClient categorieclient,
-				 @PathVariable @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date startDate,
-				 @PathVariable @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date endDate)
+		 public float ChiffreAffaireParCategorieClient(@PathVariable("CategorieClient") CategorieClient categorieclient,
+				 @PathVariable("startDate") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date startDate,
+				 @PathVariable("endDate") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date endDate)
 		 {
 			 return clientService.getChiffreAffaireParCategorieClient(categorieclient, startDate, endDate);
 		 }
 		
 		
 		@GetMapping("/clientProfessionPourcentage/{prof}")
-		public float clientProfessionPourcentage(@PathVariable Profession prof)
+		public float clientProfessionPourcentage(@PathVariable("prof")  Profession prof)
 		{
 			return clientService.clientProfessionPourcentage(prof);
 		}
