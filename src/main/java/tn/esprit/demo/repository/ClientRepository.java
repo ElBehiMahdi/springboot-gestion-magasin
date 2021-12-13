@@ -21,7 +21,7 @@ public interface ClientRepository extends JpaRepository<Client,Long> {
 	List<Client> findByProfession(Profession prof);
 
 
-	List<Client> findByCategorieClient(CategorieClient categorieClient);
+	List<Client> findByCategorieclient(CategorieClient categorieclient);
 
 
 }

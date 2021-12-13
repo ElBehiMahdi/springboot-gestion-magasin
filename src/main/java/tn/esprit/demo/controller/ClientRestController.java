@@ -80,27 +80,22 @@ import tn.esprit.demo.service.ClientService;
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
-		@PostMapping("/getChiffreAffaire/{client-categorie}/{startDate}/{endDate}")//cuz we are not viewing sth that can't be changed like in Get
-		@ApiOperation(value="getChiffreAffaireParCategorieClient")
-		@ResponseBody
-		public float getChiffreAffaireParCategorieClient(@PathVariable("client-categorie") String categorieclient,
-														 @PathVariable
-														 @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date startDate,
-														 @PathVariable
-														 @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date endDate)
-		{
-			return clientService.getChiffreAffaireParCategorieClient(CategorieClient.valueOf(categorieclient), startDate, endDate);
-		}
 	
-		@PostMapping("/getFactureRecenteParIdClient/{idClient}/{dateRecente}")
-		@ApiOperation(value="getFactureRecenteParIdClient")
-		@ResponseBody
-		public float getFactureRecenteParIdClient(@PathVariable Long idClient,
-												  @PathVariable
-												  @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date dateRecente)
+		@GetMapping("/clientsByCategorie/{categorie}")
+	    public List<Client> ClientBycategorie(@PathVariable CategorieClient categorieclient) 
 		{
-			return clientService.getFactureRecenteParIdClient(idClient, dateRecente);
-		}
+	        return clientService.FindAllClientsByCategorie(categorieclient);
+	    }
+		
+		@GetMapping("/getChiffreAffaireParCategorieClient/{CategorieClient}/{startDate}/{endDate}")
+		@ApiOperation(value="getChiffreAffaireParCategorieClient")
+		 public float ChiffreAffaireParCategorieClient(@PathVariable CategorieClient categorieclient,
+				 @PathVariable @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date startDate,
+				 @PathVariable @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date endDate)
+		 {
+			 return clientService.getChiffreAffaireParCategorieClient(categorieclient, startDate, endDate);
+		 }
+		
 		
 		@GetMapping("/clientProfessionPourcentage/{prof}")
 		public float clientProfessionPourcentage(@PathVariable Profession prof)

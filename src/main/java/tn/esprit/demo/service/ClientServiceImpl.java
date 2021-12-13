@@ -97,10 +97,10 @@ public class ClientServiceImpl implements ClientService {
 	public float getChiffreAffaireParCategorieClient(CategorieClient categorieclient, Date startDate, Date endDate) 
 	{
 		float chiffreAffaire = 0.0f;
-		List<Client> clientList=FindAllClientsByCategorie(categorieclient);
-		for(int i=0 ; i< clientList.size() ; i++)
+		List<Client> clientList = FindAllClientsByCategorie(categorieclient);
+		for(int k=0 ; k< clientList.size() ; k++)
 		{
-			chiffreAffaire= chiffreAffaire + chiffreAffaireDeFactures(clientFacturesBetweenTwoDates(clientList.get(i), startDate, endDate));
+			chiffreAffaire= chiffreAffaire + chiffreAffaireDeFactures(clientFacturesBetweenTwoDates(clientList.get(k), startDate, endDate));
 		}	
 		return 0;
 	}
@@ -108,9 +108,9 @@ public class ClientServiceImpl implements ClientService {
 	
 	public float clientProfessionPourcentage(Profession prof)
 	{
-		int allClients=retrieveAllClients().size();
-		int clientsByProf=FindAllClientsByProfession(prof).size();
-		float pourcentage=((float)clientsByProf/allClients)*100;
+		int allClients= retrieveAllClients().size();
+		int clientsByProf= FindAllClientsByProfession(prof).size();
+		float pourcentage= ((float)clientsByProf/allClients)*100;
 		return pourcentage;
 	}
 
@@ -126,9 +126,9 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public List<Client> FindAllClientsByCategorie(CategorieClient categorieClient) 
+	public List<Client> FindAllClientsByCategorie(CategorieClient categorieclient) 
 	{
-		return clientRepository.findByCategorieClient(categorieClient);
+		return clientRepository.findByCategorieclient(categorieclient);
 	}
 
 	@Override
