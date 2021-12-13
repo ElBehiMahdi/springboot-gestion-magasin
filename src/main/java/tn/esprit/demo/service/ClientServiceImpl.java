@@ -1,5 +1,6 @@
 package tn.esprit.demo.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -53,46 +54,11 @@ public class ClientServiceImpl implements ClientService {
 		return clientRepository.save(client) ;
 	}
 	
-	
-	@Override
-	public Client retrieveClientById(Long idClient)
-	{
-		return clientRepository.findById(idClient).orElseThrow(() -> 
-		new ClientNotFoundException("Client by id"+ idClient+" was not found")) ;
-	}
-
-	
-	@Override
-	public float getChiffreAffaireParCategorieClient(CategorieClient categorieclient, Date startDate, Date endDate) 
-	{
-		float chiffre_affaire=0;
-		List<Facture> factures= clientRepository.getClientsByCategorie(categorieclient);
-		for(Facture facture: factures){
-		if(facture.getDateFacture().compareTo(startDate)>0 && facture.getDateFacture().compareTo(endDate)<0){
-			chiffre_affaire+=facture.getMontantFacture();
-		}
-		}
-		return chiffre_affaire;
-	}
-
-	
-	@Override
-	public float getFactureRecenteParIdClient(Long idClient, Date dateRecente)
-	{
-		float facture_recente=0;
-		List<Facture> factures= clientRepository.getClientById(idClient);
-		for(Facture facture: factures){
-			if(facture.getDateFacture().compareTo(dateRecente)>0){
-				facture_recente+= facture.getMontantFacture();
-			}
-		}
-		return facture_recente;
-	}
 
 	public Client updateClientById(Long id, Client client)
 	{
 		Client c  = clientRepository.findById(id).orElseThrow(() ->
-		new ClientNotFoundException("Cliend does not exist with id: " + id));
+		new ClientNotFoundException("Client does not exist with id: " + id));
 		c.setNom(client.getNom());
 		c.setPrenom(client.getPrenom());
 		c.setDateNaissance(client.getDateNaissance());
@@ -106,11 +72,45 @@ public class ClientServiceImpl implements ClientService {
 		return updatedClient;
 	}
 	
+	
+	@Override
+	public Client retrieveClientById(Long idClient)
+	{
+		return clientRepository.findById(idClient).orElseThrow(() -> 
+		new ClientNotFoundException("Client by id"+ idClient+" was not found")) ;
+	}
+
+	
+
+	public float chiffreAffaireDeFactures(List<Facture> listFacture) 
+	{
+		float chiffreAffaire= 0.0f;
+		for(int i=0 ; i < listFacture.size() ; i++)
+		{
+			chiffreAffaire= chiffreAffaire + (listFacture.get(i).getMontantFacture()-listFacture.get(i).getMontantRemise());
+		}
+		return chiffreAffaire;
+	}
+
+	
+	@Override
+	public float getChiffreAffaireParCategorieClient(CategorieClient categorieclient, Date startDate, Date endDate) 
+	{
+		float chiffreAffaire = 0.0f;
+		List<Client> clientList = FindAllClientsByCategorie(categorieclient);
+		for(int k=0 ; k< clientList.size() ; k++)
+		{
+			chiffreAffaire= chiffreAffaire + chiffreAffaireDeFactures(clientFacturesBetweenTwoDates(clientList.get(k), startDate, endDate));
+		}	
+		return 0;
+	}
+
+	
 	public float clientProfessionPourcentage(Profession prof)
 	{
-		int allClients=retrieveAllClients().size();
-		int clientsByProf=FindAllClientsByProfession(prof).size();
-		float pourcentage=((float)clientsByProf/allClients)*100;
+		int allClients= retrieveAllClients().size();
+		int clientsByProf= FindAllClientsByProfession(prof).size();
+		float pourcentage= ((float)clientsByProf/allClients)*100;
 		return pourcentage;
 	}
 
@@ -119,7 +119,33 @@ public class ClientServiceImpl implements ClientService {
 		return clientRepository.findByProfession(prof);
 	}
 
-	
-	
+	@Override
+	public List<Client> addClients(List<Client> Clients) 
+	{
+		return clientRepository.saveAll(Clients);
+	}
+
+	@Override
+	public List<Client> FindAllClientsByCategorie(CategorieClient categorieclient) 
+	{
+		return clientRepository.findByCategorieclient(categorieclient);
+	}
+
+	@Override
+	public List<Facture> clientFacturesBetweenTwoDates(Client c, Date startDate, Date endDate) 
+	{
+		List<Facture> listFacture= c.getFactures();
+		List<Facture> listFactureBetweenDates = new ArrayList<>();
+		for(int i=0;i<listFacture.size();i++)
+		{
+			if (listFacture.get(i).getDateFacture().getTime() >= startDate.getTime() && listFacture.get(i).getDateFacture().getTime() <= endDate.getTime() ) 
+			{
+				listFactureBetweenDates.add(listFacture.get(i));	
+			}
+		}
+			
+		return listFactureBetweenDates;
+	}
+
 	
 }
