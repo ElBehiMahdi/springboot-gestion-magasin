@@ -79,33 +79,26 @@ import tn.esprit.demo.service.ClientService;
 			clientService.deleteClient(idClient);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
-
-		//TODO fix this
-		@PostMapping("/getChiffreAffaire/{client-categorie}/{startDate}/{endDate}")//cuz we are not viewing sth that can't be changed like in Get
+		
+	
+		@GetMapping("/clientsByCategorie/{categorie}")
+	    public List<Client> ClientBycategorie(@PathVariable("categorie") CategorieClient categorieclient)
+		{
+	        return clientService.FindAllClientsByCategorie(categorieclient);
+	    }
+		
+		@GetMapping("/getChiffreAffaireParCategorieClient/{CategorieClient}/{startDate}/{endDate}")
 		@ApiOperation(value="getChiffreAffaireParCategorieClient")
-		@ResponseBody
-		public float getChiffreAffaireParCategorieClient(@PathVariable("client-categorie") String categorieclient,
-														 @PathVariable
-														 @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date startDate,
-														 @PathVariable
-														 @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date endDate)
-		{
-			return clientService.getChiffreAffaireParCategorieClient(CategorieClient.valueOf(categorieclient), startDate, endDate);
-		}
-
-		//TODO fix this
-		@PostMapping("/getFactureRecenteParIdClient/{idClient}/{dateRecente}")
-		@ApiOperation(value="getFactureRecenteParIdClient")
-		@ResponseBody
-		public float getFactureRecenteParIdClient(@PathVariable Long idClient,
-												  @PathVariable
-												  @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)Date dateRecente)
-		{
-			return clientService.getFactureRecenteParIdClient(idClient, dateRecente);
-		}
+		 public float ChiffreAffaireParCategorieClient(@PathVariable("CategorieClient") CategorieClient categorieclient,
+				 @PathVariable("startDate") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date startDate,
+				 @PathVariable("endDate") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date endDate)
+		 {
+			 return clientService.getChiffreAffaireParCategorieClient(categorieclient, startDate, endDate);
+		 }
+		
 		
 		@GetMapping("/clientProfessionPourcentage/{prof}")
-		public float clientProfessionPourcentage(@PathVariable Profession prof)
+		public float clientProfessionPourcentage(@PathVariable("prof")  Profession prof)
 		{
 			return clientService.clientProfessionPourcentage(prof);
 		}
