@@ -40,11 +40,10 @@ public class FactureRestController {
     }
 
     //http://localhost:8089/SpringMVC/facture/cancel-facture/1
-    @PutMapping("/cancel-facture/{facture-id}")
+    @GetMapping("/cancel-facture/{facture-id}")
     @ApiOperation(value = "Annuler une facture")
     @ResponseBody
     public void cancelFacture(@PathVariable("facture-id") Long factureId) {
-
         factureService.cancelFacture(factureId);
     }
 
