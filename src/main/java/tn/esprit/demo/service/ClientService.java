@@ -3,6 +3,7 @@ package tn.esprit.demo.service;
 import java.util.List;
 import java.util.Date;
 import tn.esprit.demo.entities.Client;
+import tn.esprit.demo.entities.Facture;
 import tn.esprit.demo.entities.Profession;
 import tn.esprit.demo.entities.CategorieClient;
 
@@ -13,8 +14,10 @@ public interface ClientService {
 	Client updateClient(Client c);
 	List<Client> FindAllClientsByProfession(Profession prof);
 	Client retrieveClientById(Long idClient);
-	Client updateClientById(Long idClient, Client c); 
+	List<Client> addClients(List<Client> Clients);
+	Client updateClientById(Long idClient, Client c);
+	List<Client> FindAllClientsByCategorie(CategorieClient categorieClient);
+	List<Facture> clientFacturesBetweenTwoDates(Client c,Date startDate,Date endDate);
 	float getChiffreAffaireParCategorieClient(CategorieClient categorieClient, Date startDate, Date endDate);
-	float getFactureRecenteParIdClient(Long clientId, Date dateRecente);
 	float clientProfessionPourcentage(Profession profession);
 }

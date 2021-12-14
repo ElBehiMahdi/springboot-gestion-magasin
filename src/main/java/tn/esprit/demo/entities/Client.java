@@ -22,8 +22,8 @@ import javax.persistence.TemporalType;
 public class Client implements Serializable{
 
 	@Id
-	//@GeneratedValue(strategy= GenerationType.IDENTITY)
-	
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	@Column(name = "idClient")
 	private long idClient;
 	private String nom;
 	private String prenom;
@@ -36,7 +36,7 @@ public class Client implements Serializable{
 	private Profession profession;
 	private int phone;
 	private int cin;
-	
+
 	private String userName;
 	private String password;
 	//@ManyToMany(cascade = CascadeType.PERSIST, fetch= FetchType.EAGER)
@@ -64,11 +64,14 @@ public class Client implements Serializable{
 		this.cin= cin;
 		this.userName= userName;
 		this.password= password;
-		
+
 	}
 
 	public Client() {
 
+	}
+
+	public Client(String userName, String password) {
 	}
 
 	public String getUserName(){
@@ -135,23 +138,23 @@ public class Client implements Serializable{
 	}
 	public void setCin(int cin){
 		this.cin= cin;
-	}	
-	
+	}
+
 	public String toString()
 	{
-		return "Client{"+ 
-				"id= "+ idClient + 
+		return "Client{"+
+				"id= "+ idClient +
 				", nom= "+ nom +
 				", prenom="+ prenom +
-				", date de naissance= " + dateNaissance + 
+				", date de naissance= " + dateNaissance +
 				", email= "+ email +
 				", categorieclient= "+ categorieclient +
-				", profession= "+ profession + 
+				", profession= "+ profession +
 				", phone= "+ phone +
 				", cin= "+ cin +
 				"}";
 	}
-	
+
 	@OneToMany(mappedBy="clients")
 	private List<Facture> factures;
 
@@ -160,4 +163,3 @@ public class Client implements Serializable{
 		return factures;
 	}
 }
-
