@@ -12,19 +12,14 @@ import tn.esprit.demo.entities.Profession;
 import org.springframework.stereotype.Repository;
 
 
-@Repository	
-public interface ClientRepository extends JpaRepository<Client,Long> {
-
-	Client findByUserName(String username);
-
+@Repository
+public interface ClientRepository extends JpaRepository<Client,Long>{
 
 	List<Client> findByProfession(Profession prof);
 
+	List<Client> findBycategorieclient(CategorieClient categorieclient);
 
-	List<Client> findByCategorieclient(CategorieClient categorieclient);
 
-
+	Client findByUserName(String username);
 }
-	
-	
 	
